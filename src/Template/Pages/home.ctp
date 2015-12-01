@@ -25,12 +25,12 @@
         <div class="row align-center">
             <div class="column medium-offset-2 medium-4">
                 <div class="callout primary large">
-                    <p class="text-justify">À l'heure actuelle, ce template intègre le thème par defaut de Foundation ainsi que les script pour JQuery et Foundation.</p>
+                    <p class="text-justify">À l'heure actuelle, ce template intègre le thème par defaut de Foundation ainsi que les scripts pour JQuery et Foundation.</p>
                 </div>
             </div>
             <div class="medium-4 column end">
                 <div class="callout success large">
-                    <p class="text-justify">Ce template constitut donc notre base de travail. Nous rajouterons éventuellement des choses par la suite et nous (enfin surtout les frontend) définirons un thème (edition du fichier webroot/css/app.css)         pour personnaliser le site</p>
+                    <p class="text-justify">Ce template constitut donc notre base de travail. Nous rajouterons éventuellement des choses par la suite et nous (enfin surtout les frontend) définirons un thème (edition du fichier webroot/css/app.css)         pour personnaliser le site.</p>
                 </div>
             </div>
         </div>
