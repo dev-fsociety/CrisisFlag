@@ -13,45 +13,67 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+ $fsociety = "/dev/fsociety - ";
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        <?= $fsociety ?>
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <!-- Cake default style -->
+    <!--<?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('cake.css') ?>-->
+
+    <!-- Foundation style -->
+    <?= $this->Html->css('foundation.min.css') ?>
+
+    <!-- Own style -->
+    <?= $this->Html->css('app.css') ?>
 
     <?= $this->fetch('meta') ?>
+
+    <!-- Page specific style -->
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text">/dev/fsociety : the best device ever!</li>
         </ul>
-        <section class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </section>
-    </nav>
+      </div>
+
+      <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
+            <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+        </ul>
+      </div>
+    </div>
+
     <?= $this->Flash->render() ?>
     <section class="container clearfix">
         <?= $this->fetch('content') ?>
     </section>
     <footer>
     </footer>
+
+    <!-- Foundation (+jquery) scripts -->
+    <?= $this->Html->script("vendor/jquery.min.js") ?>
+    <?= $this->Html->script("vendor/what-input.min.js") ?>
+    <?= $this->Html->script("foundation.min.js") ?>
+
+    <!-- Own script -->
+    <?= $this->Html->script("app.js") ?>
+
+    <!-- Page specific script (always load last) -->
+    <?= $this->fetch('script') ?>
 </body>
 </html>
