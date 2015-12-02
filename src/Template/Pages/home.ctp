@@ -17,7 +17,7 @@
 <div class="row">
     <div class="medium-12 column text-center">
         <h1>/dev/fsociety - Le site rendu</h1>
-        <p>Bienvenu sur ce qui deviendra la page d'accueil de notre site !</p>
+        <p>Bienvenue sur ce qui deviendra la page d'accueil de notre site !</p>
 
         <?= $this->Html->link("Cliquez ici pour tester votre installation de cake !",
         ['controller' => 'Pages', 'action' => 'display', "test"], ['class' => 'expended button']); ?>
