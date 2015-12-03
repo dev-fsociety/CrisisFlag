@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Homes Controller
  *
@@ -15,7 +15,7 @@ class HomesController extends AppController
 			parent::beforeFilter($event);
 			$this->Auth->allow(['logout','add','view','index','edit']);
 	}
-	
+
 	public function index()
 	{
 		$this->loadModel('Crisis');
