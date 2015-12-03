@@ -15,24 +15,40 @@
 ?>
 
 <div class="row">
+
     <div class="medium-12 column text-center">
-        <h1>/dev/fsociety - Le site rendu</h1>
-        <p>Bienvenue sur ce qui deviendra la page d'accueil de notre site !</p>
 
-        <?= $this->Html->link("Cliquez ici pour tester votre installation de cake !",
-        ['controller' => 'Pages', 'action' => 'display', "test"], ['class' => 'expended button']); ?>
+        <h2>Latest crisis:</h2>
 
-        <div class="row align-center">
-            <div class="column medium-offset-2 medium-4">
-                <div class="callout primary large">
-                    <p class="text-justify">À l'heure actuelle, ce template intègre le thème par defaut de Foundation ainsi que les scripts pour JQuery et Foundation.</p>
+        <div class="row text-left">
+          <div class="medium-12 large-12 small-12 columns">
+            <div class="crisis-panel red radius">
+              <div class="crisis-panel-label">
+                <div class="label-text">
+                  !!!
                 </div>
+              </div>
+              <div class="crisis-panel-content">
+
+                <h3 class="crisis-panel-title">Crisis label</h3>
+                <h4 class="subheader">Crisis location</h3>
+
+                <p>
+                  <span class="label secondary round radius">tag 1</span>
+                  <span class="label secondary round radius">tag 2</span>
+                  <span class="label secondary round radius">tag 3</span>
+                  <span class="label secondary round radius">tag 4</span>
+                  <span class="label secondary round radius">tag 5</span>
+                </p>
+
+                <p>
+                  Crisis description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+              </div>
             </div>
-            <div class="medium-4 column end">
-                <div class="callout success large">
-                    <p class="text-justify">Ce template constitut donc notre base de travail. Nous rajouterons éventuellement des choses par la suite et nous (enfin surtout les frontend) définirons un thème (edition du fichier webroot/css/app.css)         pour personnaliser le site.</p>
-                </div>
-            </div>
+          </div>
         </div>
+
     </div>
 </div>

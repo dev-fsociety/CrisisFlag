@@ -37,6 +37,8 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
+    <?= $this->Html->css('home_crisisdisplay.css') ?>
+
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
