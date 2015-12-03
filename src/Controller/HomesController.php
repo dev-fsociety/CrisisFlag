@@ -23,6 +23,7 @@ class HomesController extends AppController
 		$this->loadModel('Articles');
 
 		$spottedCrises = $this->Crisis->find()
+		->contain('Infos')
 		->where(['state' => 'spotted']);
 		if($spottedCrises->count() != 0)
 		{
@@ -30,6 +31,7 @@ class HomesController extends AppController
 		}
 
 		$verifiedCrises = $this->Crisis->find()
+		->contain('Infos')
 		->where(['state' => 'verified']);
 		if($verifiedCrises->count() != 0)
 		{
