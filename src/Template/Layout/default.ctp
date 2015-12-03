@@ -53,6 +53,11 @@
 
     <section class="top-bar-section">
       <!-- Right Nav Section -->
+      <ul class="left">
+          <li class="active"><?= $this->Html->link("Login",['controller' => 'Users', 'action' => 'login'], ['class' => 'expended button']); ?></li>
+          <li class="active"><?= $this->Html->link("Logout",['controller' => 'Users', 'action' => 'logout'], ['class' => 'expended button']); ?></li>
+      </ul>
+
       <ul class="right">
         <li class="active"><?= $this->Html->link("Articles",['controller' => 'Articles', 'action' => 'index'], ['class' => 'expended button']); ?></li>
         <li class="active"><?= $this->Html->link("Users",['controller' => 'Users', 'action' => 'index'], ['class' => 'expended button']); ?></li>
