@@ -112,9 +112,6 @@
 
     <?= $this->Html->script("app.js") ?>
 
-
-
-
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>
     <script>
