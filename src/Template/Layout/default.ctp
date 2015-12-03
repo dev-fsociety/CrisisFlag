@@ -37,6 +37,9 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
+    <!-- Topbar style style -->
+    <?= $this->Html->css('topbar.css') ?>
+
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
@@ -44,27 +47,31 @@
 </head>
 <body>
 
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="#">/dev/fsociety : the best device ever!</a></h1>
-      </li>
-    </ul>
+<!-- Topbar -->
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="active"><a href="#">Right Button Active</a></li>
-        <li class="has-dropdown">
-          <a href="#">Right Button Dropdown</a>
-          <ul class="dropdown">
-            <li class="active"><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-            <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </nav>
+          <nav class="tab-bar">
+            <div class="left-small">
+              <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
+            </div>
+            <div class="middle tab-bar-section">
+              <a href="#" id="menu-text">Menu</a>
+            </div>
+          </nav>
+
+          <nav class="left-off-canvas-menu">
+            <ul class="off-canvas-list">
+              <li><label>Menu</label></li>
+              <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
+              <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
+              <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
+              <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
+              <li><?= $this->Html->link(__('Users'),    ['controller'=>'Users', 'action' => 'add']) ?></li>
+            </ul>
+          </nav>
+
+<!-- /Topbar -->
 
     <?= $this->Flash->render() ?>
     <section class="container clearfix">
@@ -78,9 +85,14 @@
     <?= $this->Html->script("vendor/what-input.min.js") ?>
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
+    <!-- Topbar -->
+    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>  
 
     <!-- Own script -->
     <?= $this->Html->script("app.js") ?>
+    
+
+
 
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>
