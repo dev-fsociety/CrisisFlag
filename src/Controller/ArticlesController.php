@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
 
 /**
  * Articles Controller
@@ -17,13 +16,6 @@ class ArticlesController extends AppController
      *
      * @return void
      */
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->Auth->allow(['index', 'view']);
-    }
-
     public function index()
     {
         $this->paginate = [
@@ -59,6 +51,7 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
+            $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -66,7 +59,6 @@ class ArticlesController extends AppController
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Articles->Users->find('list', ['limit' => 200]);
         $this->set(compact('article', 'users'));
         $this->set('_serialize', ['article']);
     }
@@ -114,5 +106,29 @@ class ArticlesController extends AppController
             $this->Flash->error(__('The article could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+    * isAuthorized method
+    *
+    * @param $user
+    * @return True or False
+    */
+    public function isAuthorized($user)
+    {
+      // All registered users can add articles
+      if ($this->request->action === 'add') {
+        return true;
+      }
+
+      // The owner of an article can edit and delete it
+      if (in_array($this->request->action, ['edit', 'delete'])) {
+        $articleId = (int)$this->request->params['pass'][0];
+        if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+          return true;
+        }
+      }
+
+      return parent::isAuthorized($user);
     }
 }
