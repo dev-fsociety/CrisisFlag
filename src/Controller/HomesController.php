@@ -4,15 +4,41 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Users Controller
+ * Homes Controller
  *
- * @property \App\Model\Table\UsersTable $Users
  */
+
 class HomesController extends AppController
 {
 	public function index()
 	{
-		
+		$this->loadModel('Crisis');
+		$this->loadModel('Articles');
+
+		$spottedCrises = $this->Crisis->find()
+		->where(['state' => 'spotted']);
+		if($spottedCrises->count() != 0)
+		{
+			$home_type = 'spotted';
+		}
+
+		$verifiedCrises = $this->Crisis->find()
+		->where(['state' => 'verified']);
+		if($verifiedCrises->count() != 0)
+		{
+			$home_type = 'active';
+
+		}
+		else
+		{
+			$home_type = 'none';
+		}
+
+		$articles = $this->Articles->find('all')
+		->limit(5)->orderBy('created');
+
+		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles'));
+
 	}
 }
 

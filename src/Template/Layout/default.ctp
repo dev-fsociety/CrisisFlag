@@ -69,10 +69,7 @@
     </section>
   </nav>
 
-    <div data-alert class="alert-box">
-        <?= $this->Flash->render() ?>
-        <a href="#" class="close">&times;</a>
-    </div>
+    <?= $this->Flash->render() ?>
     <section class="container clearfix">
         <?= $this->fetch('content') ?>
     </section>
@@ -81,8 +78,9 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    <?= $this->Html->script("vendor/what-input.min.js") ?>
+    
     <?= $this->Html->script("foundation/foundation.js") ?>
+    <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
