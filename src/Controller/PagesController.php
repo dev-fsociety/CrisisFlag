@@ -28,6 +28,11 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['logout','add','view','index','edit']);
+    }
     /**
      * Displays a view
      *
