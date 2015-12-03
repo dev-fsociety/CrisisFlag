@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Articles Controller
  *
@@ -10,6 +10,18 @@ use App\Controller\AppController;
  */
 class ArticlesController extends AppController
 {
+
+  /**
+   * beforeFilter method
+   *
+   * @return void
+   */
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index', 'view']);
+    }
 
     /**
      * Index method
