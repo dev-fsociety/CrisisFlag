@@ -1,13 +1,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Articles'), ['controller' => 'Articles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Crisis'), ['controller' => 'Crisis', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Crisi'), ['controller' => 'Crisis', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Infos'), ['controller' => 'Infos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Info'), ['controller' => 'Infos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Nouvel Utilisateur'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">

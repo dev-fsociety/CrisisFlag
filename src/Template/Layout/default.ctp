@@ -69,7 +69,7 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => '/']) ?></li>
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
@@ -117,7 +117,6 @@
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <!-- <script>tinymce.init({ selector:'body' });</script> -->
     <script>tinymce.init({ selector:'textarea' });</script>
     <!-- Own script -->
     <!-- Topbar -->

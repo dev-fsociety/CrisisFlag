@@ -135,9 +135,6 @@ class CrisisController extends AppController
             }
         }
 
-        debug($user);
-        die();
-
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)
         {
