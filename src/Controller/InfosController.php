@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Infos Controller
  *
@@ -10,7 +10,11 @@ use App\Controller\AppController;
  */
 class InfosController extends AppController
 {
-
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['view','index']);
+    }
     /**
      * Index method
      *
@@ -108,5 +112,27 @@ class InfosController extends AppController
             $this->Flash->error(__('The info could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function isAuthorized($user)
+    {
+      // A logged user can do an action about infos
+
+    if($this->request->action === 'add' && $user['id'] > 0)
+    {
+        return true;
+    }
+
+      if(in_array($this->request->action, ['edit', 'delete']))
+      {
+        $infoId = (int)$this->request->params['pass'][0];
+
+        if($this->Articles->isOwnedBy($infoId, $user['id']))
+        {
+            return true;
+        }
+      }
+
+      return parent::isAuthorized($user);
     }
 }

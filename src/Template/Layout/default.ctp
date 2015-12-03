@@ -38,50 +38,70 @@
     <?= $this->Html->css('app.css') ?>
 
     <?= $this->Html->css('home_crisisdisplay.css') ?>
+    <?= $this->Html->css('foundation-icons.css') ?>
+    <?= $this->Html->css('crisis_template.css') ?>
+
+    <!-- Footer style -->
+    <?= $this->Html->css('footer.css') ?>
 
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->fetch('css') ?>
+    <?= $this->Html->css($this->fetch('css')) ?>
 </head>
 <body>
 
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="#">/dev/fsociety : the best device ever!</a></h1>
-      </li>
-    </ul>
+    <div class="off-canvas-wrap" data-offcanvas>
+        <div class="inner-wrap">
 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="left">
-          <li class="active"><?= $this->Html->link("Login",['controller' => 'Users', 'action' => 'login'], ['class' => 'expended button']); ?></li>
-          <li class="active"><?= $this->Html->link("Logout",['controller' => 'Users', 'action' => 'logout'], ['class' => 'expended button']); ?></li>
-      </ul>
+            <nav class="tab-bar">
+                <div class="left-small">
+                    <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
+                </div>
+                <div class="middle tab-bar-section">
+                    <a href="#" id="menu-text">Menu</a>
+                </div>
+            </nav>
 
-      <ul class="right">
-        <li class="active"><?= $this->Html->link("Articles",['controller' => 'Articles', 'action' => 'index'], ['class' => 'expended button']); ?></li>
-        <li class="active"><?= $this->Html->link("Users",['controller' => 'Users', 'action' => 'index'], ['class' => 'expended button']); ?></li>
-        <li class="active"><?= $this->Html->link("Infos",['controller' => 'Infos', 'action' => 'index'], ['class' => 'expended button']); ?></li>
-        <li class="active"><?= $this->Html->link("Crisis",['controller' => 'Crisis', 'action' => 'index'], ['class' => 'expended button']); ?></li>
-        <li class="has-dropdown">
-          <a href="#">Right Button Dropdown</a>
-          <ul class="dropdown">
-            <li class="active"><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-            <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </nav>
+<!-- Topbar -->
+            <nav class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li><label>Menu</label></li>
+                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                </ul>
+            </nav>
 
-    <?= $this->Flash->render() ?>
-    <section class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </section>
-    <footer>
-    </footer>
+<!-- /Topbar -->
+
+
+            <?= $this->Flash->render() ?>
+            <section class="container clearfix">
+                <?= $this->fetch('content') ?>
+            </section>
+
+
+<!-- Footer -->
+            <footer class="footer">
+              <div class="row">
+                <div class="small-12 columns">
+                    <p class="slogan">/dev/fsociety</p>
+                        <p class="links">
+                            <a href="http://book.cakephp.org/3.0/">Documentation</a>
+                            <a href="http://api.cakephp.org/3.0/">API</a>
+                        </p>
+                    <p class="copywrite">Fsociety all rights reserved © 2015</p>
+                </div>
+              </div>
+            </footer>
+<!-- /Footer -->
+
+        </div>
+    </div>
+
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
@@ -89,10 +109,18 @@
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
-
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <!-- <script>tinymce.init({ selector:'body' });</script> -->
+    <script>tinymce.init({ selector:'textarea' });</script>
     <!-- Own script -->
+    <!-- Topbar -->
+    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
+
     <?= $this->Html->script("app.js") ?>
     <?= $this->Html->script("hideradio.js") ?>
+
+
+
 
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>

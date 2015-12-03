@@ -14,20 +14,19 @@
  */
 ?>
 
+<?php debug($spottedCrises->toArray()); ?>
+
 <div class="row">
 
 
 
 
 
-<?php
-if ($home_type == 'active')
-{
-    echo $home_type;
-} else {
-    echo "zgeg";
-}
-?>
+      <?php if ($home_type == 'active') { ?>
+          A
+      <?php } else { ?>
+          B
+      <?php }?>
 
       <div class="medium-12 column text-center">
         <h2>Latest crisis:</h2>

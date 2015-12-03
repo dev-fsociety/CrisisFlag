@@ -17,11 +17,11 @@ class ArticlesController extends AppController
    * @return void
    */
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view']);
-    }
+   public function beforeFilter(Event $event)
+   {
+       parent::beforeFilter($event);
+       $this->Auth->allow(['view','index']);
+   }
 
     /**
      * Index method
@@ -134,9 +134,12 @@ class ArticlesController extends AppController
       }
 
       // The owner of an article can edit and delete it
-      if (in_array($this->request->action, ['edit', 'delete'])) {
+      if (in_array($this->request->action, ['edit', 'delete']))
+      {
         $articleId = (int)$this->request->params['pass'][0];
-        if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+
+        if ($this->Articles->isOwnedBy($articleId, $user['id']))
+        {
           return true;
         }
       }

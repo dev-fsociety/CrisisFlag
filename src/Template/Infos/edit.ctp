@@ -2,28 +2,28 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Supprimer'),
                 ['action' => 'delete', $info->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $info->id)]
+                ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'info #{0} ?', $info->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Infos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Liste des informations'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des utilisateurs'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Nouvel utilisateur'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="infos form large-9 medium-8 columns content">
     <?= $this->Form->create($info) ?>
     <fieldset>
-        <legend><?= __('Edit Info') ?></legend>
+        <legend><?= __('Editer l\'information') ?></legend>
         <?php
-            echo $this->Form->input('title');
-            echo $this->Form->input('body');
-            echo $this->Form->input('crisis_id');
-            echo $this->Form->input('user_id', ['options' => $users]);
-            echo $this->Form->input('type');
+            echo $this->Form->input('title', ['label' => 'Titre']);
+            echo $this->Form->input('body', ['label' => 'Corps du texte']);
+            echo $this->Form->input('crisis_id', ['label' => 'ID crise']);
+            echo $this->Form->input('user_id', ['options' => $users, 'label' => 'ID utilisateur']);
+            echo $this->Form->input('type', ['label' => 'Type']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Soumettre')) ?>
     <?= $this->Form->end() ?>
 </div>
