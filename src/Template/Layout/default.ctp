@@ -71,7 +71,10 @@
     </section>
   </nav>
 
-    <?= $this->Flash->render() ?>
+    <div data-alert class="alert-box">
+        <?= $this->Flash->render() ?>
+        <a href="#" class="close">&times;</a>
+    </div>
     <section class="container clearfix">
         <?= $this->fetch('content') ?>
     </section>

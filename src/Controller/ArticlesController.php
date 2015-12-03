@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Articles Controller
@@ -16,6 +17,13 @@ class ArticlesController extends AppController
      *
      * @return void
      */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Auth->allow(['index', 'view']);
+    }
+
     public function index()
     {
         $this->paginate = [
