@@ -14,19 +14,11 @@
  */
 ?>
 
-<?php debug($spottedCrises->toArray()); ?>
-
 <div class="row">
 
 
 
-
-
-      <?php if ($home_type == 'active') { ?>
-          A
-      <?php } else { ?>
-          B
-      <?php }?>
+    <?php if ($home_type == 'active') { ?>
 
       <div class="medium-12 column text-center">
         <h2>Latest crisis:</h2>
@@ -38,7 +30,7 @@
             <div class="crisis-panel red radius">
               <div class="crisis-panel-label">
                 <div class="label-text">
-                  !!!
+                  <?= $spottedCrises->first->severity ?>
                 </div>
               </div>
               <div class="crisis-panel-content">
@@ -73,14 +65,14 @@
           <div class="small-6 large-8 columns">
             <!-- Dernières crises -->
             <ul>
-              <li>Element 1</li>
-              <li>Element 2</li>
-              <li>Element 3</li>
-              <li>Element 4</li>
-              <li>Element 5</li>
-              <li>Element 6</li>
-              <li>Element 7</li>
+            <?php foreach ($spottedCrises as $crisis): ?>
+                <li>
+                  <?= $crisis->abstract ?>
+                </li>
+              <?php endforeach; ?>
+
             </ul>
+
           </div>
 
 
@@ -99,7 +91,11 @@
                   <?= $this->Form->input('hashtags'); ?>
               <?= $this->Form->button(__('Submit')) ?>
               <?= $this->Form->end() ?>            </div>
-        </div>
+          </div>
+
+      <?php } else { ?>
+
+      <?php }?>
 
 
 </div>
