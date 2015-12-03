@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-
 /**
  * Homes Controller
  *
@@ -12,10 +11,10 @@ use Cake\Event\Event;
 class HomesController extends AppController
 {
 	public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['index']);
-    }
+	{
+			parent::beforeFilter($event);
+			$this->Auth->allow(['logout','add','view','index','edit']);
+	}
 
 	public function index()
 	{
@@ -41,8 +40,7 @@ class HomesController extends AppController
 			$home_type = 'none';
 		}
 
-		$articles = $this->Articles->find('all')
-		->limit(5)->order('created');
+		$articles = $this->Articles->find('all')->limit(5)->order('created');
 
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles'));
 
