@@ -118,7 +118,6 @@
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <!-- <script>tinymce.init({ selector:'body' });</script> -->
     <script>tinymce.init({ selector:'textarea' });</script>
     <!-- Own script -->
     <!-- Topbar -->
