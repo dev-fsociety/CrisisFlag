@@ -1,3 +1,10 @@
+@font-face{
+  font-family: Heavitas;
+  src: url(../font/Heavitas.ttf);
+}
+
+
+
 /***************/
 /* Users login */
 /***************/
@@ -24,7 +31,7 @@
   border-style: solid;
   border-width: 0;
   cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: Heavitas;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1rem;
@@ -47,8 +54,6 @@
   background: -moz-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-  font-family: Bow;
 
 }
 

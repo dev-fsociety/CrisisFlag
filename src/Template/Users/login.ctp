@@ -13,7 +13,6 @@
           <label>Password
             <input type="text" placeholder="Password">
           </label>
-          <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
           <p><a type="submit" class="log-in-button">Log In</a></p>
           <p class="text-center"><a href="#">Forgot your password?</a></p>   
         </div>
