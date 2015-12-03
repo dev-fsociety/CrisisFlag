@@ -11,7 +11,8 @@
         <?php
             echo $this->Form->input('title', ['label' => 'Titre']);
             echo $this->Form->input('body', ['label' => 'Corps du texte']);
-            echo $this->Form->input('crisis_id', ['options' => $crisis, 'label' => 'ID crise']);
+            echo "<br />";
+            echo $this->Form->input('crisis_id', ['options' => $Crisis, 'label' => 'ID crise']);
             echo $this->Form->input('user_id', ['options' => $users, 'label' => 'ID utilisateur']);
             echo $this->Form->input('type', ['label' => 'Type']);
         ?>
