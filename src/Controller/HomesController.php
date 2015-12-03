@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Homes Controller
@@ -10,6 +11,12 @@ use App\Controller\AppController;
 
 class HomesController extends AppController
 {
+	public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index']);
+    }
+
 	public function index()
 	{
 		$this->loadModel('Crisis');
@@ -35,7 +42,7 @@ class HomesController extends AppController
 		}
 
 		$articles = $this->Articles->find('all')
-		->limit(5)->orderBy('created');
+		->limit(5)->order('created');
 
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles'));
 
