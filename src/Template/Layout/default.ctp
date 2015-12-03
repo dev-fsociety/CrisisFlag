@@ -43,7 +43,7 @@
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->fetch('css') ?>
+    <?= $this->Html->css($this->fetch('css')) ?>
 </head>
 <body>
 
@@ -111,6 +111,7 @@
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
+
 
     <!-- Page specific script (always load last) -->
     <?= $this->Html->script($this->fetch('script')) ?>

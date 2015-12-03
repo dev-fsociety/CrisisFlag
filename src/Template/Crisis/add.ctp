@@ -9,7 +9,7 @@
 <div class="crisis form large-9 medium-8 columns content">
     <?= $this->Form->create($crisi) ?>
     <fieldset>
-        <legend><?= __('Add Crisi') ?></legend>
+        <legend><?= __('Add Crisis') ?></legend>
         <?php
             echo $this->Form->input('abstract');
             echo $this->Form->input('severity');

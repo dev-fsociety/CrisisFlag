@@ -1,0 +1,66 @@
+@font-face{
+  font-family: Heavitas;
+  src: url(../font/Heavitas.ttf);
+}
+
+
+
+/***************/
+/* Users login */
+/***************/
+
+/* Form */
+.formclass {
+  margin-top: 5%;
+} 
+
+.log-in-form {
+  border: 1px solid #cacaca;
+  padding: 1rem;
+  border-radius: 3px;
+}
+
+
+.log-in-button {
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  border-radius: 1000px;
+  
+  border-style: solid;
+  border-width: 0;
+  cursor: pointer;
+  font-family: Heavitas;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1rem;
+  margin-top: 12px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+
+  padding: 0.625rem 1.25rem 0.6875rem 1.25rem;
+  font-size: 0.6875rem; 
+
+  background-color: #008CBA;
+  border-color: #007095;
+  color: #FFFFFF;
+  transition: background-color 300ms ease-out;
+  width: 100%;
+
+  background: #bfd255; /* Old browsers */
+  background: -moz-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+}
+
+.log-in-button:hover {
+  color: #030303;
+}
+
+.log-in-button:focus {
+  color: #030303;
+}
