@@ -1,3 +1,37 @@
 .capitalize{
 	text-transform: uppercase;
 }
+
+.main_degrade{
+	height: 300px;
+	background-image:linear-gradient(#8D8D8D, black);
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.main_degrade:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* space width */
+}
+
+.main_degrade_title{
+	color: white;
+	text-shadow: 2px 2px 4px #000000;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.main_degrade_title:first-letter{
+	text-transform: uppercase;
+}
+
+.verified_icon{
+	color: #37DF00;
+}
+
+.spotted_icon{
+	color: #DCB5FF;
+}
