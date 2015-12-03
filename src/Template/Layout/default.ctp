@@ -48,7 +48,7 @@
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->fetch('css') ?>
+    <?= $this->Html->css($this->fetch('css')) ?>
 </head>
 <body>
 
@@ -63,16 +63,16 @@
                     <a href="#" id="menu-text">Menu</a>
                 </div>
             </nav>
-            
+
 <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
                     <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Users'),    ['controller'=>'Users', 'action' => 'add']) ?></li>
+                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
                 </ul>
             </nav>
 
@@ -92,7 +92,7 @@
                     <p class="slogan">/dev/fsociety</p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
-                            <a href="http://api.cakephp.org/3.0/">API</a>                       
+                            <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
                 </div>
@@ -106,17 +106,17 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    
+
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
     <!-- Topbar -->
-    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>  
+    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-        
+
 
 
 
