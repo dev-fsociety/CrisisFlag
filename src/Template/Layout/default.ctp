@@ -58,12 +58,12 @@
                     <a href="#" id="menu-text">Menu</a>
                 </div>
             </nav>
-            
+
 <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
                     <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
@@ -87,7 +87,7 @@
                     <p class="slogan">/dev/fsociety</p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
-                            <a href="http://api.cakephp.org/3.0/">API</a>                       
+                            <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
                 </div>
@@ -101,22 +101,19 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    
+
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
     <!-- Topbar -->
-    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>  
+    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-        
-
-
 
     <!-- Page specific script (always load last) -->
-    <?= $this->fetch('script') ?>
+    <?= $this->Html->script($this->fetch('script')) ?>
     <script>
       $(document).foundation();
     </script>
