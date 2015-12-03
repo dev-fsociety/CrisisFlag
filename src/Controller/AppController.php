@@ -86,7 +86,6 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         $this->Auth->deny();
-        $this->Auth->allow(['login']);
     }
 
     public function beforeRender(Event $event)

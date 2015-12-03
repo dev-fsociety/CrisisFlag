@@ -12,8 +12,8 @@ class HomesController extends AppController
 {
 	public function beforeFilter(Event $event)
 	{
-			parent::beforeFilter($event);
-			$this->Auth->allow(['logout','add','view','index','edit']);
+		parent::beforeFilter($event);
+		$this->Auth->allow(['index']);
 	}
 
 	public function index()
@@ -45,7 +45,6 @@ class HomesController extends AppController
 		$articles = $this->Articles->find('all')->limit(5)->order('created');
 
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles'));
-
 	}
 }
 
