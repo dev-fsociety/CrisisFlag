@@ -30,4 +30,30 @@
     white-space: nowrap;
     transform: rotate(30deg); }
 	.crisis-panel-title {
-		font-weight: bold;}
+		font-weight: bold;
+		display:inline;
+		margin-right: 10px}
+	.crisis-panel-date {
+		font-weight: normal;
+		display:inline;
+		margin-right: 10px}
+	.crisis-panel-state {
+		font-weight: normal;
+		display:inline;
+		margin-right: 10px}
+
+
+		.submit-form {
+		  border: 1px solid #cacaca;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		  padding: 1rem;
+		  border-radius: 3px; }
+		.submit-form .radio-loc {
+			display: inline-block;
+			margin-left: 10px;}
+		.submit-form label {
+			display: inline-block;
+			margin-left: 10px;}
+		.submit-form .form-label {
+			display: block;
+			margin-left: 10px;}

@@ -85,13 +85,14 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    
+
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
     <?= $this->Html->script("app.js") ?>
+    <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>
