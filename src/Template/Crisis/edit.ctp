@@ -19,9 +19,9 @@
         <?php
             echo $this->Form->input('abstract', ['label' => 'Résumé']);
             echo $this->Form->input('severity', ['label' => 'Gravité']);
-            echo $this->Form->input('longitude', ['label' => 'Longitude']);
-            echo $this->Form->input('latitude', ['label' => 'Latitude']);
-            echo $this->Form->input('state', ['label' => 'Etat']);
+            echo $this->Form->input('longitude', ['label' => 'Longitude', 'minLongi' => -180.0000, 'maxLongi' => 180.0000]);
+            echo $this->Form->input('latitude', ['label' => 'Latitude', 'minLati' => -90.0000, 'maxLati' => 90.0000]);
+            echo $this->Form->input('state', ['label' => 'Pays']);
             echo $this->Form->input('address', ['label' => 'Adresse']);
             echo $this->Form->input('type', ['label' => 'Type']);
             echo $this->Form->input('hashtags', ['label' => 'Hashtags']);
