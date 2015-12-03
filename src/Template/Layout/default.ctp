@@ -58,6 +58,7 @@
                     <a href="#" id="menu-text">Menu</a>
                 </div>
             </nav>
+            
 <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
@@ -99,7 +100,6 @@
 
         </div>
     </div>
-
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
