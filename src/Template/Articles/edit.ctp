@@ -19,7 +19,7 @@
         <?php
             echo $this->Form->input('title');
             echo $this->Form->input('body');
-            echo $this->Form->input('user_id', ['options' => $users]);
+          //  echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('category');
         ?>
     </fieldset>

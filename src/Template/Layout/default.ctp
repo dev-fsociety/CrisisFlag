@@ -55,6 +55,11 @@
 
     <section class="top-bar-section">
       <!-- Right Nav Section -->
+      <ul class="left">
+          <li class="active"><?= $this->Html->link("Login",['controller' => 'Users', 'action' => 'login'], ['class' => 'expended button']); ?></li>
+          <li class="active"><?= $this->Html->link("Logout",['controller' => 'Users', 'action' => 'logout'], ['class' => 'expended button']); ?></li>
+      </ul>
+
       <ul class="right">
         <li class="active"><?= $this->Html->link("Articles",['controller' => 'Articles', 'action' => 'index'], ['class' => 'expended button']); ?></li>
         <li class="active"><?= $this->Html->link("Users",['controller' => 'Users', 'action' => 'index'], ['class' => 'expended button']); ?></li>
@@ -80,8 +85,9 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    <?= $this->Html->script("vendor/what-input.min.js") ?>
+    
     <?= $this->Html->script("foundation/foundation.js") ?>
+    <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
