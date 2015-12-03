@@ -40,7 +40,7 @@ class CrisisController extends AppController
     public function view($id = null)
     {
         $crisi = $this->Crisis->get($id, [
-            'contain' => ['Users']
+            'contain' => ['Users', 'Infos']
         ]);
         $this->set('crisi', $crisi);
         $this->set('_serialize', ['crisi']);
