@@ -19,7 +19,7 @@ class InfosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Crises', 'Users']
+            'contain' => ['Crisis', 'Users']
         ];
         $this->set('infos', $this->paginate($this->Infos));
         $this->set('_serialize', ['infos']);
@@ -35,7 +35,7 @@ class InfosController extends AppController
     public function view($id = null)
     {
         $info = $this->Infos->get($id, [
-            'contain' => ['Crises', 'Users']
+            'contain' => ['Crisis', 'Users']
         ]);
         $this->set('info', $info);
         $this->set('_serialize', ['info']);
@@ -58,9 +58,9 @@ class InfosController extends AppController
                 $this->Flash->error(__('The info could not be saved. Please, try again.'));
             }
         }
-        $crises = $this->Infos->Crises->find('list', ['limit' => 200]);
+        $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
         $users = $this->Infos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('info', 'crises', 'users'));
+        $this->set(compact('info', 'Crisis', 'users'));
         $this->set('_serialize', ['info']);
     }
 
@@ -85,9 +85,9 @@ class InfosController extends AppController
                 $this->Flash->error(__('The info could not be saved. Please, try again.'));
             }
         }
-        $crises = $this->Infos->Crises->find('list', ['limit' => 200]);
+        $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
         $users = $this->Infos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('info', 'crises', 'users'));
+        $this->set(compact('info', 'Crisis', 'users'));
         $this->set('_serialize', ['info']);
     }
 

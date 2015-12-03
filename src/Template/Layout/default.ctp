@@ -54,7 +54,10 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-        <li class="active"><a href="#">Right Button Active</a></li>
+        <li class="active"><?= $this->Html->link("Articles",['controller' => 'Articles', 'action' => 'index'], ['class' => 'expended button']); ?></li>
+        <li class="active"><?= $this->Html->link("Users",['controller' => 'Users', 'action' => 'index'], ['class' => 'expended button']); ?></li>
+        <li class="active"><?= $this->Html->link("Infos",['controller' => 'Infos', 'action' => 'index'], ['class' => 'expended button']); ?></li>
+        <li class="active"><?= $this->Html->link("Crisis",['controller' => 'Crisis', 'action' => 'index'], ['class' => 'expended button']); ?></li>
         <li class="has-dropdown">
           <a href="#">Right Button Dropdown</a>
           <ul class="dropdown">
