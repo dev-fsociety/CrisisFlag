@@ -9,16 +9,10 @@
     <fieldset>
         <legend><?= __('Ajouter article') ?></legend>
         <?php
-<<<<<<< HEAD
             echo $this->Form->input('title', ['label' => 'Titre']);
             echo $this->Form->input('body', ['label' => 'Corps du texte']);
+            echo "<br />";
             echo $this->Form->input('category', ['label' => 'Catégorie']);
-=======
-            echo $this->Form->input('title', ['label' => 'Titre de l\'article :']);
-            echo $this->Form->input('body', ['label' => 'Corps du texte :']);
-            echo $this->Html->link("<br />", '/mycontroller/myaction', array('escape' => false));
-            echo $this->Form->input('category', ['label' => 'Catégorie :']);
->>>>>>> ce759fd052f485f58385830fde33b08d3b005256
         ?>
     </fieldset>
     <?= $this->Form->button(__('Soumettre')) ?>

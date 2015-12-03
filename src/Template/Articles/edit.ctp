@@ -18,7 +18,7 @@
             echo $this->Form->input('title', ['label' => 'Titre']);
             echo $this->Form->input('body', ['label' => 'Corps du texte']);
             // echo $this->Form->input('user_id', ['options' => $users, 'label' => 'Utilisateur']);
-            echo $this->Html->link("<br />", '/mycontroller/myaction', array('escape' => false));
+            echo "<br />";
             echo $this->Form->input('category', ['label' => 'Catégorie']);
         ?>
     </fieldset>
