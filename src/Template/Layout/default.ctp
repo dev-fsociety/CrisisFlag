@@ -86,11 +86,8 @@
                 <div class="small-12 columns">
                     <p class="slogan">/dev/fsociety</p>
                         <p class="links">
-                        
-                        <a href="#"><?= $this->Html->link(__('Home'),                ['controller'=>'Home', 'action' => 'index']) ?></a>
-                        <a href="#"><?= $this->Html->link(__('About us'),            ['controller'=>'Home', 'action' => 'index'])?></a>
-                        <a href="#"><?= $this->Html->link(__('Contact our team'),    ['controller'=>'Home', 'action' => 'index'])?></a>
-                       
+                            <a href="http://book.cakephp.org/3.0/">Documentation</a>
+                            <a href="http://api.cakephp.org/3.0/">API</a>                       
                         </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
                 </div>
@@ -101,10 +98,12 @@
         </div>
     </div>
 
+
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    <?= $this->Html->script("vendor/what-input.min.js") ?>
+    
     <?= $this->Html->script("foundation/foundation.js") ?>
+    <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
