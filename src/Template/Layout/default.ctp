@@ -48,7 +48,9 @@
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->Html->css($this->fetch('css')) ?>
+    <?php $css = $this->fetch('css');
+    if($css != "")
+        echo $this->Html->css($css); ?>
 </head>
 <body>
 

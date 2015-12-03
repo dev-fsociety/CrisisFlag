@@ -1,1 +1,4 @@
-<div class="message success" onclick="this.classList.add('hidden')"><?= h($message) ?></div>
+<div data-alert class="alert-box success" tabindex="0" aria-live="assertive" role="alertdialog">
+  <?= h($message) ?>
+  <button tabindex="0" class="close" aria-label="Close Alert">&times;</button>
+</div>
