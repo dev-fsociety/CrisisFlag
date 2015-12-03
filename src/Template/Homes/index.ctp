@@ -18,8 +18,9 @@
 
     <div class="medium-12 column text-center">
 
-        <h2>Latest crisis:</h2>
 
+        <!-- plus importante crise -->
+        <h2>Latest crisis:</h2>
         <div class="row text-left">
           <div class="medium-12 large-12 small-12 columns">
             <div class="crisis-panel red radius">
@@ -49,6 +50,41 @@
             </div>
           </div>
         </div>
+
+        <!-- Dernières crises + formulaire submit rapide-->
+        <div class="row text-left">
+          <!-- Dernières crises -->
+          <div class="medium-12 large-12 small-12 columns">
+            <div class="crisis-panel red radius">
+              <div class="crisis-panel-label">
+                <div class="label-text">
+                  !!!
+                </div>
+              </div>
+              <div class="crisis-panel-content">
+
+                <h3 class="crisis-panel-title">Crisis label</h3>
+                <h4 class="subheader">Crisis location</h3>
+
+                <p>
+                  <span class="label secondary round radius">tag 1</span>
+                  <span class="label secondary round radius">tag 2</span>
+                  <span class="label secondary round radius">tag 3</span>
+                  <span class="label secondary round radius">tag 4</span>
+                  <span class="label secondary round radius">tag 5</span>
+                </p>
+
+                <p>
+                  Crisis description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulaire -->
+
 
     </div>
 </div>
