@@ -37,6 +37,8 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
+    <?= $this->Html->css('crisis_template.css') ?>
+
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
