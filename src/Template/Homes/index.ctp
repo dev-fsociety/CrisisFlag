@@ -14,6 +14,8 @@
  */
 ?>
 
+<?php debug($spottedCrises->toArray()); ?>
+
 <div class="row">
     <div class="medium-12 column text-center">
         <h1>/dev/fsociety - Le site rendu</h1>

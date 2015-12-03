@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Infos Controller
  *
@@ -10,7 +10,11 @@ use App\Controller\AppController;
  */
 class InfosController extends AppController
 {
-
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['logout','add','view','index','edit']);
+    }
     /**
      * Index method
      *

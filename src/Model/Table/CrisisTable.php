@@ -31,6 +31,11 @@ class CrisisTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->hasMany('Infos', [
+            'foreignKey' => 'crisis_id',
+            'joinType' => 'INNER'
+        ]);
+
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'

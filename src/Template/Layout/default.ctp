@@ -43,7 +43,7 @@
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->fetch('css') ?>
+    <?= $this->Html->css($this->fetch('css')) ?>
 </head>
 <body>
 
@@ -58,7 +58,7 @@
                     <a href="#" id="menu-text">Menu</a>
                 </div>
             </nav>
-            
+
 <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
@@ -87,7 +87,7 @@
                     <p class="slogan">/dev/fsociety</p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
-                            <a href="http://api.cakephp.org/3.0/">API</a>                       
+                            <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
                 </div>
@@ -101,17 +101,17 @@
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
-    
+
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
     <!-- Topbar -->
-    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>  
+    <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-        
+
 
 
 
