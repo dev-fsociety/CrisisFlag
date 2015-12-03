@@ -1,168 +1,51 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Articles'), ['controller' => 'Articles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Crisis'), ['controller' => 'Crisis', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Crisis'), ['controller' => 'Crisis', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Infos'), ['controller' => 'Infos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Info'), ['controller' => 'Infos', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('Username') ?></th>
-            <td><?= h($user->username) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Organisation') ?></th>
-            <td><?= h($user->organisation) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Modified') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
-    </table>
+        <!-- this adds Foundation Icon Fonts!! -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    
     <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($user->description)); ?>
+      <div class="medium-4 columns">
+        <div class="profile-card">
+          <img src="http://zurb.com/ink/images/inky-computer.svg" alt="Inky">
+          <div class="profile-info">
+            <h4 class="subheader">Inky</h4>
+            <p>Inky or inking can substitute for any word having to do with cool or awesome.</p>
+            <p><strong>Used in a scentence -</strong> Yo man, Foundation for Emails is so inky. Coding emails doesn't suck anymore!</p>
+            <p><a href="http://foundation.zurb.com/forum">Forum</a> | <a href="http://zurb.com/ink/">Website</a></p>
+            <ul class="inline-list">
+              <li><a href="https://www.facebook.com/ZURB"><i class="fi-social-facebook"></i></a></li>
+              <li><a href="https://twitter.com/zurbink"><i class="fi-social-twitter"></i></a></li>
+              <li><a href="https://github.com/zurb/ink"><i class="fi-social-github"></i></a></li>
+          </div>
+        </div>
+      </div>
+      <div class="medium-4 columns">
+        <div class="profile-card">
+          <img src="http://www.demacmedia.com/wp-content/uploads/2014/04/330x330xYeti-Feature-Small-2.png.pagespeed.ic.ASS9EY8apS.png" alt="Yeti">
+          <div class="profile-info">
+            <h4 class="subheader">O.G. Yeti</h4>
+            <p>O.G. stands for original gangsta.</p>
+            <p><strong>Used in a scentence - </strong>those tru gangstas from way back in the day that jacked ya and left nothing but you boxers and socks. Also, Biggie and Tupac were both O.G.'s</p>
+            <p><a href="http://foundation.zurb.com/forum">Forum</a> | <a href="http://foundation.zurb.com/">Website</a></p>
+            <ul class="inline-list">
+              <li><a href="https://www.facebook.com/ZURB"><i class="fi-social-facebook"></i></a></li>
+              <li><a href="https://twitter.com/ZURBfoundation"><i class="fi-social-twitter"></i></a></li>
+              <li><a href="https://github.com/zurb/foundation"><i class="fi-social-github"></i></a></li>
+          </div>
+        </div>
+      </div>
+      <div class="medium-4 columns">
+        <div class="profile-card">
+          <img src="https://pbs.twimg.com/profile_images/540601078916452352/gIke9rjv_bigger.png" alt="Swoll Yeti">
+          <div class="profile-info">
+            <h4 class="subheader">Swoll Yeti</h4>
+            <p>Slang for "Swollen", as in getting "swollen" or "buff" at the gym.</p> 
+            <p><strong>Used in a scentence -</strong> Yo, after a couple months at the Y, I'll be a swoll Yeti.</p>
+            <p><a href="http://zurb.com/patterntap">Patterns</a> | <a href="http://foundation.zurb.com/apps/">Website</a></p>
+            <ul class="inline-list">
+              <li><a href="https://www.facebook.com/ZURB"><i class="fi-social-facebook"></i></a></li>
+              <li><a href="https://twitter.com/ZURBfoundation"><i class="fi-social-twitter"></i></a></li>
+              <li><a href="https://github.com/zurb/foundation-apps"><i class="fi-social-github"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="related">
-        <h4><?= __('Related Articles') ?></h4>
-        <?php if (!empty($user->articles)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Title') ?></th>
-                <th><?= __('Body') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
-                <th><?= __('User Id') ?></th>
-                <th><?= __('Category') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->articles as $articles): ?>
-            <tr>
-                <td><?= h($articles->id) ?></td>
-                <td><?= h($articles->title) ?></td>
-                <td><?= h($articles->body) ?></td>
-                <td><?= h($articles->created) ?></td>
-                <td><?= h($articles->modified) ?></td>
-                <td><?= h($articles->user_id) ?></td>
-                <td><?= h($articles->category) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Articles', 'action' => 'view', $articles->id]) ?>
-
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Articles', 'action' => 'edit', $articles->id]) ?>
-
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Articles', 'action' => 'delete', $articles->id], ['confirm' => __('Are you sure you want to delete # {0}?', $articles->id)]) ?>
-
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-    <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Crisis') ?></h4>
-        <?php if (!empty($user->crisis)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Abstract') ?></th>
-                <th><?= __('Severity') ?></th>
-                <th><?= __('Longitude') ?></th>
-                <th><?= __('Latitude') ?></th>
-                <th><?= __('State') ?></th>
-                <th><?= __('Address') ?></th>
-                <th><?= __('Type') ?></th>
-                <th><?= __('Hashtags') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
-                <th><?= __('User Id') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->crisis as $crisis): ?>
-            <tr>
-                <td><?= h($crisis->id) ?></td>
-                <td><?= h($crisis->abstract) ?></td>
-                <td><?= h($crisis->severity) ?></td>
-                <td><?= h($crisis->longitude) ?></td>
-                <td><?= h($crisis->latitude) ?></td>
-                <td><?= h($crisis->state) ?></td>
-                <td><?= h($crisis->address) ?></td>
-                <td><?= h($crisis->type) ?></td>
-                <td><?= h($crisis->hashtags) ?></td>
-                <td><?= h($crisis->created) ?></td>
-                <td><?= h($crisis->modified) ?></td>
-                <td><?= h($crisis->user_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Crisis', 'action' => 'view', $crisis->id]) ?>
-
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Crisis', 'action' => 'edit', $crisis->id]) ?>
-
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Crisis', 'action' => 'delete', $crisis->id], ['confirm' => __('Are you sure you want to delete # {0}?', $crisis->id)]) ?>
-
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-    <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Infos') ?></h4>
-        <?php if (!empty($user->infos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Title') ?></th>
-                <th><?= __('Body') ?></th>
-                <th><?= __('Crisis Id') ?></th>
-                <th><?= __('User Id') ?></th>
-                <th><?= __('Created') ?></th>
-                <th><?= __('Modified') ?></th>
-                <th><?= __('Type') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->infos as $infos): ?>
-            <tr>
-                <td><?= h($infos->id) ?></td>
-                <td><?= h($infos->title) ?></td>
-                <td><?= h($infos->body) ?></td>
-                <td><?= h($infos->crisis_id) ?></td>
-                <td><?= h($infos->user_id) ?></td>
-                <td><?= h($infos->created) ?></td>
-                <td><?= h($infos->modified) ?></td>
-                <td><?= h($infos->type) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Infos', 'action' => 'view', $infos->id]) ?>
-
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Infos', 'action' => 'edit', $infos->id]) ?>
-
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Infos', 'action' => 'delete', $infos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $infos->id)]) ?>
-
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-    <?php endif; ?>
-    </div>
-</div>
