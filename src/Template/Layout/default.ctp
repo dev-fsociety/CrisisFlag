@@ -48,7 +48,9 @@
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->Html->css($this->fetch('css')) ?>
+    <?php $css = $this->fetch('css');
+    if($css != "")
+        echo $this->Html->css($css); ?>
 </head>
 <body>
 
@@ -72,7 +74,12 @@
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                    <?php if($this->request->session()->read("Auth.User")): ?>
+                        <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
+                    <?php else: ?>
+                        <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                    <?php endif; ?>
+
                 </ul>
             </nav>
 
@@ -117,9 +124,6 @@
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-
-
-
 
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>
