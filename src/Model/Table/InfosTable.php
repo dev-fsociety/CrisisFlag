@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
 /**
  * Infos Model
  *
- * @property \Cake\ORM\Association\BelongsTo $Crises
+ * @property \Cake\ORM\Association\BelongsTo $Crisis
  * @property \Cake\ORM\Association\BelongsTo $Users
  */
 class InfosTable extends Table
@@ -32,7 +32,7 @@ class InfosTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Crises', [
+        $this->belongsTo('Crisis', [
             'foreignKey' => 'crisis_id',
             'joinType' => 'INNER'
         ]);
@@ -78,7 +78,7 @@ class InfosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['crisis_id'], 'Crises'));
+        $rules->add($rules->existsIn(['crisis_id'], 'Crisis'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }

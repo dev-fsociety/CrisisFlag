@@ -37,8 +37,8 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
-    <!-- Topbar style style -->
-    <?= $this->Html->css('topbar.css') ?>
+    <!-- Footer style -->
+    <?= $this->Html->css('footer.css') ?>
 
     <?= $this->fetch('meta') ?>
 
@@ -47,50 +47,72 @@
 </head>
 <body>
 
-<!-- Topbar -->
     <div class="off-canvas-wrap" data-offcanvas>
         <div class="inner-wrap">
 
-          <nav class="tab-bar">
-            <div class="left-small">
-              <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
-            </div>
-            <div class="middle tab-bar-section">
-              <a href="#" id="menu-text">Menu</a>
-            </div>
-          </nav>
-
-          <nav class="left-off-canvas-menu">
-            <ul class="off-canvas-list">
-              <li><label>Menu</label></li>
-              <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
-              <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
-              <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
-              <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
-              <li><?= $this->Html->link(__('Users'),    ['controller'=>'Users', 'action' => 'add']) ?></li>
-            </ul>
-          </nav>
+            <nav class="tab-bar">
+                <div class="left-small">
+                    <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
+                </div>
+                <div class="middle tab-bar-section">
+                    <a href="#" id="menu-text">Menu</a>
+                </div>
+            </nav>
+<!-- Topbar -->
+            <nav class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li><label>Menu</label></li>
+                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Home', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
+                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
+                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
+                    <li><?= $this->Html->link(__('Users'),    ['controller'=>'Users', 'action' => 'add']) ?></li>
+                </ul>
+            </nav>
 
 <!-- /Topbar -->
 
-    <?= $this->Flash->render() ?>
-    <section class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </section>
-    <footer>
-    </footer>
+
+            <?= $this->Flash->render() ?>
+            <section class="container clearfix">
+                <?= $this->fetch('content') ?>
+            </section>
+
+
+<!-- Footer -->
+            <footer class="footer">
+              <div class="row">
+                <div class="small-12 columns">
+                    <p class="slogan">/dev/fsociety</p>
+                        <p class="links">
+                        
+                        <a href="#"><?= $this->Html->link(__('Home'),                ['controller'=>'Home', 'action' => 'index']) ?></a>
+                        <a href="#"><?= $this->Html->link(__('About us'),            ['controller'=>'Home', 'action' => 'index'])?></a>
+                        <a href="#"><?= $this->Html->link(__('Contact our team'),    ['controller'=>'Home', 'action' => 'index'])?></a>
+                       
+                        </p>
+                    <p class="copywrite">Fsociety all rights reserved © 2015</p>
+                </div>
+              </div>
+            </footer>
+<!-- /Footer -->
+
+        </div>
+    </div>
+
 
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
     <?= $this->Html->script("vendor/what-input.min.js") ?>
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
+
+    <!-- Own script -->
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>  
 
-    <!-- Own script -->
     <?= $this->Html->script("app.js") ?>
-    
+        
 
 
 
