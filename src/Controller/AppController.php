@@ -42,7 +42,27 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('Cookie');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ]
+                ]
+            ],
+            'authorize' => ['Controller'],
+            'loginRedirect' => [
+                'controller' => 'Articles',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Articles',
+                'action' => 'index'
+            ]
+        ]);
     }
 
     /**
@@ -51,6 +71,23 @@ class AppController extends Controller
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return void
      */
+
+    public function isAuthorized($user)
+    {
+        if(isset($user['role']) && $user['role'] === 'admin')
+        {
+            return true;
+        }
+
+        $this->Flash->error(__('Vous n\'êtes pas autorisé à acceder à cette page.'));
+        return false;
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->deny();
+    }
+
     public function beforeRender(Event $event)
     {
         if (!array_key_exists('_serialize', $this->viewVars) &&
