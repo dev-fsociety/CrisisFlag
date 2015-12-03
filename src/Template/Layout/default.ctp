@@ -107,11 +107,12 @@
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
+    <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
+
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-
 
     <!-- Page specific script (always load last) -->
     <?= $this->Html->script($this->fetch('script')) ?>
