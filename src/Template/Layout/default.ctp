@@ -72,7 +72,12 @@
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                    <?php if($this->request->session()->read("Auth.User")): ?>
+                        <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
+                    <?php else: ?>
+                        <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                    <?php endif; ?>
+
                 </ul>
             </nav>
 

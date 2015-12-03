@@ -37,7 +37,7 @@ class Crisi extends Entity
         'id' => false,
     ];
 
-    protected function _setHashtags($hastags)
+    /*protected function _setHashtags($hastags)
     {
-    }
+    }*/
 }
