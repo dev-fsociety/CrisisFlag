@@ -32,7 +32,7 @@
     <?= $this->Html->css('cake.css') ?>-->
 
     <!-- Foundation style -->
-    <?= $this->Html->css('foundation.min.css') ?>
+    <?= $this->Html->css('foundation.css') ?>
 
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
@@ -43,20 +43,28 @@
     <?= $this->fetch('css') ?>
 </head>
 <body>
-    <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text">/dev/fsociety : the best device ever!</li>
-        </ul>
-      </div>
 
-      <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">/dev/fsociety : the best device ever!</a></h1>
+      </li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="active"><a href="#">Right Button Active</a></li>
+        <li class="has-dropdown">
+          <a href="#">Right Button Dropdown</a>
+          <ul class="dropdown">
+            <li class="active"><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
             <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-        </ul>
-      </div>
-    </div>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
 
     <?= $this->Flash->render() ?>
     <section class="container clearfix">
@@ -68,12 +76,16 @@
     <!-- Foundation (+jquery) scripts -->
     <?= $this->Html->script("vendor/jquery.min.js") ?>
     <?= $this->Html->script("vendor/what-input.min.js") ?>
-    <?= $this->Html->script("foundation.min.js") ?>
+    <?= $this->Html->script("foundation/foundation.js") ?>
+    <?= $this->Html->script("foundation/foundation.topbar.js") ?>
 
     <!-- Own script -->
     <?= $this->Html->script("app.js") ?>
 
     <!-- Page specific script (always load last) -->
     <?= $this->fetch('script') ?>
+    <script>
+      $(document).foundation();
+    </script>
 </body>
 </html>
