@@ -37,8 +37,13 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
+
+    <?= $this->Html->css('foundation-icons.css') ?>
+    <?= $this->Html->css('crisis_template.css') ?>
+
     <!-- Footer style -->
     <?= $this->Html->css('footer.css') ?>
+
 
     <?= $this->fetch('meta') ?>
 
