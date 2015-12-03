@@ -2,17 +2,50 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
- * Users Controller
+ * Homes Controller
  *
- * @property \App\Model\Table\UsersTable $Users
  */
+
 class HomesController extends AppController
 {
+	public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow(['index']);
+    }
+
 	public function index()
 	{
-		
+		$this->loadModel('Crisis');
+		$this->loadModel('Articles');
+
+		$spottedCrises = $this->Crisis->find()
+		->where(['state' => 'spotted']);
+		if($spottedCrises->count() != 0)
+		{
+			$home_type = 'spotted';
+		}
+
+		$verifiedCrises = $this->Crisis->find()
+		->where(['state' => 'verified']);
+		if($verifiedCrises->count() != 0)
+		{
+			$home_type = 'active';
+
+		}
+		else
+		{
+			$home_type = 'none';
+		}
+
+		$articles = $this->Articles->find('all')
+		->limit(5)->order('created');
+
+		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles'));
+
 	}
 }
 
