@@ -18,6 +18,7 @@
   padding: 3rem; 
 }
 
+/*
 .footer p.slogan {
   font-family: Heavitas;
   text-align: center;
@@ -25,6 +26,7 @@
   font-size: 1.2rem;
   margin: 0 0 1rem; 
 }
+*/
 
 .footer p.copywrite {
   text-align: center;
@@ -51,6 +53,13 @@
 }
 
 .footer .links a:last-child::after {
-  content: "•";
+  content: "";
   padding: 0 0.4rem 0 0.8rem; 
+}
+
+
+.footer-logo {
+  
+  max-height: 20px !important;
+
 }

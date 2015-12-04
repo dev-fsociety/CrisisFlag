@@ -1,7 +1,7 @@
 
 <div class="main_degrade" height="400px;">
 
-    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?>
+    <h2 class="main_degrade_title text-center"><?= h($categories[$crisi->type]) ?> à <?= h($crisi->address) ?>
 
 
         <?php if($crisi->state == 'spotted'): ?>
@@ -54,6 +54,7 @@
     <?php endforeach; ?>
 
 
+<br>
 
 <h4>Parlez-en :</h4>
 

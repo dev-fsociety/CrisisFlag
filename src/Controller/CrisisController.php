@@ -79,6 +79,8 @@ class CrisisController extends AppController
         $this->set('user', $user);
         $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
+
+        $this->set("categories", $this->categories);
     }
 
     /**
@@ -183,7 +185,7 @@ class CrisisController extends AppController
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'view',$crisi->id]);
     }
 
     /**
@@ -202,7 +204,7 @@ class CrisisController extends AppController
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'view',$crisi->id]);
     }
 
     public function test()
