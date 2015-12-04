@@ -63,6 +63,19 @@ class CrisisController extends AppController
         if (isset($this->request->data))
         {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
+            //do magic here
+            $crisis = $this->Crisis->find("all");
+            $delta_search = 0.5;
+            foreach ($crisis as $crisi_db){
+             if (abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search
+                && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
+                  $crisi_db->severity += 1;
+                  $this->Crisis->save($crisi_db);
+                  $this->Flash->success('Crisis Already notified so we are incrementing severity..');
+                  return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
+                }
+            }
+
             if ($this->Crisis->save($crisi))
             {
                 $this->Flash->success(__('La crise a bien été enregistrée.'));
@@ -128,14 +141,30 @@ class CrisisController extends AppController
     public function test()
     {
       $crisi = $this->Crisis->newEntity();
-      if ($this->request->is('post')) {
+      if (isset($this->request->data))
+      {
           $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
-          if ($this->Crisis->save($crisi)) {
-              $this->Flash->success(__('The crisis has been saved.'));
-              return $this->redirect(['action' => 'index']);
-          } else {
-              $this->Flash->error(__('The crisis could not be saved. Please, try again.'));
+          //do magic here
+          $crisis = $this->Crisis->find("all");
+          $delta_search = 0.5;
+          foreach ($crisis as $crisi_db){
+           if (abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search
+              && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
+                $crisi_db->severity += 1;
+                $this->Crisis->save($crisi_db);
+                $this->Flash->success('Crisis Already notified - Increment severity..');
+              }
           }
+
+        if ($this->Crisis->save($crisi))
+        {
+          $this->Flash->success(__('La crise a bien été enregistrée.'));
+        }
+        else
+        {
+          $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
+        }
+
       }
       $users = $this->Crisis->Users->find('list', ['limit' => 200]);
       $this->set(compact('crisi', 'users'));
