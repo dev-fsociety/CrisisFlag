@@ -24,6 +24,9 @@ class HomesController extends AppController
 		$spottedCrises = $this->Crisis->find()
 		->contain('Infos')
 		->where(['state' => 'spotted']);
+
+		$home_type = 'none';
+
 		if($spottedCrises->count() != 0)
 		{
 			$home_type = 'spotted';
@@ -32,13 +35,10 @@ class HomesController extends AppController
 		$verifiedCrises = $this->Crisis->find()
 		->contain('Infos')
 		->where(['state' => 'verified']);
+
 		if($verifiedCrises->count() != 0)
 		{
 			$home_type = 'active';
-		}
-		else
-		{
-			$home_type = 'none';
 		}
 
 		$newCrisis = $this->Crisis->newEntity();
@@ -46,8 +46,10 @@ class HomesController extends AppController
 		$newCrisis->severity = 1;
 		$newCrisis->user_id = 1;
 
-		$articles = $this->Articles->find('all')->limit(5)->order('created');
+		$newCrisis->state = 'spotted';
+		$newCrisis->severity = 1;
 
+		$articles = $this->Articles->find('all')->limit(5)->order('created');
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles',
 		'home_type', 'newCrisis'));
 	}

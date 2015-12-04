@@ -21,29 +21,34 @@
 
 <div class="row">
   <div class="large-8 columns">
-
-
-    <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
-
-        <strong>Description : </strong><?= h($crisi->abstract) ?>
-    </p>
+      <div class="row">
+          <div class="medium-6 column">
+              <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?>
+          </div>
+          <div class="medium-6 column">
+              <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
+                  <strong>Description : </strong><?= h($crisi->abstract) ?>
+              </p>
+          </div>
+      </div>
 
     <br>
 
-    <?php if (!($crisi->infos==NULL)): ?>
     <h4>Informations à propos de cette crise :</h4>
-    <?php endif;
+    <?php
     foreach($infos as $info): ?>
-        <div class="panel">
-                      <h4 class="hide-for-small"><?= $info->title ?><hr></h4>
-                    <h5 class="subheader"><?= $info->body ?></h5>
-                    <em>Tagged : <?= $info->type ?></em>
+        <div class="panel information_panel">
+                      <h5 class="hide-for-small"><?= $info->title ?>
+                      <span class="label label_right"><?= $info->type ?></span>
+                      <hr class="small_hr"></h5>
+                    <p class="subheader"><?= $info->body ?></p>
+                    
         </div>
     <?php endforeach; ?>
 
 
 
-<h4>Chattez avec les autres utilisateurs :</h4>
+<h4>Parlez-en :</h4>
 
 <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
 <script type="text/javascript">
@@ -121,9 +126,7 @@ function addMessage(message, className) {
     <div id="logingroup">
 
         <input type="text" id="name" placeholder="Votre nom" autofocus>
-
-        <a class="small button" onclick="setName()">Changer de nom</a>
-        <a class="small button" onclick="joinRoom()">Rejoindre le Salon</a>
+        <a class="small button" onclick="setName(); joinRoom();">Rejoindre le Salon</a>
     </div>
 
     <div id="chatgroup">
@@ -169,6 +172,12 @@ function addMessage(message, className) {
 
 </div>
 <div class="large-4 columns">
+    <?php if($crisi->state == 'spotted' && $this->request->session()->read('Auth.User.id')): ?>
+    <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php endif; ?>
+
+
+
   <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
   <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
 
