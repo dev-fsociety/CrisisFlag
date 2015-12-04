@@ -20,6 +20,8 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
+        parent::isAuthorized($user);
+
         if(($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add') && $user['id'] > 0)
         {
             return true;
@@ -32,6 +34,8 @@ class UsersController extends AppController
                 return true;
             }
         }
+
+        return parent::isAuthorized($user);
     }
 
     public function login()

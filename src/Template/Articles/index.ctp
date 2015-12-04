@@ -13,8 +13,8 @@
 </nav>
 
 <div class="row">
-<h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles') ?></h3>
-  <?php foreach ($articles as $article): ?>
+<h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles de sensibilisation:') ?></h3>
+  <?php foreach ($articles as $article): ?>  
     <div class="articles index medium-4 columns content">
       <div class="panel">
         <h4 class="subheader"><?= $this->Html->link(__($article->title), ['action' => 'view', $article->id]) ?><hr></h4>
