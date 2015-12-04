@@ -53,8 +53,6 @@ class HomesController extends AppController
 		$newCrisis->severity = 1;
 		$newCrisis->user_id = 1;
 
-		$newCrisis->state = 'spotted';
-		$newCrisis->severity = 1;
 
 		$this->set("categories", $this->categories);
 		$articles = $this->Articles->find('all')->limit(5)->order('created');
