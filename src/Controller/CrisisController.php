@@ -54,8 +54,11 @@ class CrisisController extends AppController
      */
     public function add()
     {
-        $crisi = $this->Crisis->newEntity();
-        if ($this->request->is('post')) {
+        //$crisi = $this->Crisis->newEntity();
+        debug($this->request->is('post'));
+        die();
+        if ($this->request->is('post'))
+        {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
                 $this->Flash->success(__('La Crise a bien été enregistrée.'));
@@ -64,9 +67,9 @@ class CrisisController extends AppController
                 $this->Flash->error(__('La Crise n\'a pas pu être enregistrée.'));
             }
         }
-        $users = $this->Crisis->Users->find('list', ['limit' => 200]);
+        /*$users = $this->Crisis->Users->find('list', ['limit' => 200]);
         $this->set(compact('crisi', 'users'));
-        $this->set('_serialize', ['crisi']);
+        $this->set('_serialize', ['crisi']);*/
     }
 
     /**
