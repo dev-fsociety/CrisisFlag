@@ -2,12 +2,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Supprimer la Crise'),
+                __('Supprimer la crise'),
                 ['action' => 'delete', $crisi->id],
-                ['confirm' => __('Êtes-vous sûr de vouloir supprimer la Crise #{0} ?', $crisi->id)]
+                ['confirm' => __('Êtes-vous sûr de vouloir supprimer la crise #{0} ?', $crisi->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('Liste des Crises'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des crises'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="crisis form large-9 medium-8 columns content">

@@ -40,9 +40,14 @@ class CrisisController extends AppController
     public function view($id = null)
     {
         $crisi = $this->Crisis->get($id, [
-            'contain' => ['Users', 'Infos']
+            'contain' => ['Users']
         ]);
+        $infos = $this->Crisis->Infos->find()
+        ->where(['crisis_id' => $id])
+        ->order(['created' => 'DESC']);
+
         $this->set('crisi', $crisi);
+        $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
     }
 
@@ -57,10 +62,10 @@ class CrisisController extends AppController
         if ($this->request->is('post')) {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
-                $this->Flash->success(__('La Crise a bien été enregistrée.'));
+                $this->Flash->success(__('La crise a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('La Crise n\'a pas pu être enregistrée.'));
+                $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
@@ -83,10 +88,10 @@ class CrisisController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
-                $this->Flash->success(__('La Crise a bien été enregistrée.'));
+                $this->Flash->success(__('La crise a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('La Crise n\'a pas pu être enregistrée.'));
+                $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
@@ -106,9 +111,9 @@ class CrisisController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $crisi = $this->Crisis->get($id);
         if ($this->Crisis->delete($crisi)) {
-            $this->Flash->success(__('La Crise a bien été supprimée.'));
+            $this->Flash->success(__('La crise a bien été supprimée.'));
         } else {
-            $this->Flash->error(__('La Crise n\'a pas pu être supprimée.'));
+            $this->Flash->error(__('La crise n\'a pas pu être supprimée.'));
         }
         return $this->redirect(['action' => 'index']);
     }
@@ -116,7 +121,7 @@ class CrisisController extends AppController
     public function isAuthorized($user)
     {
         $state = $this->Crisis->get($this->request->params['pass'][0])->state;
-        
+
         if($this->request->action === 'edit')
         {
             if($state === 'spotted') //Anyone can still edit it

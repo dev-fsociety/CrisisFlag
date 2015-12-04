@@ -1,24 +1,24 @@
-<nav class="large-2 medium-2 columns" id="actions-sidebar">
+<nav class="medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Nouvel article'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
+<h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Articles') ?></h3>
 <div class="row">
-<div class="articles index large-3 medium-5 columns content" >
-    <h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Articles') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-    Mmdrrrrrrrrrrrrr
+  <?php foreach ($articles as $article): ?>
+    <div class="articles index medium-4 columns content">
+      <div class="panel">
+        <h4 class="subheader"><?= h($article->title) ?></h4>
+        <h5 class="subheader"><?=h($article->body) ?></h5>
+        <em>Tagged : <?= h($article->category) ?></em>
+      </div>
+    </div>
+  <?php endforeach; ?>
+  <div class="articles index medium-1 columns content">
+  </div>
 </div>
-<div class="articles index large-3 medium-5 columns content" >
-    <table cellpadding="0" cellspacing="0">
-    Mmdrrrrrrrrrrrrr
-</div>
-<div class="articles index large-3 medium-5 columns content" >
-    <table cellpadding="0" cellspacing="0">
-    Mmdrrrrrrrrrrrrr
-</div>
-</div>
+
 <!-- <div class="articles index large-3 medium-9 columns content" >
     <h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Articles') ?></h3>
     <table cellpadding="0" cellspacing="0">
