@@ -33,6 +33,7 @@
     <?= $this->Html->css('home_crisisdisplay.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
+    <?= $this->Html->css('articles_template.css') ?>
     <!-- Topbar style -->
     <?= $this->Html->css('topbar.css') ?>
     <!-- Footer style -->

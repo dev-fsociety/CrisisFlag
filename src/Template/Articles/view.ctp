@@ -9,9 +9,11 @@
 </nav>
 
 <div class="row"  style="margin-top: 50px; margin-bottom: 40px;">
-  <div class="articles view medium-10 columns content">
-    <div class="panel radius">
-        <h3 style="margin-top: 10px; text-align: center;"><?= __($article->title) ?><hr></h3>
+  <div class="articles view medium-12 columns content">
+    <div class="panel panel_shadow" style="background-color: #cceeff; margin-bottom: 1px;">
+        <h3 style="text-align: center;"><?= __($article->title) ?></h3>
+    </div>
+    <div class="panel panel_shadow">
         <h7 style="font-size: 80%" class="subheader">Catégorie : <?= h($article->category) ?><hr></h7>
         <h5 class="subheader"><?= __($article->body) ?></h5>
 	  </div>
@@ -19,7 +21,7 @@
 </div>
 
 <div class="row">
-    <div class="medium-10 columns" style="text-align: right">
+    <div class="medium-12 columns" style="text-align: right">
       <?= __('User') ?>: <?= $article->has('user') ? $this->Html->link($article->user->id, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?><br>
       <?= __('Created') ?>: <?= h($article->created) ?><br>
 			<?= __('Modified') ?>: <?= h($article->modified) ?>

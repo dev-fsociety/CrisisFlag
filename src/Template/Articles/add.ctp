@@ -11,7 +11,7 @@
         <?php
             echo $this->Form->input('title', ['label' => 'Titre de l\'article :']);
             echo $this->Form->input('body', ['label' => 'Corps du texte :']);
-            echo "<br />";
+            echo "<br>";
             echo $this->Form->input('category', ['label' => 'Catégorie :']);
         ?>
     </fieldset>
