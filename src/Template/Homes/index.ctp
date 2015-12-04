@@ -14,6 +14,8 @@
  */
 ?>
 
+<?php $this->assign('script', 'geoloc.js'); ?>
+
 <div class="row">
 
 
@@ -140,7 +142,7 @@
                 <div class="small-12 medium-6 large-4 columns text-center submit-form">
                   <!-- Formulaire TODO:vraie variable crisis-->
 
-                    <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add']]); ?>
+                  <!--  <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add']]); ?>
                         <legend><?= __('Submit crisis') ?></legend>
                         <?= $this->Form->input('abstract'); ?>
                         <label class='form-label'>Location:</label>
@@ -153,9 +155,37 @@
                         <?= $this->Form->input('hashtags'); ?>
                     <?= $this->Form->button(__('Submit')) ?>
                     <?= $this->Form->end() ?>
-                </div>
+                </div>-->
 
+              <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+              <fieldset>
+                  <legend><?= __('Submit crisis') ?></legend>
+                  <!-- Hidden fields-->
+                  <?php echo $this->Form->hidden('severity');
+                      echo $this->Form->hidden('longitude');
+                      echo $this->Form->hidden('latitude');
+                      echo $this->Form->hidden('state');
+                   ?>
+                  <?=  $this->Form->input('abstract'); ?>
+                  <label class='form-label'>Location:</label>
+                  <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
+                              echo $this->Form->radio('type', $types, $attributes);
+                  ?>
+                  <a id="geolocate" class="button" >GeoMe</a>
+                  <?= $this->Form->input('address'); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                  <?= $this->Form->input('hashtags'); ?>
+              </fieldset>
+              <div class="small button-group">
+                <?= $this->Form->button(__('Submit')) ?>
+
+                <a id="reset" class="button">Reset</a>
+              </div>
+
+              <?= $this->Form->end() ?>
             </div>
+          </div>
 
       <?php } else { ?>
 
