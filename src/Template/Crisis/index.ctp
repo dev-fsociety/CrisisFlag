@@ -1,12 +1,12 @@
 <div class="crisis index large-12 medium-12 columns content">
-    <h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Consulter toutes les crises recensée') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <h3 style="margin-top: 20px; margin-bottom: 20px; text-align: center"><?= __('Consulter toutes les crises recensées') ?></h3>
+    <table cellpadding="0" cellspacing="0" style="margin: 0px auto;" >
         <thead>
             <tr>
-                <th><?= $this->Paginator->sort('abstract', 'Résumé') ?></th>
-                <th><?= $this->Paginator->sort('state', 'État') ?></th>
-                <th><?= $this->Paginator->sort('address', 'Lieu') ?></th>
-                <th class="actions"><?= __('Détails') ?></th>
+                <th width="200"><?= $this->Paginator->sort('abstract', 'Résumé') ?></th>
+                <th width="200"><?= $this->Paginator->sort('state', 'État') ?></th>
+                <th width="200"><?= $this->Paginator->sort('address', 'Lieu') ?></th>
+                <th width="200" class="actions"><?= __('Détails') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -22,12 +22,15 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <hr>
     <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('précédent')) ?>
+      <div class="panel" style="text-align: center">
+        <ul class="pagination" style="width: 230px; margin: 0px auto;">
+            <?= $this->Paginator->prev('<< ' . __('Précédente')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('suivant') . ' >') ?>
+            <?= $this->Paginator->next(__('Suivante') . ' >>') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
+      </div>
     </div>
 </div>
