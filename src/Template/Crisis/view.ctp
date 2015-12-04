@@ -28,8 +28,9 @@
 
     <br>
 
+    <?php if (!($crisi->infos==NULL)): ?>
     <h4>Informations à propos de cette crise :</h4>
-    <?php
+    <?php endif;
     foreach($crisi->infos as $info): ?>
         <div class="panel">
                       <h4 class="hide-for-small"><?= $info->title ?><hr></h4>
@@ -40,7 +41,127 @@
 
 
 
-<h4>Chat WebRTC ? </h4>
+<h4>Chattez avec les autres utilisateurs :</h4>
+
+<script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
+<script type="text/javascript">
+var skylink = new Skylink();
+
+skylink.on('peerJoined', function(peerId, peerInfo, isSelf) {
+  var user = 'You';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+  }
+  addMessage(user + ' joined the room', 'action');
+});
+
+skylink.on('peerUpdated', function(peerId, peerInfo, isSelf) {
+  if(isSelf) {
+    user = peerInfo.userData.name || peerId;
+    addMessage('You\'re now known as ' + user, 'action');
+  }
+});
+
+skylink.on('peerLeft', function(peerId, peerInfo, isSelf) {
+  var user = 'You';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+  }
+  addMessage(user + ' left the room', 'action');
+});
+
+skylink.on('incomingMessage', function(message, peerId, peerInfo, isSelf) {
+  var user = 'You',
+      className = 'you';
+  if(!isSelf) {
+    user = peerInfo.userData.name || peerId;
+    className = 'message';
+  }
+  addMessage(user + ': ' + message.content, className);
+});
+
+skylink.init('1eca2a9f-ad84-47a8-b9ac-ba5ac444b4eb');
+
+function setName() {
+  var input = document.getElementById('name');
+  skylink.setUserData({
+    name: input.value
+  });
+}
+
+function joinRoom() {
+  skylink.joinRoom();
+  chatgroup.style.display="block";
+  logingroup.style.display="none"; 
+}
+
+function leaveRoom() {
+  skylink.leaveRoom();
+}
+
+function sendMessage() {
+  var input = document.getElementById('message');
+  skylink.sendP2PMessage(input.value);
+  input.value = '';
+  input.select();
+}
+
+function addMessage(message, className) {
+  var chatbox = document.getElementById('chatbox'),
+    div = document.createElement('div');
+  div.className = className;
+  div.textContent = message;
+  chatbox.appendChild(div);
+}
+</script>
+    
+
+    <div id="logingroup">
+
+        <input type="text" id="name" placeholder="Votre nom" autofocus>
+
+        <a class="small button" onclick="setName()">Changer de nom</a>
+        <a class="small button" onclick="joinRoom()">Rejoindre le Salon</a>
+    </div>
+
+    <div id="chatgroup">
+        <input type="text" id="message" placeholder="Votre message" />
+        <button class="small" onclick="sendMessage()">Envoyer un message</button>
+
+
+        <div id="container">
+           <div id="chatbox"></div>
+       </div>
+
+   </div>
+
+    <br>
+
+
+<style type="text/css">
+
+#container {
+  position: relative;
+  border: 1px #ddd solid;
+  height: 180px;
+  overflow-y: auto;
+}
+
+#chatbox {
+  position: absolute;
+  bottom: 0px;
+}
+
+.action {
+  font-style: italic;
+  color: gray;
+}
+
+.you {
+  font-weight: bold;
+}
+
+</style>
 
 
 
