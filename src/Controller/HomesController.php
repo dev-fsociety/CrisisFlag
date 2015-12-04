@@ -55,9 +55,10 @@ class HomesController extends AppController
 
 
 		$this->set("categories", $this->categories);
-		$articles = $this->Articles->find('all')->limit(5)->order('created');
+		$articles = $this->Articles->find('all')->limit(12)->order(['created' => 'desc']);
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles',
 		'home_type', 'newCrisis'));
+
 	}
 }
 

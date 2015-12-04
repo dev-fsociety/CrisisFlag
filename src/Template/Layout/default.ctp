@@ -31,6 +31,7 @@
     <?= $this->Html->css('app.css') ?>
 
     <?= $this->Html->css('home_crisisdisplay.css') ?>
+    <?= $this->Html->css('crisis_list.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
     <!-- Topbar style -->
@@ -122,7 +123,6 @@
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-    <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
     <?php $js = $this->fetch('script');

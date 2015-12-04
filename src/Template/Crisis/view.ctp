@@ -28,7 +28,13 @@
             </p>
         </div>
         <div class="medium-6 column">
+
+        <?php if($crisi->state === 'spotted' || ($this->request->session()->read('Auth.User.id') && $crisi->state) === 'verified'): ?>
+
           <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
+
+        <?php endif; ?>
+
           <div class="small button-group">
             <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisi->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
             <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisi->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
@@ -184,12 +190,14 @@ function addMessage(message, className) {
     <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
     <?php endif; ?>
 
+    <?php if($crisi->state == 'verified' && $this->request->session()->read('Auth.User.id')): ?>
+    <?= $this->Html->link(__('Terminer cette crise'), ['controller' => 'Crisis', 'action' => 'terminate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php endif; ?>
 
+    <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
+    <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
 
-  <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
-  <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
-
-  ?>
+    ?>
 
   <br>
   <?php endif; ?>
@@ -206,4 +214,4 @@ function addMessage(message, className) {
 
 <!--  GEOLOCALISATION / URL GOOGLE MAP == http://google.com/maps/bylatlng?lat=' + lat + '&lng=' + lng -->
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><div style="overflow:hidden;height:500px;width:100%;"><div id="gmap_canvas" style="height:500px;width:100%;"></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style><a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle.net</a></div><script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(<?= $this->Number->format($crisi->latitude) ?>,<?= $this->Number->format($crisi->longitude) ?>),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<?= $this->Number->format($crisi->latitude) ?>, <?= $this->Number->format($crisi->longitude) ?>)});infowindow = new google.maps.InfoWindow({content:"Géolocalisation du signalement (approximation)" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?librairies=places&sensor=false"></script><div style="overflow:hidden;height:500px;width:100%;"><div id="gmap_canvas" style="height:500px;width:100%;"></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style><a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle.net</a></div><script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(<?= $this->Number->format($crisi->latitude) ?>,<?= $this->Number->format($crisi->longitude) ?>),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<?= $this->Number->format($crisi->latitude) ?>, <?= $this->Number->format($crisi->longitude) ?>)});infowindow = new google.maps.InfoWindow({content:"Géolocalisation du signalement (approximation)" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
