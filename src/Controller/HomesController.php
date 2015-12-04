@@ -42,6 +42,8 @@ class HomesController extends AppController
 		}
 
 		$newCrisis = $this->Crisis->newEntity();
+		$newCrisis->state = 'spotted';
+		$newCrisis->severity = 1;
 
 		$newCrisis->state = 'spotted';
 		$newCrisis->severity = 1;
