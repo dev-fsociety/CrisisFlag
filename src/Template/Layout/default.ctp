@@ -115,12 +115,10 @@
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
-<<<<<<< HEAD
+
     <!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>-->
-=======
 
->>>>>>> 2b605011828f0c48b089640254e57e75b5330786
     <!-- Own script -->
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>

@@ -50,10 +50,14 @@ class InfosController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($crisis_id)
     {
+        $user_id = $this->Auth->user()['id'];
         $info = $this->Infos->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post'))
+        {
+            $info->crisis_id = $crisis_id;
+            $info->user_id = $user_id;
             $info = $this->Infos->patchEntity($info, $this->request->data);
             if ($this->Infos->save($info)) {
                 $this->Flash->success(__('L\'Information a bien été enregistrée.'));
