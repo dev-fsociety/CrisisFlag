@@ -34,6 +34,7 @@
     <?= $this->Html->css('crisis_list.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
+    <?= $this->Html->css('articles_template.css') ?>
     <!-- Topbar style -->
     <?= $this->Html->css('topbar.css') ?>
     <!-- Footer style -->
