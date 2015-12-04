@@ -134,8 +134,8 @@ class CrisisController extends AppController
 
     public function isAuthorized($user)
     {
-
        $state = $this->Crisis->get($this->request->params['pass'][0])->state;
+
         if($this->request->action === 'edit')
         {
             if($state === 'spotted') //Anyone can still edit it
@@ -153,6 +153,10 @@ class CrisisController extends AppController
                 return false;
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39036d90773b52c0416bf3d3cad94e1a327e8084
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)
         {

@@ -12,6 +12,7 @@
         echo $this->Form->input('username', ['label' => 'Nom d\'utilisateur']);
         echo $this->Form->input('password', ['label' => 'Mot de passe']);
         echo $this->Form->input('description', ['label' => 'Description']);
+        echo "<br />";
         echo $this->Form->input('organisation', ['label' => 'Organisation']);
         ?>
     </fieldset>
