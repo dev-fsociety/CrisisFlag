@@ -79,6 +79,8 @@ class CrisisController extends AppController
         $this->set('user', $user);
         $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
+
+        $this->set("categories", $this->categories);
     }
 
     /**
