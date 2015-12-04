@@ -31,6 +31,7 @@
     <?= $this->Html->css('app.css') ?>
 
     <?= $this->Html->css('home_crisisdisplay.css') ?>
+    <?= $this->Html->css('crisis_list.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
     <!-- Topbar style -->
