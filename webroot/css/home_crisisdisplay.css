@@ -134,3 +134,11 @@
 		.submit-form .form-label {
 			display: block;
 			margin-left: 10px;}
+
+.small-crisis-panel-content{
+	padding: 0.6em;
+}
+
+.crisis-panel-title-link:first-letter{
+	text-transform: uppercase;
+}
