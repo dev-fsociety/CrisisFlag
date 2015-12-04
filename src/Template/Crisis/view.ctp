@@ -1,15 +1,15 @@
 
 <div class="main_degrade" height="400px;">
 
-    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?> 
+    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?>
 
-        <?php if($crisi->state=='verified'): ?> 
-            <i title="Verified by Staff" class="fi-checkbox verified_icon"></i> 
+        <?php if($crisi->state=='verified'): ?>
+            <i title="Verified by Staff" class="fi-checkbox verified_icon"></i>
         <?php endif; ?>
-        <?php if($crisi->state=='over'): ?> 
-            <i title="Crisis Ended" class="fi-x-circle"></i> 
+        <?php if($crisi->state=='over'): ?>
+            <i title="Crisis Ended" class="fi-x-circle"></i>
         <?php endif; ?>
-        <?php if($crisi->state=='spotted'): ?> 
+        <?php if($crisi->state=='spotted'): ?>
             <i title="Spotted by User" class="fi-sound spotted_icon"></i>
         <?php endif; ?>
 
@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-  <div class="large-8 columns">   
+  <div class="large-8 columns">
 
     <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
 
