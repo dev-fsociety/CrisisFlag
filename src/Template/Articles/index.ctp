@@ -1,8 +1,8 @@
 <nav class="medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Liste des Articles'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
 
