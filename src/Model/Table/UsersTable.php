@@ -66,11 +66,11 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('description', 'create')
-            ->notEmpty('description');
+            ->allowEmpty('description');
 
         $validator
             ->requirePresence('organisation', 'create')
-            ->notEmpty('organisation');
+            ->allowEmpty('organisation');
 
         return $validator;
     }
