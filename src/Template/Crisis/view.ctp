@@ -122,9 +122,7 @@ function addMessage(message, className) {
     <div id="logingroup">
 
         <input type="text" id="name" placeholder="Votre nom" autofocus>
-
-        <a class="small button" onclick="setName()">Changer de nom</a>
-        <a class="small button" onclick="joinRoom()">Rejoindre le Salon</a>
+        <a class="small button" onclick="setName(); joinRoom();">Rejoindre le Salon</a>
     </div>
 
     <div id="chatgroup">
