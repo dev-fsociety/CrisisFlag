@@ -23,7 +23,7 @@
   <hr>
   <div class="paginator">
     <div class="panel" style="text-align: center">
-      <ul class="pagination" style="width: 218px; margin: 0px auto;">
+      <ul class="pagination" style="width: 230px; margin: 0px auto;">
           <?= $this->Paginator->prev('<< ' . __('Précédente')) ?>
           <?= $this->Paginator->numbers() ?>
           <?= $this->Paginator->next(__('Suivante') . ' >>') ?>
