@@ -17,15 +17,14 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
-
-
+  <?=$verifiedCrises->count();?>
 
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
         <?php $frontCrisis=$verifiedCrises->first() ?>
           <div class="medium-12 column text-center">
-            <h2>Crise confirmée en cour!</h2>
+            <h2>Crise confirmée en cours!</h2>
           </div>
 
       <?php } else if ($home_type=='spotted') { ?>
@@ -150,8 +149,83 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
-                <div class="small-12 medium-6 large-4 columns text-center submit-form">
 
+            <div class="small-12 medium-6 large-4 columns text-center submit-form">
+              <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+              <fieldset>
+                  <legend><?= __('Soumettre une crise') ?></legend>
+                  <!-- Hidden fields-->
+                  <?php echo $this->Form->hidden('severity');
+                      echo $this->Form->hidden('longitude');
+                      echo $this->Form->hidden('latitude');
+                      echo $this->Form->hidden('state');
+                   ?>
+                  <?=  $this->Form->input('abstract'); ?>
+                  <label class='form-label'>Localisation de la crise :</label>
+                  <?php       $types = array('auto' => ' Détection automatique', 'manual' => ' Entrer manuellement');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
+                              echo $this->Form->radio('type', $types, $attributes);
+                  ?>
+                  <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
+                  <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
+                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
+                  <?= $this->Form->input('hashtags'); ?>
+              </fieldset>
+              <div class="small button-group">
+                <?= $this->Form->button(__('Submit')) ?>
+
+                <a id="reset" class="button">Reset</a>
+              </div>
+
+              <?= $this->Form->end() ?>
+            </div>
+          </div>
+
+      <?php } else { ?>
+
+      <div class="row">
+
+      <div class="row text-center">
+        <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
+      </div>
+
+        <div class="row">
+        <h3 style="margin-top: 20px; margin-bottom: 30px; text-align: center;"><?= __('Articles') ?></h3>
+
+            <div class="articles index small-12 medium-6 large-4 columns content">
+              <div class="panel ">
+                <h4 class="home-article title">
+                  <?= $articles->toArray()[0]->title; ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[0]->created; ?>
+                   in
+                  <?= $articles->toArray()[0]->category; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $articles->toArray()[0]->body; ?>
+                </p>
+              </div>
+            </div>
+            <div class="articles index small-12 medium-6 large-4 columns content">
+              <div class="panel">
+                <h4 class="home-article title">
+                  <?= $articles->toArray()[1]->title; ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[1]->created; ?>
+                   in
+                  <?= $articles->toArray()[1]->category; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $articles->toArray()[1]->body; ?>
+                </p>
+              </div>
+            </div>
+
+
+            <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
               <fieldset>
                   <legend><?= __('Submit crisis') ?></legend>
@@ -169,7 +243,8 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
-                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
+                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
@@ -181,82 +256,33 @@
               <?= $this->Form->end() ?>
             </div>
           </div>
+          <br/>
+          <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
 
-      <?php } else { ?>
+            <?php foreach($articles as $article): ?>
+                <div class="panel ">
+                  <h4 class="home-article title">
+                    <?= $article->title; ?>
+                  </h4>
+                  <h5 class="home-article category subheader">
+                    <?= $article->created; ?>
+                     in
+                    <?= $article->category; ?>
+                  </h5>
+                  <p class="home-article content">
+                    <?= $article->body; ?>
+                  </p>
+                </div>
+            <?php endforeach;?>
+            </div>
+          </div>
 
-      <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
-      <a title="Créer une crise" href="/crisis/add"></a>
-      <table class="body">
-        <tr>
-        <td class="center" align="center" valign="top">
-          <center>
-            <table class="container">
-              <tr>
-                <td>
-                  <table class="row" dir="rtl">
-                    <tr>
-                      <td class="wrapper" dir="ltr">
-                        <table class="four columns" >
-                          <tr>
-                           <td class="center" align="center">
-                             <center>
-                             </center>
-                           </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td class="wrapper last" dir="ltr">
-                        <table class="eight columns">
-                          <tr>
-                            <td>
-                              <p></p>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                  <table class="row">
-                    <tr>
-                      <td class="wrapper">
-                        <table class="four columns" >
-                          <tr>
-                           <td class="center" align="center">
-                             <center>
-                             </center>
-                           </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td class="wrapper last">
-                        <table class="eight columns">
-                          <tr>
-                            <td>
-                              <p>
-                                <?= $articlesTableau = $articles->toArray(); ?>
-                                <?= $idArticle = rand() % ($articles->count() + 1); ?>
-                                <?= $this->Html->link(__($articlesTableau[$idArticle]), '/articles/view/{0}', $idArticle); ?>
 
-                              </p>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-    </table>
+
 
     <?php }?>
+
 
 
 </div>
