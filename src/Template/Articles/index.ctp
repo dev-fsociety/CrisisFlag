@@ -17,12 +17,8 @@
                               ?>
         </h5>
         <em>Catégorie : <?= h($article->category) ?><hr></em>
-        <button type="button" class="button secondary radius">
-        <?= $this->Html->link(__('Editer'), ['action' => 'edit', $article->id]) ?>
-        </button>
-        <button type="button" class="button secondary radius">
-        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'article #{0} ?', $article->id)]) ?>
-      </button>
+        <?= $this->Html->link(__('Editer'), ['action' => 'edit', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;')) ?>
+        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;'), ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'article #{0} ?', $article->id)]) ?>
       </div>
     </div>
   <?php endforeach; ?>
