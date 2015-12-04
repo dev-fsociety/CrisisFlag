@@ -65,11 +65,11 @@
                 </div>
             </nav>
 
-<!-- Topbar -->
+            <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => '/']) ?></li>
+                    <li><?= $this->Html->link(__('Home'), '/') ?></li>
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
@@ -81,8 +81,7 @@
 
                 </ul>
             </nav>
-
-<!-- /Topbar -->
+            <!-- /Topbar -->
 
 
             <?= $this->Flash->render() ?>
@@ -91,7 +90,7 @@
             </section>
 
 
-<!-- Footer -->
+            <!-- Footer -->
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
@@ -104,7 +103,7 @@
                 </div>
               </div>
             </footer>
-<!-- /Footer -->
+            <!-- /Footer -->
 
         </div>
     </div>
@@ -116,8 +115,12 @@
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
+<<<<<<< HEAD
     <!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>-->
+=======
+
+>>>>>>> 2b605011828f0c48b089640254e57e75b5330786
     <!-- Own script -->
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>

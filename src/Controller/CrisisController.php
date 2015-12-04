@@ -57,10 +57,10 @@ class CrisisController extends AppController
         if ($this->request->is('post')) {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
-                $this->Flash->success(__('The crisis has been saved.'));
+                $this->Flash->success(__('La Crise a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The crisis could not be saved. Please, try again.'));
+                $this->Flash->error(__('La Crise n\'a pas pu être enregistrée.'));
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
@@ -83,10 +83,10 @@ class CrisisController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
-                $this->Flash->success(__('The crisis has been saved.'));
+                $this->Flash->success(__('La Crise a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The crisis could not be saved. Please, try again.'));
+                $this->Flash->error(__('La Crise n\'a pas pu être enregistrée.'));
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
@@ -106,9 +106,9 @@ class CrisisController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $crisi = $this->Crisis->get($id);
         if ($this->Crisis->delete($crisi)) {
-            $this->Flash->success(__('The crisis has been deleted.'));
+            $this->Flash->success(__('La Crise a bien été supprimée.'));
         } else {
-            $this->Flash->error(__('The crisis could not be deleted. Please, try again.'));
+            $this->Flash->error(__('La Crise n\'a pas pu être supprimée.'));
         }
         return $this->redirect(['action' => 'index']);
     }
