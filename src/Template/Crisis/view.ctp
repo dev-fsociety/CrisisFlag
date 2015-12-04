@@ -29,17 +29,14 @@
     <br>
 
     <h4>Informations à propos de cette crise :</h4>
+    <?php
+    foreach($crisi->infos as $info): ?>
         <div class="panel">
-                      <h4 class="hide-for-small">Police municipale<hr></h4>
-                    <h5 class="subheader">Fusce ullamcorper mauris in eros dignissim molestie posuere felis blandit. Aliquam erat volutpat. Mauris ultricies posuere vehicula. Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros. Pellentesque consectetur tempus mi iaculis bibendum. Ut vel dolor sed eros tincidunt volutpat ac eget leo.</h5>
+                      <h4 class="hide-for-small"><?= $info->title ?><hr></h4>
+                    <h5 class="subheader"><?= $info->body ?></h5>
+                    <em>Tagged : <?= $info->type ?></em>
         </div>
-
-
-        <div class="panel">
-                      <h4 class="hide-for-small">Ministère de la Défense<hr></h4>
-                    <h5 class="subheader">Fuscel ullamcorper mauris in eros dignissim molestie posuere felis blandit. Aliquam erat volutpat. Mauris ultricies posuere vehicula. Sed sit amet posuere erat. Quisque in ipsum non augue euismod dapibus non et eros. Pellentesque consectetur tempus mi iaculis bibendum. Ut vel dolor sed eros tincidunt volutpat ac eget leo.</h5>
-        </div>
-
+    <?php endforeach; ?>
 
 
 
