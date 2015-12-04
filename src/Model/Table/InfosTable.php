@@ -82,4 +82,9 @@ class InfosTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
+
+    public function isOwnedBy($infoId, $userId)
+    {
+        return $this->exists(['id' => $infoId, 'user_id' => $userId]);
+    }
 }
