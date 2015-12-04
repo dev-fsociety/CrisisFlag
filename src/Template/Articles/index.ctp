@@ -2,7 +2,13 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Liste des Articles'), ['action' => 'index']) ?></li>
+        
+        <?php if($this->request->session()->read('Auth.User.id')): ?>
+
         <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
+
+       <?php endif; ?>
+
     </ul>
 </nav>
 
@@ -17,8 +23,14 @@
                               ?>
         </h5>
         <em>Catégorie : <?= h($article->category) ?><hr></em>
+
+        <?php if($this->request->session()->read('Auth.User.id')): ?>
+
         <?= $this->Html->link(__('Editer'), ['action' => 'edit', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;')) ?>
         <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;'), ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'article #{0} ?', $article->id)]) ?>
+
+        <?php endif; ?>
+
       </div>
     </div>
   <?php endforeach; ?>
