@@ -46,7 +46,7 @@
                   </div>
                   <div class="crisis-panel-content">
                     <p>
-                      <h3 class="crisis-panel-title"><?= $frontCrisis->address ?></h3>
+                      <h3 class="crisis-panel-title"><?= $this->Html->link($frontCrisis->address,['controller' => 'Crisis', 'action' => 'view', $frontCrisis->id]); ?></h3>
                       <h4 class="crisis-panel-date subheader"><?= $frontCrisis->created ?></h3>
                     </p>
                     <p>
@@ -92,7 +92,7 @@
                                 </div>
                               </div>
                               <div class="small-crisis-panel-content">
-                                    <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                                    <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                     <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                     <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
                                     <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
@@ -130,7 +130,7 @@
                               </div>
                             </div>
                             <div class="small-crisis-panel-content">
-                                  <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                                  <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                   <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                   <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
                                   <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
@@ -138,6 +138,11 @@
                                   <span class="small crisis-panel-abstract"><?php
                                   $string = $crisis->abstract;
                                   $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                  <br/>
+                                  <div class="small button-group">
+                                    <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+                                    <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+                                  </div>
                             </div>
                           </div>
                         </div>
