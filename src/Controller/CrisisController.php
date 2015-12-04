@@ -16,7 +16,7 @@ class CrisisController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add','view','index','test']);
+        $this->Auth->allow(['add','view','index','test','severityIncrement','severityDecrement']);
 
     }
     /**
@@ -159,6 +159,43 @@ class CrisisController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * Increment method
+     *
+     * @param string|null $id Crisi id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function severityIncrement($id = null)
+    {
+      $crisi = $this->Crisis->get($id);
+      $crisi->severity += 1;
+      if ($this->Crisis->save($crisi)) {
+              $this->Flash->success(__('Thanks for the information'));
+              return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
+        } else {
+              $this->Flash->error(__('Sorry there was an error'));
+        }
+    }
+
+    /**
+     * Decrement method
+     *
+     * @param string|null $id Crisi id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function severityDecrement($id = null)
+    {
+      $crisi = $this->Crisis->get($id);
+      $crisi->severity -= 1;
+      if ($this->Crisis->save($crisi)) {
+              $this->Flash->success(__('Thanks for the information'));
+              return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
+        } else {
+              $this->Flash->error(__('Sorry there was an error'));
+        }
+    }
 
     public function test()
     {

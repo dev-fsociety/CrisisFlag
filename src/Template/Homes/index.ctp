@@ -19,7 +19,7 @@
 <div class="row">
 
 
-    
+
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -100,6 +100,12 @@
                                     <span class="small crisis-panel-abstract"><?php
                                     $string = $crisis->abstract;
                                     $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                    <br/>
+                                    <div class="small button-group">
+                                      <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+                                      <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+                                    </div>
+
                               </div>
                             </div>
                           </div>
@@ -260,7 +266,7 @@
         </td>
       </tr>
     </table>
-    
+
     <?php }?>
 
 
