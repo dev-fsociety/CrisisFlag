@@ -19,7 +19,7 @@
 <div class="row">
 
 
-    <?php $home_type='active' ?>
+    
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -173,7 +173,79 @@
 
       <?php } else { ?>
 
-      <?php }?>
+      <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
+      <a title="Créer une crise" href="/crisis/add"></a>
+      <table class="body">
+        <tr>
+        <td class="center" align="center" valign="top">
+          <center>
+            <table class="container">
+              <tr>
+                <td>
+                  <table class="row" dir="rtl">
+                    <tr>
+                      <td class="wrapper" dir="ltr">
+                        <table class="four columns" >
+                          <tr>
+                           <td class="center" align="center">
+                             <center>
+                             </center>
+                           </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td class="wrapper last" dir="ltr">
+                        <table class="eight columns">
+                          <tr>
+                            <td>
+                              <p></p>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table class="row">
+                    <tr>
+                      <td class="wrapper">
+                        <table class="four columns" >
+                          <tr>
+                           <td class="center" align="center">
+                             <center>
+                             </center>
+                           </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+                      </td>
+                      <td class="wrapper last">
+                        <table class="eight columns">
+                          <tr>
+                            <td>
+                              <p>
+                                <?= $articlesTableau = $articles->toArray(); ?>
+                                <?= $idArticle = rand() % ($articles->count() + 1); ?>
+                                <?= $this->Html->link(__($articlesTableau[$idArticle]), '/articles/view/{0}', $idArticle); ?>
+
+                              </p>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>
+    
+    <?php }?>
 
 
 </div>

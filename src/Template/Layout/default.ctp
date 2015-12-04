@@ -55,7 +55,7 @@
                     <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
                 </div>
                 <div class="middle tab-bar-section">
-                    <h1>Suivie de crise</h1>
+                    <h1>CrisisFlag</h1>
                 </div>
             </nav>
 
@@ -89,12 +89,12 @@
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
-                    <p class="slogan">/dev/fsociety</p>
+                    <p class="slogan">CrisisFlag <em>by /dev/fsociety</em></p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
                             <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
-                    <p class="copywrite">Fsociety all rights reserved © 2015</p>
+                    <p class="copywrite">dev/Fsociety all rights reserved © 2015</p>
                 </div>
               </div>
             </footer>
