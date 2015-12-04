@@ -179,11 +179,7 @@ function addMessage(message, className) {
 
   <h4>Ils en parlent...</h4>
 
-  <a class="twitter-timeline" href="https://twitter.com/hashtag/potus" data-widget-id="672517242656043008" data-screen-name="potus">Tweets sur #crise</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
-  <p>Hashtags : <?= h($crisi->hashtags) ?></p>
+  <iframe src="http://twubs.com/embed/<?= h($crisi->hashtags) ?>/?messagesPerPage=5&headerBgColor=%231c6485&headerTextColor=%23ffffff" width="350" height="600" frameborder="0"><a href="http://twubs.com/test">#<?= h($crisi->hashtags) ?></a></iframe>
 
 </div>
 </div>

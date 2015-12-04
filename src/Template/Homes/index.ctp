@@ -49,7 +49,7 @@
                     </p>
                     <p>
                       <h5 class="crisis-panel-state subheader"><?= $frontCrisis->type ?>:</h5>
-                      <h5 class="crisis-panel-state subheader"><?= $frontCrisis->state ?></h5>
+                      <h5 class="crisis-panel-state subheader verified-state"><?= $frontCrisis->state ?></h5>
                     </p>
                     <p>
                       <?php $HTagsArray = explode(';', $frontCrisis->hashtags);?>
@@ -93,7 +93,7 @@
                                     <span class="small crisis-panel-title"><?= $crisis->address ?></span>
                                     <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                     <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
-                                    <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                                    <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
                                     <br/>
                                     <span class="small crisis-panel-abstract"><?php
                                     $string = $crisis->abstract;
@@ -125,7 +125,7 @@
                                   <span class="small crisis-panel-title"><?= $crisis->address ?></span>
                                   <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                   <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
-                                  <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                                  <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
                                   <br/>
                                   <span class="small crisis-panel-abstract"><?php
                                   $string = $crisis->abstract;
