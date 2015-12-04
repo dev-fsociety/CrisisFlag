@@ -5,7 +5,7 @@
     </ul>
 </nav>
 <div class="crisis index large-9 medium-8 columns content">
-    <h3><?= __('Crisis') ?></h3>
+    <h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Crisis') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

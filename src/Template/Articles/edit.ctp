@@ -2,7 +2,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Supprimer l\'Article'),
+                __('Supprimer l\'article'),
                 ['action' => 'delete', $article->id],
                 ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'Article #{0} ?', $article->id)]
         )
@@ -13,11 +13,12 @@
 <div class="articles form large-9 medium-8 columns content">
     <?= $this->Form->create($article) ?>
     <fieldset>
-        <legend><?= __('Éditer l\'Article') ?></legend>
+        <legend><?= __('Éditer l\'article') ?></legend>
         <?php
-            echo $this->Form->input('title', ['label' => 'Titre']);
+            echo $this->Form->input('title', ['label' => 'Titre de l\'article']);
             echo $this->Form->input('body', ['label' => 'Corps du texte']);
             // echo $this->Form->input('user_id', ['options' => $users, 'label' => 'Utilisateur']);
+            echo "<br />";
             echo $this->Form->input('category', ['label' => 'Catégorie']);
         ?>
     </fieldset>

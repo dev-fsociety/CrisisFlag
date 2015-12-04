@@ -7,11 +7,12 @@
 <div class="articles form large-9 medium-8 columns content">
     <?= $this->Form->create($article) ?>
     <fieldset>
-        <legend><?= __('Ajouter article') ?></legend>
+        <legend><?= __('Ajouter un article') ?></legend>
         <?php
-            echo $this->Form->input('title', ['label' => 'Titre']);
-            echo $this->Form->input('body', ['label' => 'Corps du texte']);
-            echo $this->Form->input('category', ['label' => 'Catégorie']);
+            echo $this->Form->input('title', ['label' => 'Titre de l\'article :']);
+            echo $this->Form->input('body', ['label' => 'Corps du texte :']);
+            echo "<br />";
+            echo $this->Form->input('category', ['label' => 'Catégorie :']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Soumettre')) ?>
