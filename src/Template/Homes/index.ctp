@@ -17,7 +17,7 @@
 <div class="row">
 
 
-    <?php $home_type='active' ?>
+    
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
