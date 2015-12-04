@@ -17,6 +17,7 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
+    <?php $home_type='none';?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') {
@@ -205,7 +206,7 @@
                   <?= $articles->toArray()[0]->category; ?>
                 </h5>
                 <p class="home-article content">
-                  <?= $articles->toArray()[0]->body; ?>
+                  <?= $this->Text->truncate($articles->toArray()[0]->body,590); ?>
                 </p>
               </div>
             </div>
@@ -220,7 +221,7 @@
                   <?= $articles->toArray()[1]->category; ?>
                 </h5>
                 <p class="home-article content">
-                  <?= $articles->toArray()[1]->body; ?>
+                  <?= $this->Text->truncate($articles->toArray()[1]->body,590); ?>
                 </p>
               </div>
             </div>
@@ -272,12 +273,15 @@
                     <?= $article->category; ?>
                   </h5>
                   <p class="home-article content">
-                    <?= $article->body; ?>
+                    <?= $this->Text->truncate($article->body,256); ?>
                   </p>
                 </div>
             <?php endforeach;?>
             </div>
           </div>
+
+
+
         <?php } else { ?>
           <div class="show-for-medium-up small-12 medium-3 large-4 columns">
             <br/>
