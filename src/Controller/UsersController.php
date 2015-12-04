@@ -15,7 +15,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        $this->Auth->allow(['logout']);
     }
 
     public function login()
@@ -28,7 +28,7 @@ class UsersController extends AppController
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 }
-                $this->Flash->error(__('Identifiant et / ou Mot de passe incorrect(s).'));
+                $this->Flash->error(__('Identifiant et / ou mot de passe incorrect(s).'));
           }
     }
 
