@@ -17,7 +17,6 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
-    <?php $home_type='none';?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') {
