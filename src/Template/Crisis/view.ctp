@@ -166,11 +166,17 @@ function addMessage(message, className) {
 </div>
 <div class="large-4 columns">
   <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
-  <?= $this->Html->link(__('Ajouter des Informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id]) ?>
-  <br>
+  <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank')) 
+
+  ?>
+
   <br>
   <?php endif; ?>
+
+
+
   <h4>Ils en parlent...</h4>
+
   <a class="twitter-timeline" href="https://twitter.com/hashtag/potus" data-widget-id="672517242656043008" data-screen-name="potus">Tweets sur #crise</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
