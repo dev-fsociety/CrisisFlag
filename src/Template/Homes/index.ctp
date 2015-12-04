@@ -30,29 +30,26 @@
             <div class="crisis-panel red radius">
               <div class="crisis-panel-label">
                 <div class="label-text">
-                  <?= $spottedCrises->first->severity ?>
+                  <?= $verifiedCrises->first()->severity ?>
                 </div>
               </div>
               <div class="crisis-panel-content">
-
                 <p>
-                  <h3 class="crisis-panel-title">Crisis location</h3>
-                  <h4 class="crisis-panel-date subheader">Crisis date</h3>
+                  <h3 class="crisis-panel-title"><?= $verifiedCrises->first()->address ?></h3>
+                  <h4 class="crisis-panel-date subheader"><?= $verifiedCrises->first()->created ?></h3>
                 </p>
                 <p>
-                  <h5 class="crisis-panel-state subheader">Crisis type</h5>
-                  <h5 class="crisis-panel-state subheader">Crisis state</h5>
+                  <h5 class="crisis-panel-state subheader"><?= $verifiedCrises->first()->type ?>:</h5>
+                  <h5 class="crisis-panel-state subheader"><?= $verifiedCrises->first()->state ?></h5>
                 </p>
                 <p>
-                  <span class="label secondary round radius">tag 1</span>
-                  <span class="label secondary round radius">tag 2</span>
-                  <span class="label secondary round radius">tag 3</span>
-                  <span class="label secondary round radius">tag 4</span>
-                  <span class="label secondary round radius">tag 5</span>
+                  <?php $HTagsArray = explode(';', $verifiedCrises->first()->hashtags);?>
+                  <?php foreach ($HTagsArray as $hashtag): ?>
+                    <span class="label secondary round radius">#<?= $hashtag?></span>
+                  <?php endforeach; ?>
                 </p>
-
                 <p>
-                  Crisis description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  <?= $verifiedCrises->first()->abstract ?>
                 </p>
 
               </div>
@@ -64,21 +61,66 @@
         <div class="row">
           <div class="small-6 large-8 columns">
             <!-- Dernières crises -->
-            <ul>
-            <?php foreach ($spottedCrises as $crisis): ?>
-                <li>
-                  <?= $crisis->abstract ?>
-                </li>
+            <div class="panel callout radius spotted-panel">
+              <?php foreach ($spottedCrises as $crisis): ?>
+                  <div class="row text-left">
+                    <div class="medium-12 large-12 small-12 columns">
+                      <div class="crisis-panel red radius small">
+                        <div class="crisis-panel-label">
+                          <div class="label-text">
+                            <?= $crisis->severity ?>
+                          </div>
+                        </div>
+                        <div class="small-crisis-panel-content">
+                              <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                              <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
+                              <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
+                              <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                              <br/>
+                              <span class="small crisis-panel-abstract"><?php
+                              $string = $crisis->abstract;
+                              $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
               <?php endforeach; ?>
-
-            </ul>
+            </div>
+            <div class="panel radius verified-panel">
+              <?php foreach ($verifiedCrises as $crisis): ?>
+                <div class="row text-left">
+                  <div class="medium-12 large-12 small-12 columns">
+                    <div class="crisis-panel red radius small">
+                      <div class="crisis-panel-label">
+                        <div class="label-text">
+                          <?= $crisis->severity ?>
+                        </div>
+                      </div>
+                      <div class="small-crisis-panel-content">
+                            <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                            <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
+                            <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
+                            <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                            <br/>
+                            <span class="small crisis-panel-abstract"><?php
+                            $string = $crisis->abstract;
+                            $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            </div>
 
           </div>
 
 
           <div class="small-6 large-4 columns text-center submit-form">
-            <!-- Formulaire -->
-              <?= $this->Form->create($crisi) ?>
+            <!-- Formulaire TODO:vraie variable crisis-->
+
+              <?= $this->Form->create($newCrisis, [
+   'url' => ['controller' => 'Crisis', 'action' => 'add']
+]); ?>
                   <legend><?= __('Submit crisis') ?></legend>
                   <?= $this->Form->input('abstract'); ?>
                   <label class='form-label'>Location:</label>
