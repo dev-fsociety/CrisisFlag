@@ -13,6 +13,13 @@ class CrisisController extends AppController
 
     public $state_t = ['spotted' => 'Signalée', 'verified' => 'Vérifiée', 'over' => 'Terminée'];
 
+    public $categories = [
+        'Séisme','Attentat','Braquage','Tsunami','Accidents trains/avions',
+        'Épidémie','Inondations','Éruption volcanique','Chute de météorite','Ouragan',
+        'Tornade','Tempête de sables dans les pays concernés','Danger chimique','Danger nucléaire',
+        'Danger industriel (explosion)','Incendie (majeur)'
+    ];
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);

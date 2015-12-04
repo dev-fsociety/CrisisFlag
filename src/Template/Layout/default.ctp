@@ -65,13 +65,13 @@
                     <li><label>Menu</label></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/') ?></li>
 
-                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
-                    <li class="topbar-separator"><?= $this->Html->link(__('User'),     ['controller'=>'Users', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Les crises'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Les utilisateurs'), ['controller'=>'Users', 'action' => 'index']) ?></li>
                     <?php if($this->request->session()->read("Auth.User")): ?>
-                        <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
+                        <li><?= $this->Html->link(__('Se déconnecter'), ['controller'=>'Users', 'action' => 'logout']) ?></li>
                     <?php else: ?>
-                        <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                        <li><?= $this->Html->link(__('Se connecter'), ['controller'=>'Users', 'action' => 'login']) ?></li>
                     <?php endif; ?>
 
                 </ul>
