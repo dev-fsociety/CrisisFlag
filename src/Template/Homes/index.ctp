@@ -25,13 +25,13 @@
       <?php if ($home_type == 'active') { ?>
         <?php $frontCrisis=$verifiedCrises->first() ?>
           <div class="medium-12 column text-center">
-            <h2>Latest verified crisis:</h2>
+            <h2>Crise confirmée en cour!</h2>
           </div>
 
       <?php } else if ($home_type=='spotted') { ?>
         <?php $frontCrisis=$spottedCrises->first() ?>
           <div class="medium-12 column text-center">
-            <h2>Latest spotted crisis:</h2>
+            <h2>Crise rapportée par la communauté</h2>
           </div>
       <?php }?>
 
@@ -76,8 +76,8 @@
                   <!-- Dernières crises -->
                   <div class="panel callout radius spotted-panel">
                     <div class="row">
-                      <div class="small-2 large-4 columns"><h4 class="subheader">Spotted crises:</h4></div>
-                      <div class="small-6 large-4 columns text-right">
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportés par la communauté:</h4></div>
+                      <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
                       </div>
                     </div>
@@ -114,8 +114,8 @@
                   </div>
                   <div class="panel radius verified-panel">
                     <div class="row">
-                      <div class="small-2 large-4 columns"><h4 class="subheader">Verified crises:</h4></div>
-                      <div class="small-6 large-4 columns text-right">
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises confirmées:</h4></div>
+                      <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
                       </div>
                     </div>
@@ -146,22 +146,6 @@
                   </div>
                 </div>
                 <div class="small-12 medium-6 large-4 columns text-center submit-form">
-                  <!-- Formulaire TODO:vraie variable crisis-->
-
-                  <!--  <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add']]); ?>
-                        <legend><?= __('Submit crisis') ?></legend>
-                        <?= $this->Form->input('abstract'); ?>
-                        <label class='form-label'>Location:</label>
-                        <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                                    $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
-                                    echo $this->Form->radio('type', $types, $attributes);
-                        ?>
-                        <div id='submit_address'><?= $this->Form->input('address'); ?></div>
-                        <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
-                        <?= $this->Form->input('hashtags'); ?>
-                    <?= $this->Form->button(__('Submit')) ?>
-                    <?= $this->Form->end() ?>
-                </div>-->
 
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
               <fieldset>
@@ -180,7 +164,7 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
-                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
