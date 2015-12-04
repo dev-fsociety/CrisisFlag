@@ -14,27 +14,88 @@
  */
 ?>
 
-<?php debug($spottedCrises->toArray()); ?>
-
 <div class="row">
-    <div class="medium-12 column text-center">
-        <h1>/dev/fsociety - Le site rendu</h1>
-        <p>Bienvenue sur ce qui deviendra la page d'accueil de notre site !</p>
 
-        <?= $this->Html->link("Cliquez ici pour tester votre installation de cake !",
-        ['controller' => 'Pages', 'action' => 'display', "test"], ['class' => 'expended button']); ?>
 
-        <div class="row align-center">
-            <div class="column medium-offset-2 medium-4">
-                <div class="callout primary large">
-                    <p class="text-justify">À l'heure actuelle, ce template intègre le thème par defaut de Foundation ainsi que les scripts pour JQuery et Foundation.</p>
+
+    <?php if ($home_type == 'active') { ?>
+
+      <div class="medium-12 column text-center">
+        <h2>Latest crisis:</h2>
+      </div>
+
+      <!-- plus importante crise -->
+        <div class="row text-left">
+          <div class="medium-12 large-12 small-12 columns">
+            <div class="crisis-panel red radius">
+              <div class="crisis-panel-label">
+                <div class="label-text">
+                  <?= $spottedCrises->first->severity ?>
                 </div>
+              </div>
+              <div class="crisis-panel-content">
+
+                <p>
+                  <h3 class="crisis-panel-title">Crisis location</h3>
+                  <h4 class="crisis-panel-date subheader">Crisis date</h3>
+                </p>
+                <p>
+                  <h5 class="crisis-panel-state subheader">Crisis type</h5>
+                  <h5 class="crisis-panel-state subheader">Crisis state</h5>
+                </p>
+                <p>
+                  <span class="label secondary round radius">tag 1</span>
+                  <span class="label secondary round radius">tag 2</span>
+                  <span class="label secondary round radius">tag 3</span>
+                  <span class="label secondary round radius">tag 4</span>
+                  <span class="label secondary round radius">tag 5</span>
+                </p>
+
+                <p>
+                  Crisis description. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+
+              </div>
             </div>
-            <div class="medium-4 column end">
-                <div class="callout success large">
-                    <p class="text-justify">Ce template constitut donc notre base de travail. Nous rajouterons éventuellement des choses par la suite et nous (enfin surtout les frontend) définirons un thème (edition du fichier webroot/css/app.css)         pour personnaliser le site.</p>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
+
+        <!-- Dernières crises + formulaire submit rapide-->
+        <div class="row">
+          <div class="small-6 large-8 columns">
+            <!-- Dernières crises -->
+            <ul>
+            <?php foreach ($spottedCrises as $crisis): ?>
+                <li>
+                  <?= $crisis->abstract ?>
+                </li>
+              <?php endforeach; ?>
+
+            </ul>
+
+          </div>
+
+
+          <div class="small-6 large-4 columns text-center submit-form">
+            <!-- Formulaire -->
+              <?= $this->Form->create($crisi) ?>
+                  <legend><?= __('Submit crisis') ?></legend>
+                  <?= $this->Form->input('abstract'); ?>
+                  <label class='form-label'>Location:</label>
+                  <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
+                              echo $this->Form->radio('type', $types, $attributes);
+                  ?>
+                  <div id='submit_address'><?= $this->Form->input('address'); ?></div>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                  <?= $this->Form->input('hashtags'); ?>
+              <?= $this->Form->button(__('Submit')) ?>
+              <?= $this->Form->end() ?>            </div>
+          </div>
+
+      <?php } else { ?>
+
+      <?php }?>
+
+
 </div>

@@ -7,7 +7,7 @@
 <div class="articles form large-9 medium-8 columns content">
     <?= $this->Form->create($article) ?>
     <fieldset>
-        <legend><?= __('Ajouter article') ?></legend>
+        <legend><?= __('Ajouter un article') ?></legend>
         <?php
             echo $this->Form->input('title', ['label' => 'Titre de l\'article :']);
             echo $this->Form->input('body', ['label' => 'Corps du texte :']);
