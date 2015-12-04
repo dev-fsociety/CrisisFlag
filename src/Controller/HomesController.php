@@ -35,7 +35,6 @@ class HomesController extends AppController
 		if($verifiedCrises->count() != 0)
 		{
 			$home_type = 'active';
-
 		}
 		else
 		{

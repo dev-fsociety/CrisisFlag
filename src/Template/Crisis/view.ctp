@@ -3,14 +3,14 @@
 
     <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?> 
 
-        <?php if($crisi->state=='verified'): ?> 
+        <?php if($crisi->state == 'spotted'): ?> 
+            <i title="Spotted by User" class="fi-sound spotted_icon"></i>
+        <?php endif; ?>
+        <?php if($crisi->state == 'verified'): ?> 
             <i title="Verified by Staff" class="fi-checkbox verified_icon"></i> 
         <?php endif; ?>
-        <?php if($crisi->state=='over'): ?> 
+        <?php if($crisi->state == 'over'): ?> 
             <i title="Crisis Ended" class="fi-x-circle"></i> 
-        <?php endif; ?>
-        <?php if($crisi->state=='spotted'): ?> 
-            <i title="Spotted by User" class="fi-sound spotted_icon"></i>
         <?php endif; ?>
 
     </h2>
@@ -19,12 +19,10 @@
 
 <div class="row">
   <div class="large-8 columns">   
-
     <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
 
         <strong>Description : </strong><?= h($crisi->abstract) ?>
     </p>
-
 
     <br>
 
@@ -167,7 +165,11 @@ function addMessage(message, className) {
 
 </div>
 <div class="large-4 columns">
-
+  <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
+  <?= $this->Html->link(__('Ajouter des Informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id]) ?>
+  <br>
+  <br>
+  <?php endif; ?>
   <h4>Ils en parlent...</h4>
   <a class="twitter-timeline" href="https://twitter.com/hashtag/potus" data-widget-id="672517242656043008" data-screen-name="potus">Tweets sur #crise</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

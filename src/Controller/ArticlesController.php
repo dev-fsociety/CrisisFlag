@@ -60,8 +60,11 @@ class ArticlesController extends AppController
      */
     public function add()
     {
+        $user_id = $this->Auth->user()['id'];
         $article = $this->Articles->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post'))
+        {
+            $article->user_id = $user_id;
             $article = $this->Articles->patchEntity($article, $this->request->data);
             $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {

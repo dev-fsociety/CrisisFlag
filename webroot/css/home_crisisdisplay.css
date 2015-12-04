@@ -41,6 +41,46 @@
 		font-weight: normal;
 		display:inline;
 		margin-right: 10px}
+	.crisis-panel-abstract {
+		font-weight: normal;
+		display:inline;
+		margin-right: 10px}
+
+
+	.crisis-panel-title.small {
+		font-weight: bold;
+		font-size: 1rem;
+		display:inline;
+		margin-bottom: 1px;
+		margin-right: 10px;
+		margin-left: 10px}
+	.crisis-panel-date.small {
+		font-weight: normal;
+		font-size: 0.9rem;
+		display:inline;
+		margin-bottom: 1px;
+		margin-right: 10px}
+	.crisis-panel-state.small {
+		font-weight: normal;
+		font-size: 0.9rem;
+		display:inline;
+		margin-bottom: 1px;
+		margin-right: 10px}
+	.crisis-panel-abstract.small {
+		font-weight: normal;
+		font-size: 0.75rem;
+		margin-right: 10px;
+		margin-left: 10px;
+		margin-top: 1px;
+		margin-bottom: 1px}
+
+
+
+
+	.spotted-panel{
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
+	.verified-panel{
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
 
 
 		.submit-form {
