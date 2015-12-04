@@ -17,7 +17,7 @@
 <div class="row">
 
 
-
+<?php $home_type = 'active' ?>
     <?php if ($home_type == 'active') { ?>
 
       <div class="medium-12 column text-center">
@@ -27,7 +27,7 @@
       <!-- plus importante crise -->
         <div class="row text-left">
           <div class="medium-12 large-12 small-12 columns">
-            <div class="crisis-panel red radius">
+            <div class="crisis-panel red radius"> 
               <div class="crisis-panel-label">
                 <div class="label-text">
                   <?= $verifiedCrises->first()->severity ?>
@@ -40,7 +40,7 @@
                 </p>
                 <p>
                   <h5 class="crisis-panel-state subheader"><?= $verifiedCrises->first()->type ?>:</h5>
-                  <h5 class="crisis-panel-state subheader"><?= $verifiedCrises->first()->state ?></h5>
+                  <h5 class="crisis-panel-state subheader verified-state"><?= $verifiedCrises->first()->state ?></h5>
                 </p>
                 <p>
                   <?php $HTagsArray = explode(';', $verifiedCrises->first()->hashtags);?>
@@ -75,7 +75,7 @@
                               <span class="small crisis-panel-title"><?= $crisis->address ?></span>
                               <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                               <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
-                              <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                              <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
                               <br/>
                               <span class="small crisis-panel-abstract"><?php
                               $string = $crisis->abstract;
@@ -100,7 +100,7 @@
                             <span class="small crisis-panel-title"><?= $crisis->address ?></span>
                             <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                             <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
-                            <span class="small crisis-panel-state subheader"><?= $crisis->state ?></span>
+                            <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
                             <br/>
                             <span class="small crisis-panel-abstract"><?php
                             $string = $crisis->abstract;
