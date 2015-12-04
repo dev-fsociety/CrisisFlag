@@ -193,6 +193,10 @@
 
         <div class="row">
         <h3 style="margin-top: 20px; margin-bottom: 30px; text-align: center;"><?= __('Articles') ?></h3>
+          <?php $count = 0;?>        
+          <?php foreach ($articles as $article): ?>
+
+            <?php if($count == 2) break; ?>
 
             <div class="articles index small-12 medium-6 large-4 columns content">
               <div class="panel ">
@@ -209,21 +213,9 @@
                 </p>
               </div>
             </div>
-            <div class="articles index small-12 medium-6 large-4 columns content">
-              <div class="panel">
-                <h4 class="home-article title">
-                  <?= $articles->toArray()[1]->title; ?>
-                </h4>
-                <h5 class="home-article category subheader">
-                  <?= $articles->toArray()[1]->created; ?>
-                   in
-                  <?= $articles->toArray()[1]->category; ?>
-                </h5>
-                <p class="home-article content">
-                  <?= $articles->toArray()[1]->body; ?>
-                </p>
-              </div>
-            </div>
+
+            <?php $count += 1; ?>
+          <?php endforeach; ?>
 
 
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
