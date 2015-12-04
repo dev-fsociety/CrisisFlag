@@ -17,9 +17,8 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
+  <?=$verifiedCrises->count();?>
 
-
-    <?php $home_type = 'active' ?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -150,10 +149,6 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
-<<<<<<< HEAD
-=======
-                <div class="small-12 medium-6 large-4 columns text-center submit-form">
->>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
 
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
@@ -173,12 +168,8 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
-<<<<<<< HEAD
                   <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
-=======
-                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
->>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
@@ -198,76 +189,98 @@
       <div class="row text-center">
         <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
       </div>
+
         <div class="row">
-        <h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles') ?></h3>
+        <h3 style="margin-top: 20px; margin-bottom: 30px; text-align: center;"><?= __('Articles') ?></h3>
+
             <div class="articles index small-12 medium-6 large-4 columns content">
-              <div class="panel">
-                <?= $articles->toArray()[0]->title; ?>
+              <div class="panel ">
+                <h4 class="home-article title">
+                  <?= $articles->toArray()[0]->title; ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[0]->created; ?>
+                   in
+                  <?= $articles->toArray()[0]->category; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $articles->toArray()[0]->body; ?>
+                </p>
               </div>
             </div>
             <div class="articles index small-12 medium-6 large-4 columns content">
               <div class="panel">
-                <?= $articles->toArray()[1]->title; ?>
+                <h4 class="home-article title">
+                  <?= $articles->toArray()[1]->title; ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[1]->created; ?>
+                   in
+                  <?= $articles->toArray()[1]->category; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $articles->toArray()[1]->body; ?>
+                </p>
               </div>
             </div>
 
-            <div class="articles index medium-4 columns content">
-              <div class="small-12 medium-6 large-4 columns text-center submit-form">
-                <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
-                <fieldset>
-                    <legend><?= __('Submit crisis') ?></legend>
-                    <!-- Hidden fields-->
-                    <?php echo $this->Form->hidden('severity');
-                        echo $this->Form->hidden('longitude');
-                        echo $this->Form->hidden('latitude');
-                        echo $this->Form->hidden('state');
-                     ?>
-                    <?=  $this->Form->input('abstract'); ?>
-                    <label class='form-label'>Location:</label>
-                    <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                                $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
-                                echo $this->Form->radio('type', $types, $attributes);
-                    ?>
-                    <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
-                    <?= $this->Form->input('address'); ?>
-                    <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
-                    <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
-                    <?= $this->Form->input('hashtags'); ?>
-                </fieldset>
-                <div class="small button-group">
-                  <?= $this->Form->button(__('Submit')) ?>
 
-                  <a id="reset" class="button">Reset</a>
+            <div class="small-12 medium-6 large-4 columns text-center submit-form">
+              <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+              <fieldset>
+                  <legend><?= __('Submit crisis') ?></legend>
+                  <!-- Hidden fields-->
+                  <?php echo $this->Form->hidden('severity');
+                      echo $this->Form->hidden('longitude');
+                      echo $this->Form->hidden('latitude');
+                      echo $this->Form->hidden('state');
+                   ?>
+                  <?=  $this->Form->input('abstract'); ?>
+                  <label class='form-label'>Location:</label>
+                  <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
+                              echo $this->Form->radio('type', $types, $attributes);
+                  ?>
+                  <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
+                  <?= $this->Form->input('address'); ?>
+                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                  <?= $this->Form->input('hashtags'); ?>
+              </fieldset>
+              <div class="small button-group">
+                <?= $this->Form->button(__('Submit')) ?>
+
+                <a id="reset" class="button">Reset</a>
+              </div>
+
+              <?= $this->Form->end() ?>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+
+            <?php foreach($articles as $article): ?>
+                <div class="panel ">
+                  <h4 class="home-article title">
+                    <?= $article->title; ?>
+                  </h4>
+                  <h5 class="home-article category subheader">
+                    <?= $article->created; ?>
+                     in
+                    <?= $article->category; ?>
+                  </h5>
+                  <p class="home-article content">
+                    <?= $article->body; ?>
+                  </p>
                 </div>
-
-                <?= $this->Form->end() ?>
-              </div>
-           </div>
-          <?php foreach ($articles as $article): ?>
-          <?php endforeach; ?>
+            <?php endforeach;?>
+            </div>
+          </div>
 
 
 
 
-<<<<<<< HEAD
-=======
-                              </p>
-                            </td>
-                            <td class="expander"></td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </center>
-        </td>
-      </tr>
-    </table>
-
->>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
     <?php }?>
 
 
