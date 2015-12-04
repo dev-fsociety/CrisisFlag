@@ -35,3 +35,7 @@
 .spotted_icon{
 	color: #DCB5FF;
 }
+
+#chatgroup{
+	display: none;
+}
