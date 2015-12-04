@@ -209,14 +209,27 @@
                   <?= $articles->toArray()[0]->category; ?>
                 </h5>
                 <p class="home-article content">
-                  <?= $articles->toArray()[0]->body; ?>
+                  <?= $this->Text->truncate($articles->toArray()[0]->body,590); ?>
                 </p>
               </div>
             </div>
-
             <?php $count += 1; ?>
           <?php endforeach; ?>
-
+            <div class="articles index small-12 medium-6 large-4 columns content">
+              <div class="panel">
+                <h4 class="home-article title">
+                  <?= $articles->toArray()[1]->title; ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[1]->created; ?>
+                   in
+                  <?= $articles->toArray()[1]->category; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $this->Text->truncate($articles->toArray()[1]->body,590); ?>
+                </p>
+              </div>
+            </div>
 
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
@@ -264,12 +277,15 @@
                     <?= $article->category; ?>
                   </h5>
                   <p class="home-article content">
-                    <?= $article->body; ?>
+                    <?= $this->Text->truncate($article->body,256); ?>
                   </p>
                 </div>
             <?php endforeach;?>
             </div>
           </div>
+
+
+
         <?php } else { ?>
           <div class="show-for-medium-up small-12 medium-3 large-4 columns">
             <br/>
