@@ -1,64 +1,52 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Crisi'), ['action' => 'edit', $crisi->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Crisi'), ['action' => 'delete', $crisi->id], ['confirm' => __('Are you sure you want to delete # {0}?', $crisi->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Crisis'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Crisi'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="crisis view large-9 medium-8 columns content">
-    <h3><?= h($crisi->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('Abstract') ?></th>
-            <td><?= h($crisi->abstract) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('State') ?></th>
-            <td><?= h($crisi->state) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Address') ?></th>
-            <td><?= h($crisi->address) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Type') ?></th>
-            <td><?= h($crisi->type) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Hashtags') ?></th>
-            <td><?= h($crisi->hashtags) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('User') ?></th>
-            <td><?= $crisi->has('user') ? $this->Html->link($crisi->user->id, ['controller' => 'Users', 'action' => 'view', $crisi->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($crisi->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Severity') ?></th>
-            <td><?= $this->Number->format($crisi->severity) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Longitude') ?></th>
-            <td><?= $this->Number->format($crisi->longitude) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Latitude') ?></th>
-            <td><?= $this->Number->format($crisi->latitude) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Created') ?></th>
-            <td><?= h($crisi->created) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Modified') ?></th>
-            <td><?= h($crisi->modified) ?></td>
-        </tr>
-    </table>
+
+<div class="main_degrade" height="400px;">
+
+    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?> 
+
+    <?php if($crisi->state=='verified'): ?> 
+        <i title="Verified by Staff" class="fi-checkbox verified_icon"></i> 
+    <?php endif; ?>
+    <?php if($crisi->state=='over'): ?> 
+        <i title="Crisis Ended" class="fi-x-circle"></i> 
+    <?php endif; ?>
+    <?php if($crisi->state=='spotted'): ?> 
+        <i title="Spotted by User" class="fi-sound spotted_icon"></i>
+    <?php endif; ?>
+
+    </h2>
+
 </div>
+
+<div class="row">
+  <div class="large-8 columns">   
+
+    <p>Créé le : <?= h($crisi->created) ?> </br>
+
+        Description : <?= h($crisi->abstract) ?>
+    </p>
+
+
+    <br>
+    <h4>Chat WebRTC ? </h4>
+ 
+
+    
+
+
+  </div>
+  <div class="large-4 columns">
+
+      <h4>Ils en parlent...</h4>
+      <a class="twitter-timeline" href="https://twitter.com/hashtag/potus" data-widget-id="672517242656043008" data-screen-name="potus">Tweets sur #crise</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+      <p>Hashtags : <?= h($crisi->hashtags) ?></p>
+
+  </div>
+</div>
+
+
+<!--  GEOLOCALISATION / URL GOOGLE MAP == http://google.com/maps/bylatlng?lat=' + lat + '&lng=' + lng -->
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script><div style="overflow:hidden;height:500px;width:100%;"><div id="gmap_canvas" style="height:500px;width:100%;"></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style><a class="google-map-code" href="http://www.themecircle.net" id="get-map-data">themecircle.net</a></div><script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(<?= $this->Number->format($crisi->longitude) ?>,<?= $this->Number->format($crisi->latitude) ?>),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(<?= $this->Number->format($crisi->longitude) ?>, <?= $this->Number->format($crisi->latitude) ?>)});infowindow = new google.maps.InfoWindow({content:"Geolocalisation du signalement (approximation)" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>

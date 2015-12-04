@@ -55,8 +55,8 @@ class AppController extends Controller
             ],
             'authorize' => ['Controller'],
             'loginRedirect' => [
-                'controller' => 'Articles',
-                'action' => 'index'
+                'controller' => 'Homes',
+                'action' => '/'
             ],
             'logoutRedirect' => [
                 'controller' => 'Articles',
@@ -86,7 +86,6 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         $this->Auth->deny();
-        $this->Auth->allow(['login']);
     }
 
     public function beforeRender(Event $event)

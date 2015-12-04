@@ -37,13 +37,20 @@
     <!-- Own style -->
     <?= $this->Html->css('app.css') ?>
 
+
+    <?= $this->Html->css('foundation-icons.css') ?>
+    <?= $this->Html->css('crisis_template.css') ?>
+
     <!-- Footer style -->
     <?= $this->Html->css('footer.css') ?>
+
 
     <?= $this->fetch('meta') ?>
 
     <!-- Page specific style -->
-    <?= $this->Html->css($this->fetch('css')) ?>
+    <?php $css = $this->fetch('css');
+    if($css != "")
+        echo $this->Html->css($css); ?>
 </head>
 <body>
 
@@ -63,11 +70,17 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'add']) ?></li>
-                    <li><?= $this->Html->link(__('Users'),    ['controller'=>'Users', 'action' => 'add']) ?></li>
+
+                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => '/']) ?></li>
+                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <?php if($this->request->session()->read("Auth.User")): ?>
+                        <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
+                    <?php else: ?>
+                        <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                    <?php endif; ?>
+
                 </ul>
             </nav>
 
@@ -105,7 +118,8 @@
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
-
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     <!-- Own script -->
     <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
 
