@@ -21,12 +21,16 @@
 
 <div class="row">
   <div class="large-8 columns">
-
-
-    <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
-
-        <strong>Description : </strong><?= h($crisi->abstract) ?>
-    </p>
+      <div class="row">
+          <div class="medium-6 column">
+              <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?>
+          </div>
+          <div class="medium-6 column">
+              <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
+                  <strong>Description : </strong><?= h($crisi->abstract) ?>
+              </p>
+          </div>
+      </div>
 
     <br>
 
@@ -43,7 +47,7 @@
 
 
 
-<h4>Chattez avec les autres utilisateurs :</h4>
+<h4>Parlez-en :</h4>
 
 <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
 <script type="text/javascript">
