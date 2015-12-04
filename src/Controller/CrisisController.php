@@ -143,6 +143,7 @@ class CrisisController extends AppController
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
+        $this->set("categories", $this->categories);
         $this->set(compact('crisi', 'users'));
         $this->set('_serialize', ['crisi']);
     }
