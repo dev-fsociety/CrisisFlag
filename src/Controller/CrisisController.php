@@ -40,9 +40,14 @@ class CrisisController extends AppController
     public function view($id = null)
     {
         $crisi = $this->Crisis->get($id, [
-            'contain' => ['Users', 'Infos']
+            'contain' => ['Users']
         ]);
+        $infos = $this->Crisis->Infos->find()
+        ->where(['crisis_id' => $id])
+        ->order(['created' => 'DESC']);
+
         $this->set('crisi', $crisi);
+        $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
     }
 
@@ -116,7 +121,7 @@ class CrisisController extends AppController
     public function isAuthorized($user)
     {
         $state = $this->Crisis->get($this->request->params['pass'][0])->state;
-        
+
         if($this->request->action === 'edit')
         {
             if($state === 'spotted') //Anyone can still edit it

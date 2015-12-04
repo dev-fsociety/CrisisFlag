@@ -63,7 +63,7 @@ class InfosController extends AppController
                 $info = $this->Infos->patchEntity($info, $this->request->data);
                 if ($this->Infos->save($info)) {
                     $this->Flash->success(__('L\'Information a bien été enregistrée.'));
-                    return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['controller' => 'crisis', 'action' => 'view', $crisis_id]);
                 } else {
                     $this->Flash->error(__('L\'Information n\'a pas pu être enregistrée.'));
                 }

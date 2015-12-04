@@ -1,16 +1,16 @@
 
 <div class="main_degrade" height="400px;">
 
-    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?> 
+    <h2 class="main_degrade_title text-center"><?= h($crisi->type) ?> à <?= h($crisi->address) ?>
 
-        <?php if($crisi->state == 'spotted'): ?> 
+        <?php if($crisi->state == 'spotted'): ?>
             <i title="Spotted by User" class="fi-sound spotted_icon"></i>
         <?php endif; ?>
-        <?php if($crisi->state == 'verified'): ?> 
-            <i title="Verified by Staff" class="fi-checkbox verified_icon"></i> 
+        <?php if($crisi->state == 'verified'): ?>
+            <i title="Verified by Staff" class="fi-checkbox verified_icon"></i>
         <?php endif; ?>
-        <?php if($crisi->state == 'over'): ?> 
-            <i title="Crisis Ended" class="fi-x-circle"></i> 
+        <?php if($crisi->state == 'over'): ?>
+            <i title="Crisis Ended" class="fi-x-circle"></i>
         <?php endif; ?>
 
     </h2>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-  <div class="large-8 columns">   
+  <div class="large-8 columns">
     <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
 
         <strong>Description : </strong><?= h($crisi->abstract) ?>
@@ -29,7 +29,7 @@
     <?php if (!($crisi->infos==NULL)): ?>
     <h4>Informations à propos de cette crise :</h4>
     <?php endif;
-    foreach($crisi->infos as $info): ?>
+    foreach($infos as $info): ?>
         <div class="panel">
                       <h4 class="hide-for-small"><?= $info->title ?><hr></h4>
                     <h5 class="subheader"><?= $info->body ?></h5>
@@ -90,7 +90,7 @@ function setName() {
 function joinRoom() {
   skylink.joinRoom();
   chatgroup.style.display="block";
-  logingroup.style.display="none"; 
+  logingroup.style.display="none";
 }
 
 function leaveRoom() {
@@ -112,7 +112,7 @@ function addMessage(message, className) {
   chatbox.appendChild(div);
 }
 </script>
-    
+
 
     <div id="logingroup">
 
