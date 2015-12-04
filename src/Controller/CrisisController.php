@@ -23,8 +23,8 @@ class CrisisController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add', 'view', 'index', 'test', 'severityIncrement', 'severityDecrement']);
 
+        $this->Auth->allow(['add', 'edit', 'view', 'index', 'test', 'severityIncrement', 'severityDecrement']);
     }
     /**
      * Index method
@@ -111,19 +111,26 @@ class CrisisController extends AppController
         {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             //do magic here
-            $crisis = $this->Crisis->find("all");
+            $crisis = $this->Crisis->find('all');
             $delta_search = 0.5;
             foreach ($crisis as $crisi_db){
              if (abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search
-                && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
+                && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search && $crisi_db->state != 'over') {   //1° lat/long-> 111 km
                   $crisi_db->severity += 1;
-                  $this->Crisis->save($crisi_db);
-                  $this->Flash->success('Cette crise a déjà été signalée, nous incrémentons sa gravité.');
+                  if($this->Crisis->save($crisi_db))
+                  {
+                    $this->Flash->success('Cette crise a déjà été signalée, nous incrémentons sa gravité.');
+                  }
+                  else
+                  {
+                    $this->Flash->error('La crise n\'a pas pu être enregistrée.');
+                  }
+
                   return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
                 }
             }
 
-            if ($this->Crisis->save($crisi))
+            if($this->Crisis->save($crisi))
             {
                 $this->Flash->success(__('La crise a bien été enregistrée.'));
             }
@@ -222,32 +229,32 @@ class CrisisController extends AppController
 
     public function isAuthorized($user)
     {
-       $state = $this->Crisis->get($this->request->params['pass'][0])->state;
+      $state = $this->Crisis->get($this->request->params['pass'][0])->state;
 
-        if($this->request->action === 'edit')
-        {
-            if($state === 'spotted') //Anyone can still edit it
-            {
-                return true;
-            }
+      if($this->request->action === 'edit')
+      {
+          if($state === 'spotted') //Anyone can still edit it
+          {
+              return true;
+          }
 
-            elseif($state === 'verified') //A logged user can edit or delete a verified crisis
-            {
-                return true;
-            }
+          elseif($state === 'verified' && isset($user)) //A logged user can edit a verified crisis
+          {
+              return true;
+          }
 
-            else //An over crisis can't be modified
-            {
-                return false;
-            }
-        }
+          else //An over crisis can't be modified
+          {
+              return false;
+          }
+      }
 
-        //A logged user can delete, validate or terminate a crisis
-        else if(($this->request->action === 'delete' || $this->request->action === 'validate' || $this->request->action === 'terminate') && isset($user))
-        {
-          return true;
-        }
+      //A logged user can delete, validate or terminate a crisis
+      if(($this->request->action === 'delete' || $this->request->action === 'validate' || $this->request->action === 'terminate') && isset($user))
+      {
+        return true;
+      }
 
-        return parent::isAuthorized($user);
-    }
+      return parent::isAuthorized($user);
+  }
 }

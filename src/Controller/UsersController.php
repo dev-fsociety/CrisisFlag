@@ -22,7 +22,7 @@ class UsersController extends AppController
     {
         parent::isAuthorized($user);
 
-        if(($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add') && $user['id'] > 0)
+        if(($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add') && isset($users))
         {
             return true;
         }
