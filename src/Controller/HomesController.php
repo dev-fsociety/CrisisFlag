@@ -41,9 +41,14 @@ class HomesController extends AppController
 			$home_type = 'none';
 		}
 
+		$newCrisis = $this->Crisis->newEntity();
+		$newCrisis->state = 'spotted';
+		$newCrisis->severity = 1;
+
 		$articles = $this->Articles->find('all')->limit(5)->order('created');
 
-		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles', 'home_type'));
+		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles',
+		'home_type', 'newCrisis'));
 	}
 }
 

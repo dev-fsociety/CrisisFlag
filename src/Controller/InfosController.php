@@ -50,26 +50,34 @@ class InfosController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add($crisis_id)
+    public function add($crisis_id = null)
     {
-        $user_id = $this->Auth->user()['id'];
-        $info = $this->Infos->newEntity();
-        if ($this->request->is('post'))
+        if($crisis_id != null)
         {
-            $info->crisis_id = $crisis_id;
-            $info->user_id = $user_id;
-            $info = $this->Infos->patchEntity($info, $this->request->data);
-            if ($this->Infos->save($info)) {
-                $this->Flash->success(__('L\'Information a bien été enregistrée.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('L\'Information n\'a pas pu être enregistrée.'));
+            $user_id = $this->Auth->user()['id'];
+            $info = $this->Infos->newEntity();
+            if ($this->request->is('post'))
+            {
+                $info->crisis_id = $crisis_id;
+                $info->user_id = $user_id;
+                $info = $this->Infos->patchEntity($info, $this->request->data);
+                if ($this->Infos->save($info)) {
+                    $this->Flash->success(__('L\information a bien été enregistrée.'));
+                    return $this->redirect(['controller' => 'crisis', 'action' => 'view', $crisis_id]);
+                } else {
+                    $this->Flash->error(__('L\information n\'a pas pu être enregistrée.'));
+                }
             }
+            $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
+            $users = $this->Infos->Users->find('list', ['limit' => 200]);
+            $this->set(compact('info', 'Crisis', 'users'));
+            $this->set('_serialize', ['info']);
         }
-        $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
-        $users = $this->Infos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('info', 'Crisis', 'users'));
-        $this->set('_serialize', ['info']);
+        else
+        {
+            $this->Flash->error(__('Vous devez spécifier la crise liée à cette information.'));
+            return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
+        }
     }
 
     /**
@@ -87,10 +95,10 @@ class InfosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $info = $this->Infos->patchEntity($info, $this->request->data);
             if ($this->Infos->save($info)) {
-                $this->Flash->success(__('L\'Information a bien été enregistrée.'));
+                $this->Flash->success(__('L\information a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('L\'Information n\'a pas pu être enregistrée.'));
+                $this->Flash->error(__('L\information n\'a pas pu être enregistrée.'));
             }
         }
         $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
@@ -111,9 +119,9 @@ class InfosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $info = $this->Infos->get($id);
         if ($this->Infos->delete($info)) {
-            $this->Flash->success(__('L\'Information a bien été supprimée.'));
+            $this->Flash->success(__('L\'information a bien été supprimée.'));
         } else {
-            $this->Flash->error(__('L\'Information n\'a pas pu être supprimée.'));
+            $this->Flash->error(__('L\information n\'a pas pu être supprimée.'));
         }
         return $this->redirect(['action' => 'index']);
     }

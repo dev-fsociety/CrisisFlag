@@ -12,8 +12,6 @@
  * @since         0.10.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
- $fsociety = "/dev/fsociety - ";
 ?>
 
 <!DOCTYPE html>
@@ -22,14 +20,9 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $fsociety ?>
-        <?= $this->fetch('title') ?>
+        <?= 'Suivie de crise - ' . $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <!-- Cake default style -->
-    <!--<?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>-->
 
     <!-- Foundation style -->
     <?= $this->Html->css('foundation.css') ?>
@@ -62,7 +55,7 @@
                     <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
                 </div>
                 <div class="middle tab-bar-section">
-                    <a href="#" id="menu-text">Menu</a>
+                    <h1>Suivie de crise</h1>
                 </div>
             </nav>
 
@@ -70,7 +63,6 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-
                     <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/') ?></li>
 
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
