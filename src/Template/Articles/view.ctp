@@ -13,9 +13,7 @@
     <div class="panel radius">
         <h3 style="margin-top: 10px; text-align: center;"><?= __($article->title) ?><hr></h3>
         <h7 style="font-size: 80%" class="subheader">Catégorie : <?= h($article->category) ?><hr></h7>
-        <h5 class="subheader"><?php $string = $article->body;
-                          $string = (strlen($string) > 50) ? substr($string,0,50).' (...)' : $string; echo $string
-                          ?></h5>
+        <h5 class="subheader"><?= __($article->body) ?></h5>
 	  </div>
   </div>
 </div>
