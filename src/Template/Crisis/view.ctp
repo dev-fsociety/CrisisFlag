@@ -165,8 +165,14 @@ function addMessage(message, className) {
 
 </div>
 <div class="large-4 columns">
+    <?php if($crisi->state == 'spotted' && $this->request->session()->read('Auth.User.id')): ?>
+    <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php endif; ?>
+
+
+
   <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
-  <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank')) 
+  <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
 
   ?>
 

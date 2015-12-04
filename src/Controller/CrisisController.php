@@ -11,6 +11,8 @@ use Cake\Event\Event;
 class CrisisController extends AppController
 {
 
+    public $state_t = ['spotted' => 'Signalée', 'verified' => 'Vérifiée', 'over' => 'Terminée'];
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -27,7 +29,24 @@ class CrisisController extends AppController
             'contain' => ['Users']
         ];
         $this->set('crisis', $this->paginate($this->Crisis));
+        $this->set('state_t', $this->state_t);
         $this->set('_serialize', ['crisis']);
+    }
+
+    public function validate($id_crise)
+    {
+        $crisis = $this->Crisis->get($id_crise);
+        $crisis->state = 'verified';
+        if ($this->Crisis->save($crisis))
+        {
+            $this->Flash->success(__('Crise validée !'));
+        }
+        else
+        {
+            $this->Flash->error(__('Impossible de valider la crise'));
+        }
+
+        return $this->redirect(['action' => 'view', $id_crise]);
     }
 
     /**
@@ -139,6 +158,8 @@ class CrisisController extends AppController
                 return false;
             }
         }
+        else if($this->request->action === 'validate' and isset($user))
+            return true;
 
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)
