@@ -40,7 +40,8 @@
     <?= $this->Html->css('home_crisisdisplay.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
-
+    <!-- Topbar style -->
+    <?= $this->Html->css('topbar.css') ?>
     <!-- Footer style -->
     <?= $this->Html->css('footer.css') ?>
 
@@ -65,15 +66,15 @@
                 </div>
             </nav>
 
-<!-- Topbar -->
+            <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-
-                    <li><?= $this->Html->link(__('Home'),     ['controller'=>'Homes', 'action' => '/']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/']) ?></li>
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('User'),     ['controller'=>'Users', 'action' => 'index']) ?></li>
                     <?php if($this->request->session()->read("Auth.User")): ?>
                         <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
                     <?php else: ?>
@@ -82,8 +83,7 @@
 
                 </ul>
             </nav>
-
-<!-- /Topbar -->
+            <!-- /Topbar -->
 
 
             <?= $this->Flash->render() ?>
@@ -92,7 +92,7 @@
             </section>
 
 
-<!-- Footer -->
+            <!-- Footer -->
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
@@ -105,7 +105,7 @@
                 </div>
               </div>
             </footer>
-<!-- /Footer -->
+            <!-- /Footer -->
 
         </div>
     </div>
@@ -117,8 +117,10 @@
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+
+    <!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>-->
+
     <!-- Own script -->
     <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
 

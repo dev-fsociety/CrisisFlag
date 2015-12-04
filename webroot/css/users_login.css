@@ -25,14 +25,14 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 
-	border-radius: 1000px;
+	border-radius: 0px;
 
 	border-style: solid;
 	border-width: 0;
 	cursor: pointer;
 	font-family: Heavitas;
 	font-weight: normal;
-	line-height: normal;
+	line-height: normal;	
 	margin: 0 0 1rem;
 	margin-top: 12px;
 	position: relative;
@@ -41,7 +41,7 @@
 	display: inline-block;
 
 	padding: 0.625rem 1.25rem 0.6875rem 1.25rem;
-	font-size: 0.6875rem; 
+	font-size: 0.8125rem; 
 
 	background-color: #008CBA;
 	border-color: #007095;
@@ -49,11 +49,12 @@
 	transition: background-color 300ms ease-out;
 	width: 100%;
 
-	background: #bfd255; /* Old browsers */
-	background: -moz-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
+	background: rgb(67,172,106); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(67,172,106,1) 0%, rgba(67,198,135,1) 43%, rgba(67,172,106,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(67,172,106,1) 0%,rgba(67,198,135,1) 43%,rgba(67,172,106,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(67,172,106,1) 0%,rgba(67,198,135,1) 43%,rgba(67,172,106,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#43ac6a', endColorstr='#43ac6a',GradientType=0 ); /* IE6-9 */
 }
 
 .log-in-button:hover {
@@ -61,5 +62,5 @@
 }
 
 .log-in-button:focus {
-  	color: #030303;
+  	color: #020202;
 }
