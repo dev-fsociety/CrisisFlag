@@ -31,6 +31,7 @@
     <?= $this->Html->css('app.css') ?>
 
     <?= $this->Html->css('home_crisisdisplay.css') ?>
+    <?= $this->Html->css('crisis_list.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
     <?= $this->Html->css('articles_template.css') ?>
@@ -89,12 +90,14 @@
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
-                    <p class="slogan">CrisisFlag <em>by /dev/fsociety</em></p>
+
+                    <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
                             <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
-                    <p class="copywrite">dev/Fsociety all rights reserved © 2015</p>
+                    <p class="copywrite">Fsociety all rights reserved © 2015</p>
+
                 </div>
               </div>
             </footer>
@@ -121,10 +124,11 @@
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-    <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
-    <?= $this->Html->script($this->fetch('script')) ?>
+    <?php $js = $this->fetch('script');
+    if($js != "")
+        echo $this->Html->script($js) ?>
     <script>
       $(document).foundation();
     </script>
