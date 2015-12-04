@@ -169,10 +169,10 @@
                   <?=  $this->Form->input('abstract'); ?>
                   <label class='form-label'>Location:</label>
                   <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
                               echo $this->Form->radio('type', $types, $attributes);
                   ?>
-                  <a id="geolocate" class="button" >GeoMe</a>
+                  <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
                   <?= $this->Form->input('hashtags'); ?>
@@ -189,9 +189,32 @@
 
       <?php } else { ?>
 
-
-
-
+        <div class="row">
+        <h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles') ?></h3>
+          <?php foreach ($articles as $article): ?>
+            <div class="articles index medium-4 columns content">
+              <div class="panel">
+                <h4 class="subheader"><?= $this->Html->link(__($article->title), ['controller' => 'Articles','action' => 'view', $article->id]) ?><hr></h4>
+                <h5 class="subheader"><?php $string = $article->body;
+                                      $string = (strlen($string) > 50) ? substr($string,0,50).' (...)' : $string; echo $string
+                                      ?>
+                </h5>
+                <em>Catégorie : <?= h($article->category) ?><hr></em>
+              </div>
+            </div>
+          <?php endforeach; ?>
+          <hr>
+          <div class="paginator">
+            <div class="panel" style="text-align: center">
+              <ul class="pagination" style="width: 230px; margin: 0px auto;">
+                  <?= $this->Paginator->prev('<< ' . __('Précédente')) ?>
+                  <?= $this->Paginator->numbers() ?>
+                  <?= $this->Paginator->next(__('Suivante') . ' >>') ?>
+              </ul>
+              <p><?= $this->Paginator->counter() ?></p>
+            </div>
+          </div>
+        </div>
       <?php }?>
 
 
