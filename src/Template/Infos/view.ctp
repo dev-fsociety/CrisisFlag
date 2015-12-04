@@ -1,10 +1,10 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Liste des Informations'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('Nouvelle Information'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('Éditer l\'Information'), ['action' => 'edit', $info->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Supprimer l\'Information'), ['action' => 'delete', $info->id], ['confirm' => __('Are you sure you want to delete # {0}?', $info->id)]) ?> </li>
+        <li><?= $this->Html->link(__('Liste des informations'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Nouvelle information'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Éditer l\'information'), ['action' => 'edit', $info->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Supprimer l\'information'), ['action' => 'delete', $info->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'information # {0}?', $info->id)]) ?> </li>
     </ul>
 </nav>
 <div class="infos view large-9 medium-8 columns content">

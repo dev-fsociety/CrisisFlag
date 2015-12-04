@@ -1,9 +1,15 @@
 .crisis-panel {
-  background: white;
+  background: #FFF5EC;
   border: 1px solid #333;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   margin: 1rem 0;
   overflow: hidden; }
+	.crisis-panel.small {
+	  background: white;
+	  border: 1px solid #333;
+	  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	  margin: 0.5rem 0;
+	  overflow: hidden; }
   .crisis-panel.red {
     border-color: #f22613; }
     .crisis-panel.red .crisis-panel-label {
@@ -74,13 +80,44 @@
 		margin-top: 1px;
 		margin-bottom: 1px}
 
+/* background for crisis status */
+
+.verified-state {
+	padding: 0.205rem 1rem 0.2305rem 1rem !important;
+    font-size: 0.775rem !important;
+    background-color: #2A363B;
+    color: white !important;
+    font-weight: bold !important;
+    border-radius: 5px;
+}
 
 
+.spotted-state {
+	padding: 0.150rem 1rem 0.20rem 1rem !important;
+    font-size: 0.775rem !important;
+    background-color: #EB735B;
+    color: white !important;
+    font-weight: bold !important;
+    border-radius: 5px;
+
+}
+
+
+.over-state {
+	padding: 0.205rem 1rem 0.2305rem 1rem !important;
+    font-size: 0.775rem !important;
+    background-color: #00A0B0;
+    color: white !important;
+    font-weight: bold !important;
+    border-radius: 5px;
+
+}
 
 	.spotted-panel{
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
 	.verified-panel{
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
+		background: #EFFFEC;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
 
 
 		.submit-form {
