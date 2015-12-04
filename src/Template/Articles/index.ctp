@@ -1,21 +1,35 @@
 <nav class="medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Nouvel article'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Liste des Articles'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<h3 style="margin-top: 20px; margin-bottom: 20px;"><?= __('Articles') ?></h3>
+
 <div class="row">
+<h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles') ?></h3>
   <?php foreach ($articles as $article): ?>
     <div class="articles index medium-4 columns content">
       <div class="panel">
-        <h4 class="subheader"><?= h($article->title) ?></h4>
-        <h5 class="subheader"><?=h($article->body) ?></h5>
+        <h4 class="subheader"><?= h($article->title) ?><hr></h4>
+        <h5 class="subheader"><?php $string = $article->body;
+                              $string = (strlen($string) > 50) ? substr($string,0,50).' (...)' : $string; echo $string
+                              ?>
+        </h5>
         <em>Tagged : <?= h($article->category) ?></em>
       </div>
     </div>
   <?php endforeach; ?>
-  <div class="articles index medium-1 columns content">
+  <hr>
+  <div class="paginator">
+    <div class="panel" style="text-align: center">
+      <ul class="pagination" style="width: 230px; margin: 0px auto;">
+          <?= $this->Paginator->prev('<< ' . __('Précédente')) ?>
+          <?= $this->Paginator->numbers() ?>
+          <?= $this->Paginator->next(__('Suivante') . ' >>') ?>
+      </ul>
+      <p><?= $this->Paginator->counter() ?></p>
+    </div>
   </div>
 </div>
 
