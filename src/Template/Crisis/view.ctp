@@ -181,7 +181,7 @@ function addMessage(message, className) {
 
   <h4>Ils en parlent...</h4>
 
-  <iframe src="http://twubs.com/embed/<?= h($crisi->hashtags) ?>/?messagesPerPage=5&headerBgColor=%231c6485&headerTextColor=%23ffffff" width="350" height="600" frameborder="0"><a href="http://twubs.com/test">#<?= h($crisi->hashtags) ?></a></iframe>
+  <iframe src="http://twubs.com/embed/<?= h($crisi->hashtags) ?>/?messagesPerPage=5&headerBgColor=%231c6485&headerTextColor=%23ffffff" width="100%" scrolling="no" seamless="seamless" height="600" frameborder="0"><a href="http://twubs.com/test">#<?= h($crisi->hashtags) ?></a></iframe>
 
 </div>
 </div>
