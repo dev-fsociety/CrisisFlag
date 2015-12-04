@@ -116,23 +116,22 @@ class InfosController extends AppController
 
     public function isAuthorized($user)
     {
-      // A logged user can do an action about infos
-
-    if($this->request->action === 'add' && $user['id'] > 0)
-    {
-        return true;
-    }
-
-      if(in_array($this->request->action, ['edit', 'delete']))
-      {
-        $infoId = (int)$this->request->params['pass'][0];
-
-        if($this->Articles->isOwnedBy($infoId, $user['id']))
+        // A logged user can do an action about infos
+        if($this->request->action === 'add' && $user['id'] > 0)
         {
             return true;
         }
-      }
 
-      return parent::isAuthorized($user);
+        if(in_array($this->request->action, ['edit', 'delete']))
+        {
+            $infoId = (int)$this->request->params['pass'][0];
+
+            if($this->Infos->isOwnedBy($infoId, $user['id']))
+            {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
     }
 }
