@@ -115,8 +115,8 @@ class CrisisController extends AppController
 
     public function isAuthorized($user)
     {
-        $state = $this->crisis->get((int)$this->request->params['pass'][0])->state;
-
+        $state = $this->Crisis->get($this->request->params['pass'][0])->state;
+        
         if($this->request->action === 'edit')
         {
             if($state === 'spotted') //Anyone can still edit it
