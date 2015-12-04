@@ -179,7 +179,6 @@ class CrisisController extends AppController
       $crisi->severity += 1;
       if ($this->Crisis->save($crisi)) {
               $this->Flash->success(__('Thanks for the information'));
-              return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
@@ -198,7 +197,6 @@ class CrisisController extends AppController
       $crisi->severity -= 1;
       if ($this->Crisis->save($crisi)) {
               $this->Flash->success(__('Thanks for the information'));
-              return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
