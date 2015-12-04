@@ -11,6 +11,8 @@ use Cake\Event\Event;
 class CrisisController extends AppController
 {
 
+    public $state_t = ['spotted' => 'Signalée', 'verified' => 'Vérifiée', 'over' => 'Terminée'];
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
@@ -25,10 +27,26 @@ class CrisisController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users']
         ];
         $this->set('crisis', $this->paginate($this->Crisis));
+        $this->set('state_t', $this->state_t);
         $this->set('_serialize', ['crisis']);
+    }
+
+    public function validate($id_crise)
+    {
+        $crisis = $this->Crisis->get($id_crise);
+        $crisis->state = 'verified';
+        if ($this->Crisis->save($crisis))
+        {
+            $this->Flash->success(__('Crise validée !'));
+        }
+        else
+        {
+            $this->Flash->error(__('Impossible de valider la crise'));
+        }
+
+        return $this->redirect(['action' => 'view', $id_crise]);
     }
 
     /**
@@ -40,14 +58,18 @@ class CrisisController extends AppController
      */
     public function view($id = null)
     {
-        $crisi = $this->Crisis->get($id, [
-            'contain' => ['Users']
-        ]);
+        $crisi = $this->Crisis->get($id);
+
+        $user = 0;
+        if($crisi->user_id != 0)
+            $user = $this->Crisis->Users->get($crisi->user_id);
+
         $infos = $this->Crisis->Infos->find()
         ->where(['crisis_id' => $id])
         ->order(['created' => 'DESC']);
 
         $this->set('crisi', $crisi);
+        $this->set('user', $user);
         $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
     }
@@ -95,7 +117,7 @@ class CrisisController extends AppController
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
                 $this->Flash->success(__('La crise a bien été enregistrée.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $id]);
             } else {
                 $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
             }
@@ -163,6 +185,8 @@ class CrisisController extends AppController
                 return false;
             }
         }
+        else if($this->request->action === 'validate' and isset($user))
+            return true;
 
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)

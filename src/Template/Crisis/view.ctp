@@ -21,12 +21,16 @@
 
 <div class="row">
   <div class="large-8 columns">
-
-
-    <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
-
-        <strong>Description : </strong><?= h($crisi->abstract) ?>
-    </p>
+      <div class="row">
+          <div class="medium-6 column">
+              <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?>
+          </div>
+          <div class="medium-6 column">
+              <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
+                  <strong>Description : </strong><?= h($crisi->abstract) ?>
+              </p>
+          </div>
+      </div>
 
     <br>
 
@@ -44,7 +48,7 @@
 
 
 
-<h4>Chattez avec les autres utilisateurs :</h4>
+<h4>Parlez-en :</h4>
 
 <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
 <script type="text/javascript">
@@ -170,6 +174,12 @@ function addMessage(message, className) {
 
 </div>
 <div class="large-4 columns">
+    <?php if($crisi->state == 'spotted' && $this->request->session()->read('Auth.User.id')): ?>
+    <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php endif; ?>
+
+
+
   <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
   <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
 
