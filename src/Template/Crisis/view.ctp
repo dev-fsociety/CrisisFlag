@@ -22,14 +22,21 @@
 <div class="row">
   <div class="large-8 columns">
       <div class="row">
-          <div class="medium-6 column">
-              <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?>
+        <div class="medium-6 column">
+            <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
+                <strong>Description : </strong><?= h($crisi->abstract) ?>
+            </p>
+        </div>
+        <div class="medium-6 column">
+          <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
+          <div class="small button-group">
+            <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisi->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+            <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisi->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+
+            <?= $crisi->severity ?> ont upvote cette crise.
           </div>
-          <div class="medium-6 column">
-              <p><strong>Créé le : </strong><?= h($crisi->created) ?></br></br>
-                  <strong>Description : </strong><?= h($crisi->abstract) ?>
-              </p>
-          </div>
+        </div>
+
       </div>
 
     <br>
