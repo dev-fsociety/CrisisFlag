@@ -55,7 +55,7 @@
                     <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
                 </div>
                 <div class="middle tab-bar-section">
-                    <h1>CrisisFlag</h1>
+                    <h1><?= $this->Html->link(__('CrisisFlag'), '/', array('style' => 'color: white;')) ?></h1>
                 </div>
             </nav>
 
