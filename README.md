@@ -2,7 +2,11 @@
 
 Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/dev/fsociety](http://nuit-info.insa-cvl.fr/fsociety) de l'[INSA-CVL](http://www.insa-centrevaldeloire.fr).
 
-## L'équipe
+## To Do:
 
-* Ici nos noms, permet de nous re(familiariser) avec git <3
-* Korlan
+* Validate all input data in tables ?
+* PopUp -> Close |X| ?
+* Changer format heure -> Français ?
+* .../users/ non-accessible mais accessible ?
+* Big gap on pages footer ?
+* Articles don't appear on list (.../articles/) ?
