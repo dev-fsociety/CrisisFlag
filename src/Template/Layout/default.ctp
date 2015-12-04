@@ -122,7 +122,6 @@
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
     <?= $this->Html->script("app.js") ?>
-    <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
     <?= $this->Html->script($this->fetch('script')) ?>
