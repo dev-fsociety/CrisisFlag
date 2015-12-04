@@ -17,8 +17,7 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
-  <?=$verifiedCrises->count();?>
-
+    <?php $home_type = 'none';?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -149,7 +148,6 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
-
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
               <fieldset>
@@ -183,6 +181,8 @@
           </div>
 
       <?php } else { ?>
+
+      <?php if (false==true) { ?>
 
       <div class="row">
 
@@ -277,7 +277,42 @@
             <?php endforeach;?>
             </div>
           </div>
+        <?php } else { ?>
+          <div class="show-for-medium-up small-12 medium-3 large-4 columns">
+            <br/>
+          </div>
+          <div class="small-12 medium-6 large-4 columns text-center submit-form">
+            <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+            <fieldset>
+                <legend><?= __('Submit crisis') ?></legend>
+                <!-- Hidden fields-->
+                <?php echo $this->Form->hidden('severity');
+                    echo $this->Form->hidden('longitude');
+                    echo $this->Form->hidden('latitude');
+                    echo $this->Form->hidden('state');
+                 ?>
+                <?=  $this->Form->input('abstract'); ?>
+                <label class='form-label'>Location:</label>
+                <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
+                            $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
+                            echo $this->Form->radio('type', $types, $attributes);
+                ?>
+                <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
+                <?= $this->Form->input('address'); ?>
+                <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                <?= $this->Form->input('hashtags'); ?>
+            </fieldset>
+            <div class="small button-group">
+              <?= $this->Form->button(__('Submit')) ?>
 
+              <a id="reset" class="button">Reset</a>
+            </div>
+          </div>
+            <div class="show-for-medium-up small-12 medium-3 large-4 columns">
+              <br/>
+            </div>
+      <?php }?>
 
 
 
