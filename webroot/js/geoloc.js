@@ -15,10 +15,13 @@ function geolocate(){
        if (status === google.maps.GeocoderStatus.OK) {
          if (results[1]) {
            $("#address").val(results[1].formatted_address);
+           $("#geolocate").css("background-color", "lightgreen");
          } else {
+           $("#geolocate").css("background-color", "lightred");
          }
        } else {
          alert('Geocode was not successful for the following reason: ' + status);
+         $("#geolocate").css("background-color", "lightred");
        }
      });
       });
@@ -65,6 +68,7 @@ $( "input" ).on( "click", function() {
     $("#address").parent().hide();
   }else if ( $('form input[type=radio]:checked').val() == "manual"){
     $("#geolocate").hide();
+    $("#geolocate").css("background-color", "");
     $("#address").parent().show();
   }
 });

@@ -169,10 +169,10 @@
                   <?=  $this->Form->input('abstract'); ?>
                   <label class='form-label'>Location:</label>
                   <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
+                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
                               echo $this->Form->radio('type', $types, $attributes);
                   ?>
-                  <a id="geolocate" class="button" >GeoMe</a>
+                  <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
                   <?= $this->Form->input('hashtags'); ?>
