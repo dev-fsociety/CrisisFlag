@@ -39,3 +39,16 @@
 #chatgroup{
 	display: none;
 }
+
+.small_hr{
+	margin: 0.5em 0!important;
+}
+
+.label_right{
+	float: right;
+}
+
+.information_panel{
+	border-color: #f9f9f9;
+	background: #F4F4F4;
+}
