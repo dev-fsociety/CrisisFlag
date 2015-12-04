@@ -62,7 +62,6 @@ $('#address').change(function(){
 });
 
 $( "input" ).on( "click", function() {
-  console.log( $('form input[type=radio]:checked').val());
   if( $('form input[type=radio]:checked').val() == "auto"){
     $("#geolocate").show();
     $("#address").parent().hide();

@@ -25,13 +25,13 @@
       <?php if ($home_type == 'active') { ?>
         <?php $frontCrisis=$verifiedCrises->first() ?>
           <div class="medium-12 column text-center">
-            <h2>Latest verified crisis:</h2>
+            <h2>Crise confirmée en cours!</h2>
           </div>
 
       <?php } else if ($home_type=='spotted') { ?>
         <?php $frontCrisis=$spottedCrises->first() ?>
           <div class="medium-12 column text-center">
-            <h2>Latest spotted crisis:</h2>
+            <h2>Crise rapportée par la communauté</h2>
           </div>
       <?php }?>
 
@@ -46,7 +46,7 @@
                   </div>
                   <div class="crisis-panel-content">
                     <p>
-                      <h3 class="crisis-panel-title"><?= $frontCrisis->address ?></h3>
+                      <h3 class="crisis-panel-title"><?= $this->Html->link($frontCrisis->address,['controller' => 'Crisis', 'action' => 'view', $frontCrisis->id]); ?></h3>
                       <h4 class="crisis-panel-date subheader"><?= $frontCrisis->created ?></h3>
                     </p>
                     <p>
@@ -76,8 +76,8 @@
                   <!-- Dernières crises -->
                   <div class="panel callout radius spotted-panel">
                     <div class="row">
-                      <div class="small-2 large-4 columns"><h4 class="subheader">Spotted crises:</h4></div>
-                      <div class="small-6 large-4 columns text-right">
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportés par la communauté:</h4></div>
+                      <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                                 </div>
                               </div>
                               <div class="small-crisis-panel-content">
-                                    <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                                    <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                     <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                     <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
                                     <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
@@ -100,6 +100,12 @@
                                     <span class="small crisis-panel-abstract"><?php
                                     $string = $crisis->abstract;
                                     $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                    <br/>
+                                    <div class="small button-group">
+                                      <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+                                      <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+                                    </div>
+
                               </div>
                             </div>
                           </div>
@@ -108,8 +114,8 @@
                   </div>
                   <div class="panel radius verified-panel">
                     <div class="row">
-                      <div class="small-2 large-4 columns"><h4 class="subheader">Verified crises:</h4></div>
-                      <div class="small-6 large-4 columns text-right">
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises confirmées:</h4></div>
+                      <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
                       </div>
                     </div>
@@ -124,7 +130,7 @@
                               </div>
                             </div>
                             <div class="small-crisis-panel-content">
-                                  <span class="small crisis-panel-title"><?= $crisis->address ?></span>
+                                  <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                   <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
                                   <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
                                   <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
@@ -132,6 +138,11 @@
                                   <span class="small crisis-panel-abstract"><?php
                                   $string = $crisis->abstract;
                                   $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                  <br/>
+                                  <div class="small button-group">
+                                    <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+                                    <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+                                  </div>
                             </div>
                           </div>
                         </div>
@@ -139,6 +150,10 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
+<<<<<<< HEAD
+=======
+                <div class="small-12 medium-6 large-4 columns text-center submit-form">
+>>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
 
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
@@ -158,8 +173,12 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
+<<<<<<< HEAD
                   <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+=======
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
+>>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
@@ -230,6 +249,25 @@
 
 
 
+<<<<<<< HEAD
+=======
+                              </p>
+                            </td>
+                            <td class="expander"></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </center>
+        </td>
+      </tr>
+    </table>
+
+>>>>>>> 880e2ab9ac4069a77ef9be27dbe78b31b6037e8f
     <?php }?>
 
 
