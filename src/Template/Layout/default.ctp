@@ -89,10 +89,6 @@
               <div class="row">
                 <div class="small-12 columns">
                     <p class="slogan">CrisisFlag <em>by /dev/fsociety</em></p>
-                        <p class="links">
-                            <a href="http://book.cakephp.org/3.0/">Documentation</a>
-                            <a href="http://api.cakephp.org/3.0/">API</a>
-                        </p>
                     <p class="copywrite">dev/Fsociety all rights reserved © 2015</p>
                 </div>
               </div>
@@ -123,7 +119,9 @@
     <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
-    <?= $this->Html->script($this->fetch('script')) ?>
+    <?php $js = $this->fetch('script');
+    if($js != "")
+        echo $this->Html->script($js) ?>
     <script>
       $(document).foundation();
     </script>
