@@ -130,7 +130,7 @@
                             <div class="small-crisis-panel-content">
                                   <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address, ['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                   <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
-                                  <span class="small crisis-panel-state subheader">$categories[$crisis->type]</span>
+                                  <span class="small crisis-panel-state subheader"><?= $categories[$crisis->type] ?></span>
                                   <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
                                   <br/>
                                   <span class="small crisis-panel-abstract"><?php
