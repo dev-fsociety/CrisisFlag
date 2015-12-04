@@ -89,7 +89,7 @@
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
-                    <p class="slogan">/dev/fsociety</p>
+                    <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
                             <a href="http://api.cakephp.org/3.0/">API</a>
