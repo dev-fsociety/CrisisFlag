@@ -78,7 +78,7 @@
                     <div class="row">
                       <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportés par la communauté:</h4></div>
                       <div class="small-2 large-4 columns text-right">
-                        <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
+                        <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']);  ?>
                       </div>
                     </div>
 
@@ -94,7 +94,7 @@
                               <div class="small-crisis-panel-content">
                                     <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                     <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
-                                    <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
+                                    <span class="small crisis-panel-state subheader"><?= $categories[$crisis->type] ?></span>
                                     <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
                                     <br/>
                                     <span class="small crisis-panel-abstract"><?php
@@ -116,7 +116,7 @@
                     <div class="row">
                       <div class="small-8 large-8 columns"><h4 class="subheader">Crises confirmées:</h4></div>
                       <div class="small-2 large-4 columns text-right">
-                        <?= $this->Html->link(__('List'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'small button']);  ?>
+                        <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']);  ?>
                       </div>
                     </div>
 
@@ -130,9 +130,9 @@
                               </div>
                             </div>
                             <div class="small-crisis-panel-content">
-                                  <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address,['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
+                                  <span class="small crisis-panel-title"><?= $this->Html->link($crisis->address, ['controller' => 'Crisis', 'action' => 'view', $crisis->id]); ?></span>
                                   <span class="small crisis-panel-date subheader"><?= $crisis->created ?></span>
-                                  <span class="small crisis-panel-state subheader"><?= $crisis->type ?>:</span>
+                                  <span class="small crisis-panel-state subheader">$categories[$crisis->type]</span>
                                   <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
                                   <br/>
                                   <span class="small crisis-panel-abstract"><?php
@@ -169,7 +169,7 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
                   <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
+                  <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Catégorie')); ?>
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
