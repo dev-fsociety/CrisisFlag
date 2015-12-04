@@ -183,6 +183,7 @@ class CrisisController extends AppController
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
+        return $this->redirect(['action' => 'index']);
     }
 
     /**
@@ -201,6 +202,7 @@ class CrisisController extends AppController
         } else {
               $this->Flash->error(__('Sorry there was an error'));
         }
+        return $this->redirect(['action' => 'index']);
     }
 
     public function test()
