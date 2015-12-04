@@ -17,7 +17,6 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
-    <?php $home_type = 'none';?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -169,7 +168,7 @@
 
                   <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
-                  
+
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
               <div class="small button-group">
@@ -184,7 +183,7 @@
 
       <?php } else { ?>
 
-      <?php if (false==true) { ?>
+      <?php if ($articles->isEmpty()==false) { ?>
 
       <div class="row">
 
