@@ -14,7 +14,7 @@ class CrisisController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add','view','index']);
+        $this->Auth->allow(['add','view','index','test']);
 
     }
     /**
@@ -121,10 +121,10 @@ class CrisisController extends AppController
       if ($this->request->is('post')) {
           $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
           if ($this->Crisis->save($crisi)) {
-              $this->Flash->success(__('The crisi has been saved.'));
+              $this->Flash->success(__('The crisis has been saved.'));
               return $this->redirect(['action' => 'index']);
           } else {
-              $this->Flash->error(__('The crisi could not be saved. Please, try again.'));
+              $this->Flash->error(__('The crisis could not be saved. Please, try again.'));
           }
       }
       $users = $this->Crisis->Users->find('list', ['limit' => 200]);
@@ -153,10 +153,7 @@ class CrisisController extends AppController
                 return false;
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 39036d90773b52c0416bf3d3cad94e1a327e8084
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)
         {
