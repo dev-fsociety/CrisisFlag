@@ -50,16 +50,20 @@ class InfosController extends AppController
      *
      * @return void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($crisis_id)
     {
+        $user_id = $this->Auth->user()['id'];
         $info = $this->Infos->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post'))
+        {
+            $info->crisis_id = $crisis_id;
+            $info->user_id = $user_id;
             $info = $this->Infos->patchEntity($info, $this->request->data);
             if ($this->Infos->save($info)) {
-                $this->Flash->success(__('The info has been saved.'));
+                $this->Flash->success(__('L\'Information a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The info could not be saved. Please, try again.'));
+                $this->Flash->error(__('L\'Information n\'a pas pu être enregistrée.'));
             }
         }
         $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
@@ -83,10 +87,10 @@ class InfosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $info = $this->Infos->patchEntity($info, $this->request->data);
             if ($this->Infos->save($info)) {
-                $this->Flash->success(__('The info has been saved.'));
+                $this->Flash->success(__('L\'Information a bien été enregistrée.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The info could not be saved. Please, try again.'));
+                $this->Flash->error(__('L\'Information n\'a pas pu être enregistrée.'));
             }
         }
         $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
@@ -107,32 +111,31 @@ class InfosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $info = $this->Infos->get($id);
         if ($this->Infos->delete($info)) {
-            $this->Flash->success(__('The info has been deleted.'));
+            $this->Flash->success(__('L\'Information a bien été supprimée.'));
         } else {
-            $this->Flash->error(__('The info could not be deleted. Please, try again.'));
+            $this->Flash->error(__('L\'Information n\'a pas pu être supprimée.'));
         }
         return $this->redirect(['action' => 'index']);
     }
 
     public function isAuthorized($user)
     {
-      // A logged user can do an action about infos
-
-    if($this->request->action === 'add' && $user['id'] > 0)
-    {
-        return true;
-    }
-
-      if(in_array($this->request->action, ['edit', 'delete']))
-      {
-        $infoId = (int)$this->request->params['pass'][0];
-
-        if($this->Articles->isOwnedBy($infoId, $user['id']))
+        // A logged user can do an action about infos
+        if($this->request->action === 'add' && $user['id'] > 0)
         {
             return true;
         }
-      }
 
-      return parent::isAuthorized($user);
+        if(in_array($this->request->action, ['edit', 'delete']))
+        {
+            $infoId = (int)$this->request->params['pass'][0];
+
+            if($this->Infos->isOwnedBy($infoId, $user['id']))
+            {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
     }
 }
