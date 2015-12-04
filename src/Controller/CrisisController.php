@@ -56,6 +56,22 @@ class CrisisController extends AppController
         return $this->redirect(['action' => 'view', $id_crise]);
     }
 
+    public function terminate($id_crise)
+    {
+        $crisis = $this->Crisis->get($id_crise);
+        $crisis->state = 'over';
+        if ($this->Crisis->save($crisis))
+        {
+            $this->Flash->success(__('Crise terminée !'));
+        }
+        else
+        {
+            $this->Flash->error(__('Impossible de terminer la crise'));
+        }
+
+        return $this->redirect(['action' => 'view', $id_crise]);
+    }
+
     /**
      * View method
      *
@@ -259,7 +275,7 @@ class CrisisController extends AppController
                 return false;
             }
         }
-        else if($this->request->action === 'validate' and isset($user))
+        else if(($this->request->action === 'validate' || $this->request->action === 'terminate')  and isset($user))
             return true;
 
         //A logged user can delete a crisis
