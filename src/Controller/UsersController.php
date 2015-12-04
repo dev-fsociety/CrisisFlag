@@ -18,6 +18,15 @@ class UsersController extends AppController
         $this->Auth->allow(['logout']);
     }
 
+    public function isAuthorized($user)
+    {
+        // A logged user can do an action about infos
+        if($this->request->action === 'add' && $user['id'] > 0)
+        {
+            return true;
+        }
+    }
+
     public function login()
     {
           if ($this->request->is('post'))
