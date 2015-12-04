@@ -20,10 +20,19 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        // A logged user can do an action about infos
-        if($this->request->action === 'add' && $user['id'] > 0)
+        if(($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add') && $user['id'] > 0)
         {
             return true;
+        }
+
+        if(in_array($this->request->action, ['edit', 'delete']))
+        {
+            $userId = (int)$this->request->params['pass'][0];
+
+            if($userId === $user['id'])
+            {
+                return true;
+            }
         }
     }
 
