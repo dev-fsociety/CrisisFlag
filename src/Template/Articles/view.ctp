@@ -14,7 +14,7 @@
         <h3 style="text-align: center;"><?= __($article->title) ?></h3>
     </div>
     <div class="panel panel_shadow">
-        <h7 style="font-size: 80%" class="subheader">Catégorie : <?= h($article->category) ?><hr></h7>
+        <h7 style="font-size: 80%" class="subheader">Catégorie : <?= h($categories[$article->category]) ?><hr></h7>
         <h5 class="subheader"><?= __($article->body) ?></h5>
 	  </div>
   </div>

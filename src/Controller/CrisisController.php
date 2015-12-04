@@ -23,7 +23,7 @@ class CrisisController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add','view','index','test','severityIncrement','severityDecrement']);
+        $this->Auth->allow(['add', 'view', 'index', 'test', 'severityIncrement', 'severityDecrement']);
 
     }
     /**
@@ -50,7 +50,7 @@ class CrisisController extends AppController
         }
         else
         {
-            $this->Flash->error(__('Impossible de valider la crise'));
+            $this->Flash->error(__('Impossible de valider la crise.'));
         }
 
         return $this->redirect(['action' => 'view', $id_crise]);
@@ -66,7 +66,7 @@ class CrisisController extends AppController
         }
         else
         {
-            $this->Flash->error(__('Impossible de terminer la crise'));
+            $this->Flash->error(__('Impossible de terminer la crise.'));
         }
 
         return $this->redirect(['action' => 'view', $id_crise]);
@@ -118,7 +118,7 @@ class CrisisController extends AppController
                 && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
                   $crisi_db->severity += 1;
                   $this->Crisis->save($crisi_db);
-                  $this->Flash->success('Crisis Already notified so we are incrementing severity..');
+                  $this->Flash->success('Cette crise a déjà été signalée, nous incrémentons sa gravité.');
                   return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
                 }
             }
@@ -134,9 +134,6 @@ class CrisisController extends AppController
 
             return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
         }
-        /*$users = $this->Crisis->Users->find('list', ['limit' => 200]);
-        $this->set(compact('crisi', 'users'));
-        $this->set('_serialize', ['crisi']);*/
     }
 
     /**
@@ -197,9 +194,9 @@ class CrisisController extends AppController
       $crisi = $this->Crisis->get($id);
       $crisi->severity += 1;
       if ($this->Crisis->save($crisi)) {
-              $this->Flash->success(__('Thanks for the information'));
+              $this->Flash->success(__('Merci pour l\'information.'));
         } else {
-              $this->Flash->error(__('Sorry there was an error'));
+              $this->Flash->error(__('Désolé, nous avons rencontré une erreur...'));
         }
         return $this->redirect(['action' => 'view',$crisi->id]);
     }
@@ -216,9 +213,9 @@ class CrisisController extends AppController
       $crisi = $this->Crisis->get($id);
       $crisi->severity -= 1;
       if ($this->Crisis->save($crisi)) {
-              $this->Flash->success(__('Thanks for the information'));
+              $this->Flash->success(__('Merci pour l\'information.'));
         } else {
-              $this->Flash->error(__('Sorry there was an error'));
+              $this->Flash->error(__('Désolé, nous avons rencontré une erreur...'));
         }
         return $this->redirect(['action' => 'view',$crisi->id]);
     }
@@ -237,7 +234,7 @@ class CrisisController extends AppController
               && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
                 $crisi_db->severity += 1;
                 $this->Crisis->save($crisi_db);
-                $this->Flash->success('Crisis Already notified - Increment severity..');
+                $this->Flash->success('Cette crise a déjà été signalée, nous incrémentons sa gravité.');
               }
           }
 
@@ -277,13 +274,11 @@ class CrisisController extends AppController
                 return false;
             }
         }
-        else if(($this->request->action === 'validate' || $this->request->action === 'terminate')  and isset($user))
-            return true;
 
-        //A logged user can delete a crisis
-        if($this->request->action === 'delete' && $user['id'] > 0)
+        //A logged user can delete, validate or terminate a crisis
+        else if(($this->request->action === 'delete' || $this->request->action === 'validate' || $this->request->action === 'terminate') && isset($user))
         {
-            return true;
+          return true;
         }
 
         return parent::isAuthorized($user);

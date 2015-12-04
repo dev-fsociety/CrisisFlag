@@ -6,7 +6,7 @@
         <?php
             echo $this->Form->input('abstract', ['label' => 'Résumé']);
             echo $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); 
-            echo $this->Form->input('hashtags', ['label' => 'Hashtags']);
+            echo $this->Form->input('hashtags', ['label' => 'Hashtags', 'placeholder' => '#']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Mettre à jour')) ?>

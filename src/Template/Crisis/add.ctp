@@ -16,7 +16,7 @@
             echo $this->Form->input('state', ['options' => ['spotted' => 'Spotted', 'verified' => 'Verified', 'over' => 'Over'], 'label' => 'État']);
             echo $this->Form->input('address', ['label' => 'Adresse']);
             echo $this->Form->input('type', ['label' => 'Type']);
-            echo $this->Form->input('hashtags', ['label' => 'Hashtags']);
+            echo $this->Form->input('hashtags', ['label' => 'Hashtags', 'placeholder' => '#']);
             echo $this->Form->input('user_id', ['options' => $users, 'label' => 'ID utilisateur']);
         ?>
     </fieldset>

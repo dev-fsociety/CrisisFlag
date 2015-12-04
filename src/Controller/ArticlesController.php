@@ -10,6 +10,7 @@ use Cake\Event\Event;
  */
 class ArticlesController extends AppController
 {
+    public $categories = ['articlePresse' => 'Article de presse', 'news' => 'Nouveautés', 'edito' => 'Éditorial', 'conseil' => 'Conseil'];
 
   /**
    * beforeFilter method
@@ -35,6 +36,7 @@ class ArticlesController extends AppController
         ];
         $this->set('articles', $this->paginate($this->Articles));
         $this->set('_serialize', ['articles']);
+        $this->set('categories', $this->categories);
     }
 
     /**
@@ -51,6 +53,7 @@ class ArticlesController extends AppController
         ]);
         $this->set('article', $article);
         $this->set('_serialize', ['article']);
+        $this->set('categories', $this->categories);
     }
 
     /**
@@ -76,6 +79,7 @@ class ArticlesController extends AppController
         }
         $this->set(compact('article', 'users'));
         $this->set('_serialize', ['article']);
+        $this->set('categories', $this->categories);
     }
 
     /**
@@ -102,6 +106,7 @@ class ArticlesController extends AppController
         $users = $this->Articles->Users->find('list', ['limit' => 200]);
         $this->set(compact('article', 'users'));
         $this->set('_serialize', ['article']);
+        $this->set('categories', $this->categories);
     }
 
     /**

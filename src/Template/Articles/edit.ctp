@@ -16,10 +16,8 @@
         <legend><?= __('Éditer l\'article') ?></legend>
         <?php
             echo $this->Form->input('title', ['label' => 'Titre de l\'article']);
-            echo $this->Form->input('body', ['label' => 'Corps du texte']);
-            // echo $this->Form->input('user_id', ['options' => $users, 'label' => 'Utilisateur']);
-            echo "<br />";
-            echo $this->Form->input('category', ['label' => 'Catégorie']);
+            echo $this->Form->input('body', ['label' => 'Corps du texte']);            echo "<br />";
+            echo $this->Form->input('category', array('type' => 'select', 'options' => $categories, 'label' => 'Catégorie'));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Soumettre')) ?>

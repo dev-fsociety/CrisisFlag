@@ -22,7 +22,7 @@
       <?php if ($home_type == 'active') {
          $frontCrisis=$verifiedCrises->first();
           echo "<div class='medium-12 column text-center'>";
-          echo "<h2>Crise confirmée en cours!</h2>";
+          echo "<h2>Crise confirmée actuelle !</h2>";
           echo "</div>";
 
         } else if ($home_type=='spotted') {
@@ -95,9 +95,11 @@
                                     <span class="small crisis-panel-state subheader"><?= $categories[$crisis->type] ?></span>
                                     <span class="small crisis-panel-state subheader spotted-state"><?= $crisis->state ?></span>
                                     <br/>
-                                    <span class="small crisis-panel-abstract"><?php
-                                    $string = $crisis->abstract;
-                                    $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                  <span class="small crisis-panel-abstract">
+                                    <?php
+                                      $this->Text->truncate($crisis->abstract, 64);
+                                    ?>
+                                  </span>
                                     <br/>
                                     <div class="small button-group">
                                       <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
@@ -133,9 +135,11 @@
                                   <span class="small crisis-panel-state subheader"><?= $categories[$crisis->type] ?></span>
                                   <span class="small crisis-panel-state subheader verified-state"><?= $crisis->state ?></span>
                                   <br/>
-                                  <span class="small crisis-panel-abstract"><?php
-                                  $string = $crisis->abstract;
-                                  $string = (strlen($string) > 64) ? substr($string,0,64).'...' : $string; echo $string ?></span>
+                                  <span class="small crisis-panel-abstract">
+                                    <?php
+                                      $this->Text->truncate($crisis->abstract, 64);
+                                    ?>
+                                  </span>
                                   <br/>
                                   <div class="small button-group">
                                     <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
@@ -188,70 +192,67 @@
       <div class="row">
 
       <div class="row text-center">
-        <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
+        <h2><br>Il n'y a pas d'évènement majeur actuellement !</h2>
       </div>
 
         <div class="row">
-        <h3 style="margin-top: 20px; margin-bottom: 30px; text-align: center;"><?= __('Articles') ?></h3>
-          <?php $count = 0;?>        
-          <?php foreach ($articles as $article): ?>
+        <h3 style="margin-top: 20px; margin-bottom: 30px; text-align: center;"><?= __('Nous vous proposons de jeter un coup d\'œil à nos articles de sensibilisation:') ?></h3>
 
-            <?php if($count == 2) break; ?>
+          <?php if($articles->count() != 0) : ?>
 
             <div class="articles index small-12 medium-6 large-4 columns content">
               <div class="panel ">
                 <h4 class="home-article title">
-                  <?= $articles->toArray()[0]->title; ?>
+                  <?= $this->Html->link(__($articles->toArray()[0]->title), ['controller' => 'articles', 'action' => 'view', $articles->toArray()[0]->id]); ?>
                 </h4>
                 <h5 class="home-article category subheader">
                   <?= $articles->toArray()[0]->created; ?>
-                   in
-                  <?= $articles->toArray()[0]->category; ?>
                 </h5>
                 <p class="home-article content">
-                  <?= $this->Text->truncate($articles->toArray()[0]->body,590); ?>
-                </p>
-              </div>
-            </div>
-            <?php $count += 1; ?>
-          <?php endforeach; ?>
-            <div class="articles index small-12 medium-6 large-4 columns content">
-              <div class="panel">
-                <h4 class="home-article title">
-                  <?= $articles->toArray()[1]->title; ?>
-                </h4>
-                <h5 class="home-article category subheader">
-                  <?= $articles->toArray()[1]->created; ?>
-                   in
-                  <?= $articles->toArray()[1]->category; ?>
-                </h5>
-                <p class="home-article content">
-                  <?= $this->Text->truncate($articles->toArray()[1]->body,590); ?>
+                  <?= $this->Text->truncate($articles->toArray()[0]->body, 590); ?>
                 </p>
               </div>
             </div>
 
+          <?php endif; if($articles->count() > 1) :?>
+
+            <div class="articles index small-12 medium-6 large-4 columns content">
+              <div class="panel">
+                <h4 class="home-article title">
+                  <?= $this->Html->link(__($articles->toArray()[1]->title), ['controller' => 'articles', 'action' => 'view', $articles->toArray()[1]->id]); ?>
+                </h4>
+                <h5 class="home-article category subheader">
+                  <?= $articles->toArray()[1]->created; ?>
+                </h5>
+                <p class="home-article content">
+                  <?= $this->Text->truncate($articles->toArray()[1]->body, 590); ?>
+                </p>
+              </div>
+            </div>
+
+          <?php endif; ?>
+
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
               <fieldset>
-                  <legend><?= __('Submit crisis') ?></legend>
+                  <legend><?= __('Soumettre une crise') ?></legend>
                   <!-- Hidden fields-->
                   <?php echo $this->Form->hidden('severity');
                       echo $this->Form->hidden('longitude');
                       echo $this->Form->hidden('latitude');
                       echo $this->Form->hidden('state');
                    ?>
-                  <?=  $this->Form->input('abstract'); ?>
-                  <label class='form-label'>Location:</label>
-                  <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                              $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
-                              echo $this->Form->radio('type', $types, $attributes);
+                  <?=  $this->Form->input('abstract', ['label' => 'En quelques mots...']); ?>
+                  <label class='form-label'>Localisation:</label>
+                  <?php $types = array('auto' => 'Auto-détection', 'manual' => 'Renseignement manuel');
+                        $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
+                        echo $this->Form->radio('type', $types, $attributes);
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
-                  <?= $this->Form->input('address'); ?>
-                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                  <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
+                  <?php $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
-                  <?= $this->Form->input('hashtags'); ?>
+                  <?= $this->Form->input('hashtags', ['label' => 'Hashtags', 'placeholder' => '#']); ?>
               </fieldset>
               <div class="small button-group">
                 <?= $this->Form->button(__('Submit')) ?>
@@ -266,18 +267,16 @@
           <div class="row">
             <div class="small-12 medium-12 large-12 columns">
 
-            <?php foreach($articles as $article): ?>
+            <?php $_k = -1; foreach($articles as $article): $_k++; if($_k < 2) : continue; endif; ?>
                 <div class="panel ">
                   <h4 class="home-article title">
-                    <?= $article->title; ?>
+                  <?= $this->Html->link(__($article->title), ['controller' => 'articles', 'action' => 'view', $article->id]); ?>
                   </h4>
                   <h5 class="home-article category subheader">
                     <?= $article->created; ?>
-                     in
-                    <?= $article->category; ?>
                   </h5>
                   <p class="home-article content">
-                    <?= $this->Text->truncate($article->body,256); ?>
+                    <?= $this->Text->truncate($article->body, 256); ?>
                   </p>
                 </div>
             <?php endforeach;?>

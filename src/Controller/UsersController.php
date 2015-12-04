@@ -27,9 +27,7 @@ class UsersController extends AppController
 
         if(in_array($this->request->action, ['edit', 'delete']))
         {
-            $userId = (int)$this->request->params['pass'][0];
-
-            if($userId === $user['id'])
+            if((int)$this->request->params['pass'][0] === $user['id'])
             {
                 return true;
             }
@@ -41,11 +39,13 @@ class UsersController extends AppController
           if ($this->request->is('post'))
           {
                 $user = $this->Auth->identify();
-                if ($user)
+
+                if($user)
                 {
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 }
+
                 $this->Flash->error(__('Identifiant et / ou mot de passe incorrect(s).'));
           }
     }

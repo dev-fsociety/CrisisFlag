@@ -20,7 +20,7 @@
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= 'Suivie de crise - ' . $this->fetch('title') ?>
+        <?= 'CrisisFlag - ' . $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
@@ -66,8 +66,8 @@
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Accueil'), '/') ?></li>
-                    <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Les crises'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Utilisateurs'), ['controller'=>'Users', 'action' => 'index']) ?></li>
                     <?php if($this->request->session()->read("Auth.User")): ?>
                         <li><?= $this->Html->link(__('Se déconnecter'), ['controller'=>'Users', 'action' => 'logout']) ?></li>
@@ -92,10 +92,6 @@
                 <div class="small-12 columns">
 
                     <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
-                        <p class="links">
-                            <a href="http://book.cakephp.org/3.0/">Documentation</a>
-                            <a href="http://api.cakephp.org/3.0/">API</a>
-                        </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
 
                 </div>

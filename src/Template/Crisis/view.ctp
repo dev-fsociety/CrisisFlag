@@ -31,7 +31,7 @@
 
         <?php if($crisi->state === 'spotted' || ($this->request->session()->read('Auth.User.id') && $crisi->state) === 'verified'): ?>
 
-          <?= $this->Html->link(__('Editer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
+          <?= $this->Html->link(__('Éditer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
 
         <?php endif; ?>
 

@@ -14,7 +14,6 @@ use Cake\Validation\Validator;
  */
 class ArticlesTable extends Table
 {
-
     /**
      * Initialize method
      *

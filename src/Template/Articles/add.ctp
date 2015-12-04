@@ -12,7 +12,7 @@
             echo $this->Form->input('title', ['label' => 'Titre de l\'article :']);
             echo $this->Form->input('body', ['label' => 'Corps du texte :']);
             echo "<br>";
-            echo $this->Form->input('category', ['label' => 'Catégorie :']);
+            echo $this->Form->input('category', array('type' => 'select', 'options' => $categories, 'label' => 'Catégorie')); 
         ?>
     </fieldset>
     <?= $this->Form->button(__('Soumettre')) ?>
