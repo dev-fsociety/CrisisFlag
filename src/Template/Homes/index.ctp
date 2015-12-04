@@ -17,22 +17,20 @@
 <?php $this->assign('script', 'geoloc.js'); ?>
 
 <div class="row">
-  <?=$verifiedCrises->count();?>
-
     <?php if ($home_type != 'none') { ?>
 
-      <?php if ($home_type == 'active') { ?>
-        <?php $frontCrisis=$verifiedCrises->first() ?>
-          <div class="medium-12 column text-center">
-            <h2>Crise confirmée en cours!</h2>
-          </div>
+      <?php if ($home_type == 'active') {
+         $frontCrisis=$verifiedCrises->first();
+          echo "<div class='medium-12 column text-center'>";
+          echo "<h2>Crise confirmée en cours!</h2>";
+          echo "</div>";
 
-      <?php } else if ($home_type=='spotted') { ?>
-        <?php $frontCrisis=$spottedCrises->first() ?>
-          <div class="medium-12 column text-center">
-            <h2>Crise rapportée par la communauté</h2>
-          </div>
-      <?php }?>
+        } else if ($home_type=='spotted') {
+         $frontCrisis=$spottedCrises->first();
+          echo "<div class='medium-12 column text-center'>";
+          echo  "<h2>Crise rapportée par la communauté</h2>";
+          echo "</div>";
+       }?>
 
           <!-- plus importante crise -->
             <div class="row text-left">
