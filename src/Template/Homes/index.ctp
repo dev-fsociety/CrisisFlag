@@ -47,21 +47,22 @@
                       <h4 class="crisis-panel-date subheader"><?= $frontCrisis->created ?></h3>
                     </p>
                     <p>
-                      <h5 class="crisis-panel-state subheader"><?= $frontCrisis->type ?>:</h5>
+                      <h5 class="crisis-panel-state subheader"><?= $categories[$frontCrisis->type] ?></h5>
                       <h5 class="crisis-panel-state subheader verified-state"><?= $frontCrisis->state ?></h5>
-                    </p>
-                    <p>
                       <?php $HTagsArray = explode(';', $frontCrisis->hashtags);?>
                       <?php foreach ($HTagsArray as $hashtag): ?>
                         <span class="label secondary round radius">#<?= $hashtag?></span>
                       <?php endforeach; ?>
                     </p>
                     <p>
+
+                    </p>
+                    <p>
                       <?= $frontCrisis->abstract ?>
                     </p>
-                    <p class='text-center'>
-                      <?= $this->Html->link(__('View'), ['controller'=>'Crisis','action' => 'view',$frontCrisis->id], ['class' => 'expended button']);  ?>
-                    </p>
+                   <!-- <p class='text-center'>
+                      <?= $this->Html->link(__('Voir la crise'), ['controller'=>'Crisis','action' => 'view',$frontCrisis->id], ['class' => 'expended button']);  ?>
+                    </p> -->
                   </div>
                 </div>
               </div>
@@ -73,7 +74,7 @@
                   <!-- Dernières crises -->
                   <div class="panel callout radius spotted-panel">
                     <div class="row">
-                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportés par la communauté:</h4></div>
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportées par la communauté:</h4></div>
                       <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']);  ?>
                       </div>
@@ -166,7 +167,6 @@
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
                   <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
 
-                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$categories, 'label'=>false, 'empty'=>'Categorie')); ?>
 
                   <?= $this->Form->input('hashtags'); ?>
