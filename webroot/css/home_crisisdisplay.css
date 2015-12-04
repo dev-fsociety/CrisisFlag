@@ -1,9 +1,15 @@
 .crisis-panel {
-  background: white;
+  background: #FFF5EC;
   border: 1px solid #333;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   margin: 1rem 0;
   overflow: hidden; }
+	.crisis-panel.small {
+	  background: white;
+	  border: 1px solid #333;
+	  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	  margin: 0.5rem 0;
+	  overflow: hidden; }
   .crisis-panel.red {
     border-color: #f22613; }
     .crisis-panel.red .crisis-panel-label {
@@ -110,7 +116,8 @@
 	.spotted-panel{
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
 	.verified-panel{
-			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
+		background: #EFFFEC;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);}
 
 
 		.submit-form {
