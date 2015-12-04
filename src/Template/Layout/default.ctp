@@ -55,7 +55,7 @@
                     <a role="button" aria-expanded="false" aria-controls="idOfLeftMenu" class="left-off-canvas-toggle menu-icon" ><span></span></a>
                 </div>
                 <div class="middle tab-bar-section">
-                    <h1>Suivie de crise</h1>
+                    <h1><?= $this->Html->link(__('CrisisFlag'), '/', array('style' => 'color: white;')) ?></h1>
                 </div>
             </nav>
 
@@ -63,15 +63,14 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/') ?></li>
-                    <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
-                    <li class="topbar-separator"><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
-                    <li class="topbar-separator"><?= $this->Html->link(__('User'),     ['controller'=>'Users', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Accueil'), '/') ?></li>
+                    <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Les crises'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Utilisateurs'), ['controller'=>'Users', 'action' => 'index']) ?></li>
                     <?php if($this->request->session()->read("Auth.User")): ?>
-                        <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
+                        <li><?= $this->Html->link(__('Se déconnecter'), ['controller'=>'Users', 'action' => 'logout']) ?></li>
                     <?php else: ?>
-                        <li><?= $this->Html->link(__('Log in'),    ['controller'=>'Users', 'action' => 'login']) ?></li>
+                        <li><?= $this->Html->link(__('Se connecter'), ['controller'=>'Users', 'action' => 'login']) ?></li>
                     <?php endif; ?>
 
                 </ul>
@@ -89,12 +88,14 @@
             <footer class="footer">
               <div class="row">
                 <div class="small-12 columns">
+
                     <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
                         <p class="links">
                             <a href="http://book.cakephp.org/3.0/">Documentation</a>
                             <a href="http://api.cakephp.org/3.0/">API</a>
                         </p>
                     <p class="copywrite">Fsociety all rights reserved © 2015</p>
+
                 </div>
               </div>
             </footer>
@@ -115,6 +116,8 @@
     <script>tinymce.init({ selector:'textarea' });</script>-->
 
     <!-- Own script -->
+    <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
+
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
@@ -122,7 +125,9 @@
     <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
-    <?= $this->fetch('script') ?>
+    <?php $js = $this->fetch('script');
+    if($js != "")
+        echo $this->Html->script($js) ?>
     <script>
       $(document).foundation();
     </script>

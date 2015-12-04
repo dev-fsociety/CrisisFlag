@@ -11,10 +11,20 @@ use Cake\Event\Event;
 class CrisisController extends AppController
 {
 
+    public $state_t = ['spotted' => 'Signalée', 'verified' => 'Vérifiée', 'over' => 'Terminée'];
+
+    public $categories = [
+        'Séisme','Attentat','Braquage','Tsunami','Accidents trains/avions',
+        'Épidémie','Inondations','Éruption volcanique','Chute de météorite','Ouragan',
+        'Tornade','Tempête de sables dans les pays concernés','Danger chimique','Danger nucléaire',
+        'Danger industriel (explosion)','Incendie (majeur)'
+    ];
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add','view','index']);
+        $this->Auth->allow(['add','view','index','test','severityIncrement','severityDecrement']);
+
     }
     /**
      * Index method
@@ -24,10 +34,26 @@ class CrisisController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users']
         ];
         $this->set('crisis', $this->paginate($this->Crisis));
+        $this->set('state_t', $this->state_t);
         $this->set('_serialize', ['crisis']);
+    }
+
+    public function validate($id_crise)
+    {
+        $crisis = $this->Crisis->get($id_crise);
+        $crisis->state = 'verified';
+        if ($this->Crisis->save($crisis))
+        {
+            $this->Flash->success(__('Crise validée !'));
+        }
+        else
+        {
+            $this->Flash->error(__('Impossible de valider la crise'));
+        }
+
+        return $this->redirect(['action' => 'view', $id_crise]);
     }
 
     /**
@@ -39,14 +65,18 @@ class CrisisController extends AppController
      */
     public function view($id = null)
     {
-        $crisi = $this->Crisis->get($id, [
-            'contain' => ['Users']
-        ]);
+        $crisi = $this->Crisis->get($id);
+
+        $user = 0;
+        if($crisi->user_id != 0)
+            $user = $this->Crisis->Users->get($crisi->user_id);
+
         $infos = $this->Crisis->Infos->find()
         ->where(['crisis_id' => $id])
         ->order(['created' => 'DESC']);
 
         $this->set('crisi', $crisi);
+        $this->set('user', $user);
         $this->set('infos', $infos);
         $this->set('_serialize', ['crisi']);
     }
@@ -59,18 +89,36 @@ class CrisisController extends AppController
     public function add()
     {
         $crisi = $this->Crisis->newEntity();
-        if ($this->request->is('post')) {
+        if (isset($this->request->data))
+        {
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
-            if ($this->Crisis->save($crisi)) {
+            //do magic here
+            $crisis = $this->Crisis->find("all");
+            $delta_search = 0.5;
+            foreach ($crisis as $crisi_db){
+             if (abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search
+                && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
+                  $crisi_db->severity += 1;
+                  $this->Crisis->save($crisi_db);
+                  $this->Flash->success('Crisis Already notified so we are incrementing severity..');
+                  return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
+                }
+            }
+
+            if ($this->Crisis->save($crisi))
+            {
                 $this->Flash->success(__('La crise a bien été enregistrée.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
+            }
+            else
+            {
                 $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
             }
+
+            return $this->redirect(['controller' => 'Homes', 'action' => 'index']);
         }
-        $users = $this->Crisis->Users->find('list', ['limit' => 200]);
+        /*$users = $this->Crisis->Users->find('list', ['limit' => 200]);
         $this->set(compact('crisi', 'users'));
-        $this->set('_serialize', ['crisi']);
+        $this->set('_serialize', ['crisi']);*/
     }
 
     /**
@@ -89,12 +137,13 @@ class CrisisController extends AppController
             $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
             if ($this->Crisis->save($crisi)) {
                 $this->Flash->success(__('La crise a bien été enregistrée.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $id]);
             } else {
                 $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
             }
         }
         $users = $this->Crisis->Users->find('list', ['limit' => 200]);
+        $this->set("categories", $this->categories);
         $this->set(compact('crisi', 'users'));
         $this->set('_serialize', ['crisi']);
     }
@@ -118,9 +167,80 @@ class CrisisController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    /**
+     * Increment method
+     *
+     * @param string|null $id Crisi id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function severityIncrement($id = null)
+    {
+      $crisi = $this->Crisis->get($id);
+      $crisi->severity += 1;
+      if ($this->Crisis->save($crisi)) {
+              $this->Flash->success(__('Thanks for the information'));
+        } else {
+              $this->Flash->error(__('Sorry there was an error'));
+        }
+        return $this->redirect(['action' => 'view',$crisi->id]);
+    }
+
+    /**
+     * Decrement method
+     *
+     * @param string|null $id Crisi id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function severityDecrement($id = null)
+    {
+      $crisi = $this->Crisis->get($id);
+      $crisi->severity -= 1;
+      if ($this->Crisis->save($crisi)) {
+              $this->Flash->success(__('Thanks for the information'));
+        } else {
+              $this->Flash->error(__('Sorry there was an error'));
+        }
+        return $this->redirect(['action' => 'view',$crisi->id]);
+    }
+
+    public function test()
+    {
+      $crisi = $this->Crisis->newEntity();
+      if (isset($this->request->data))
+      {
+          $crisi = $this->Crisis->patchEntity($crisi, $this->request->data);
+          //do magic here
+          $crisis = $this->Crisis->find("all");
+          $delta_search = 0.5;
+          foreach ($crisis as $crisi_db){
+           if (abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search
+              && abs($crisi_db['latitude'] - $crisi['latitude'] ) < $delta_search ) {   //1° lat/long-> 111 km
+                $crisi_db->severity += 1;
+                $this->Crisis->save($crisi_db);
+                $this->Flash->success('Crisis Already notified - Increment severity..');
+              }
+          }
+
+        if ($this->Crisis->save($crisi))
+        {
+          $this->Flash->success(__('La crise a bien été enregistrée.'));
+        }
+        else
+        {
+          $this->Flash->error(__('La crise n\'a pas pu être enregistrée.'));
+        }
+
+      }
+      $users = $this->Crisis->Users->find('list', ['limit' => 200]);
+      $this->set(compact('crisi', 'users'));
+      $this->set('_serialize', ['crisi']);
+    }
+
     public function isAuthorized($user)
     {
-        $state = $this->Crisis->get($this->request->params['pass'][0])->state;
+       $state = $this->Crisis->get($this->request->params['pass'][0])->state;
 
         if($this->request->action === 'edit')
         {
@@ -139,6 +259,8 @@ class CrisisController extends AppController
                 return false;
             }
         }
+        else if($this->request->action === 'validate' and isset($user))
+            return true;
 
         //A logged user can delete a crisis
         if($this->request->action === 'delete' && $user['id'] > 0)
