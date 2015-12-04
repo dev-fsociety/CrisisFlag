@@ -10,8 +10,8 @@
 
           	<?= $this->Form->create(); ?>
           	<?= $this->Form->input('username'); ?>
-        	  <?= $this->Form->input('password'); ?>
-          	<?= $this->Form->button('Log in !', ['class' => 'log-in-button']); ?>
+        	 <?= $this->Form->input('password'); ?>
+          	<?= $this->Form->button('Log in', ['class' => 'log-in-button']); ?>
           	<?= $this->Form->end(); ?>
 
          	<p class="text-center"><a href="#">Forgot your password?</a></p>   

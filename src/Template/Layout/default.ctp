@@ -40,7 +40,8 @@
     <?= $this->Html->css('home_crisisdisplay.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
-
+    <!-- Topbar style -->
+    <?= $this->Html->css('topbar.css') ?>
     <!-- Footer style -->
     <?= $this->Html->css('footer.css') ?>
 
@@ -69,10 +70,11 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
-                    <li><?= $this->Html->link(__('Home'), '/') ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/']) ?></li>
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('Infos'),    ['controller'=>'Infos', 'action' => 'index']) ?></li>
+                    <li class="topbar-separator"><?= $this->Html->link(__('User'),     ['controller'=>'Users', 'action' => 'index']) ?></li>
                     <?php if($this->request->session()->read("Auth.User")): ?>
                         <li><?= $this->Html->link(__('Log out'),    ['controller'=>'Users', 'action' => 'logout']) ?></li>
                     <?php else: ?>
