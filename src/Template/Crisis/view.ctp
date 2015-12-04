@@ -34,14 +34,15 @@
 
     <br>
 
-    <?php if (!($crisi->infos==NULL)): ?>
     <h4>Informations à propos de cette crise :</h4>
-    <?php endif;
+    <?php
     foreach($infos as $info): ?>
-        <div class="panel">
-                      <h4 class="hide-for-small"><?= $info->title ?><hr></h4>
-                    <h5 class="subheader"><?= $info->body ?></h5>
-                    <em>Tagged : <?= $info->type ?></em>
+        <div class="panel information_panel">
+                      <h5 class="hide-for-small"><?= $info->title ?>
+                      <span class="label label_right"><?= $info->type ?></span>
+                      <hr class="small_hr"></h5>
+                    <p class="subheader"><?= $info->body ?></p>
+                    
         </div>
     <?php endforeach; ?>
 

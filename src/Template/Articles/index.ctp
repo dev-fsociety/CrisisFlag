@@ -11,12 +11,18 @@
   <?php foreach ($articles as $article): ?>
     <div class="articles index medium-4 columns content">
       <div class="panel">
-        <h4 class="subheader"><?= h($article->title) ?><hr></h4>
+        <h4 class="subheader"><?= $this->Html->link(__($article->title), ['action' => 'view', $article->id]) ?><hr></h4>
         <h5 class="subheader"><?php $string = $article->body;
                               $string = (strlen($string) > 50) ? substr($string,0,50).' (...)' : $string; echo $string
                               ?>
         </h5>
-        <em>Tagged : <?= h($article->category) ?></em>
+        <em>Catégorie : <?= h($article->category) ?><hr></em>
+        <button type="button" class="button secondary radius">
+        <?= $this->Html->link(__('Editer'), ['action' => 'edit', $article->id]) ?>
+        </button>
+        <button type="button" class="button secondary radius">
+        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'article #{0} ?', $article->id)]) ?>
+      </button>
       </div>
     </div>
   <?php endforeach; ?>
