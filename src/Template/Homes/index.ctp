@@ -19,7 +19,7 @@
 <div class="row">
 
 
-    <?php $home_type='active' ?>
+    <?php $home_type = 'active' ?>
     <?php if ($home_type != 'none') { ?>
 
       <?php if ($home_type == 'active') { ?>
@@ -139,24 +139,8 @@
                     <?php endforeach; ?>
                   </div>
                 </div>
-                <div class="small-12 medium-6 large-4 columns text-center submit-form">
-                  <!-- Formulaire TODO:vraie variable crisis-->
 
-                  <!--  <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add']]); ?>
-                        <legend><?= __('Submit crisis') ?></legend>
-                        <?= $this->Form->input('abstract'); ?>
-                        <label class='form-label'>Location:</label>
-                        <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
-                                    $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'');
-                                    echo $this->Form->radio('type', $types, $attributes);
-                        ?>
-                        <div id='submit_address'><?= $this->Form->input('address'); ?></div>
-                        <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
-                        <?= $this->Form->input('hashtags'); ?>
-                    <?= $this->Form->button(__('Submit')) ?>
-                    <?= $this->Form->end() ?>
-                </div>-->
-
+            <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
               <fieldset>
                   <legend><?= __('Submit crisis') ?></legend>
@@ -174,6 +158,7 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
                   <?= $this->Form->input('address'); ?>
+                  <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
                   <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
                   <?= $this->Form->input('hashtags'); ?>
               </fieldset>
@@ -189,33 +174,64 @@
 
       <?php } else { ?>
 
+      <div class="row">
+
+      <div class="row text-center">
+        <h2>Il n'y a pas d'évènements majeurs actuellement ! </h2>
+      </div>
         <div class="row">
         <h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles') ?></h3>
-          <?php foreach ($articles as $article): ?>
-            <div class="articles index medium-4 columns content">
+            <div class="articles index small-12 medium-6 large-4 columns content">
               <div class="panel">
-                <h4 class="subheader"><?= $this->Html->link(__($article->title), ['controller' => 'Articles','action' => 'view', $article->id]) ?><hr></h4>
-                <h5 class="subheader"><?php $string = $article->body;
-                                      $string = (strlen($string) > 50) ? substr($string,0,50).' (...)' : $string; echo $string
-                                      ?>
-                </h5>
-                <em>Catégorie : <?= h($article->category) ?><hr></em>
+                <?= $articles->toArray()[0]->title; ?>
               </div>
             </div>
-          <?php endforeach; ?>
-          <hr>
-          <div class="paginator">
-            <div class="panel" style="text-align: center">
-              <ul class="pagination" style="width: 230px; margin: 0px auto;">
-                  <?= $this->Paginator->prev('<< ' . __('Précédente')) ?>
-                  <?= $this->Paginator->numbers() ?>
-                  <?= $this->Paginator->next(__('Suivante') . ' >>') ?>
-              </ul>
-              <p><?= $this->Paginator->counter() ?></p>
+            <div class="articles index small-12 medium-6 large-4 columns content">
+              <div class="panel">
+                <?= $articles->toArray()[1]->title; ?>
+              </div>
             </div>
-          </div>
-        </div>
-      <?php }?>
+
+            <div class="articles index medium-4 columns content">
+              <div class="small-12 medium-6 large-4 columns text-center submit-form">
+                <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+                <fieldset>
+                    <legend><?= __('Submit crisis') ?></legend>
+                    <!-- Hidden fields-->
+                    <?php echo $this->Form->hidden('severity');
+                        echo $this->Form->hidden('longitude');
+                        echo $this->Form->hidden('latitude');
+                        echo $this->Form->hidden('state');
+                     ?>
+                    <?=  $this->Form->input('abstract'); ?>
+                    <label class='form-label'>Location:</label>
+                    <?php       $types = array('auto' => 'Auto-detect', 'manual' => 'Manual entry');
+                                $attributes = array( 'legend' => false,'label' => true,'class' => 'radio-loc', 'value'=>'auto');
+                                echo $this->Form->radio('type', $types, $attributes);
+                    ?>
+                    <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> GeoMe</a>
+                    <?= $this->Form->input('address'); ?>
+                    <?php       $types = array('1' => 'Séisme', '2' => 'Zombies'); ?>
+                    <?= $this->Form->input('type', array('type'=>'select', 'options'=>$types, 'label'=>false, 'empty'=>'Category')); ?>
+                    <?= $this->Form->input('hashtags'); ?>
+                </fieldset>
+                <div class="small button-group">
+                  <?= $this->Form->button(__('Submit')) ?>
+
+                  <a id="reset" class="button">Reset</a>
+                </div>
+
+                <?= $this->Form->end() ?>
+              </div>
+           </div>
+          <?php foreach ($articles as $article): ?>
+          <?php endforeach; ?>
+
+
+
+
+    <?php }?>
+
 
 
 </div>
