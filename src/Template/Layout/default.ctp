@@ -64,6 +64,7 @@
                 <ul class="off-canvas-list">
                     <li><label>Menu</label></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Home'), '/') ?></li>
+
                     <li><?= $this->Html->link(__('Articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Crisis'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('User'),     ['controller'=>'Users', 'action' => 'index']) ?></li>
@@ -114,6 +115,8 @@
     <script>tinymce.init({ selector:'textarea' });</script>-->
 
     <!-- Own script -->
+    <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
+
     <!-- Topbar -->
     <?= $this->Html->script('foundation/foundation.offcanvas.js') ?>
 
@@ -121,7 +124,7 @@
     <?= $this->Html->script("hideradio.js") ?>
 
     <!-- Page specific script (always load last) -->
-    <?= $this->fetch('script') ?>
+    <?= $this->Html->script($this->fetch('script')) ?>
     <script>
       $(document).foundation();
     </script>
