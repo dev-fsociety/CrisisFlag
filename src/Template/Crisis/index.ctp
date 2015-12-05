@@ -7,16 +7,18 @@
                 <th width="200"><?= $this->Paginator->sort('abstract', 'Résumé') ?></th>
                 <th width="200"><?= $this->Paginator->sort('state', 'État') ?></th>
                 <th width="200"><?= $this->Paginator->sort('address', 'Lieu') ?></th>
-                <th width="200" class="actions"><?= __('Détails') ?></th>
+                <th width="200"><?= $this->Paginator->sort('created', 'Date de signalement') ?></th>
+                <th width="200" class="actions text-center"><?= __('Détails') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($crisis as $crisi): ?>
             <tr>
                 <td><?= h($crisi->abstract) ?></td>
-                <td><?= $state_t[$crisi->state] ?></td>
+                <td><?= h($state_t[$crisi->state]) ?></td>
                 <td><?= h($crisi->address) ?></td>
-                <td class="actions">
+                <td><?= h($crisi->created) ?></td>
+                <td class="actions text-center">
                     <?= $this->Html->link(__('Voir le détail'), ['action' => 'view', $crisi->id]) ?>
                 </td>
             </tr>

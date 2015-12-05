@@ -30,7 +30,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('Aperçu'), ['action' => 'view', $user->id]) ?> |
                     <?= $this->Html->link(__('Éditer'), ['action' => 'edit', $user->id]) ?> |
-                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'utilisateur # {0}?', $user->id)]) ?>
+                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'utilisateur #{0} ?', $user->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
