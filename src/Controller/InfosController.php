@@ -68,9 +68,10 @@ class InfosController extends AppController
                     $this->Flash->error(__('L\'information n\'a pas pu être enregistrée.'));
                 }
             }
+
             $Crisis = $this->Infos->Crisis->find('list', ['limit' => 200]);
             $users = $this->Infos->Users->find('list', ['limit' => 200]);
-            $this->set(compact('info', 'Crisis', 'users'));
+            $this->set(compact('info', 'Crisis', 'users', 'crisis_id'));
             $this->set('_serialize', ['info']);
         }
         else
@@ -96,7 +97,7 @@ class InfosController extends AppController
             $info = $this->Infos->patchEntity($info, $this->request->data);
             if ($this->Infos->save($info)) {
                 $this->Flash->success(__('L\'information a bien été enregistrée.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Crisis', 'action' => 'view', $id]);
             } else {
                 $this->Flash->error(__('L\'information n\'a pas pu être enregistrée.'));
             }
@@ -123,7 +124,7 @@ class InfosController extends AppController
         } else {
             $this->Flash->error(__('L\'information n\'a pas pu être supprimée.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller' => 'Crisis', 'action' => 'index']);
     }
 
     public function isAuthorized($user)

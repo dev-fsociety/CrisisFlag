@@ -25,7 +25,7 @@
         <em>Créé le : <?= h($article->created) ?><hr></em>
         <?php if($this->request->session()->read('Auth.User.id')): ?>
 
-        <?= $this->Html->link(__('Éditer'), ['action' => 'edit', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;')) ?>
+        <?= $this->Html->link(__('Éditer'), ['action' => 'edit', $article->id], array('class' => 'button info radius', 'style' => 'width: 49%;')) ?>
         <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;'), ['confirm' => __('Êtes-vous sûr de vouloir supprimer l\'article #{0} ?', $article->id)]) ?>
 
         <?php endif; ?>

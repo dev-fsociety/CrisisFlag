@@ -1,7 +1,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Liste des informations'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Retour aux crises'), ['controller' => 'Crisis', 'action' => 'index']) ?></li>
         <li><?= $this->Form->postLink(
                 __('Supprimer'),
                 ['action' => 'delete', $info->id],
@@ -18,8 +18,6 @@
             echo $this->Form->input('title', ['label' => 'Titre']);
             echo $this->Form->input('body', ['label' => 'Corps du texte']);
             echo "<br />";
-            echo $this->Form->input('crisis_id', ['label' => 'ID crise']);
-            echo $this->Form->input('user_id', ['options' => $users, 'label' => 'ID utilisateur']);
             echo $this->Form->input('type', ['label' => 'Type']);
         ?>
     </fieldset>
