@@ -28,14 +28,6 @@
             </p>
         </div>
         <div class="medium-6 column">
-
-        <?php if($crisi->state === 'spotted' || ($this->request->session()->read('Auth.User.id') && $crisi->state) === 'verified'): ?>
-
-          <?= $this->Html->link(__('Éditer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
-          <?= $this->Html->link(__('Terminer directement cette crise'), ['controller' => 'Crisis', 'action' => 'terminate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
-
-        <?php endif; ?>
-
           <div class="small button-group">
             <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisi->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
             <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisi->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
@@ -51,14 +43,13 @@
     <?php
     foreach($infos as $info): ?>
         <div class="panel information_panel">
-                      <h5 class="hide-for-small"><?= $info->title ?>
-                      <span class="label label_right"><?= $info->type ?></span>
-                      <hr class="small_hr"></h5>
-                    <p class="subheader"><?= $info->body ?></p>
-                    
+          <h5 class="hide-for-small"><?= $info->title ?>
+          <span class="label label_right"><?= $info->type ?></span>
+          <hr class="small_hr"></h5>
+          <p class="subheader"><?= $info->body ?></p>
+          <?= $this->Html->link(__('Éditer l\'information'), ['controller' => 'Infos', 'action' => 'edit', $info->id], array('class' => 'tiny button info', 'style' => 'width: 100%;')) ?>
         </div>
     <?php endforeach; ?>
-
 
 <br>
 
@@ -186,24 +177,32 @@ function addMessage(message, className) {
 
 </div>
 <div class="large-4 columns">
-    <?php if($crisi->state == 'spotted' && $this->request->session()->read('Auth.User.id')): ?>
-    <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php if($crisi->state === 'spotted' || (($this->request->session()->read('Auth.User.id') && $crisi->state) === 'verified')): ?>
+
+      <?= $this->Html->link(__('Éditer la crise'), ['controller' => 'Crisis', 'action' => 'edit', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
+
     <?php endif; ?>
 
-    <?php if($crisi->state == 'verified' && $this->request->session()->read('Auth.User.id')): ?>
-    <?= $this->Html->link(__('Terminer cette crise'), ['controller' => 'Crisis', 'action' => 'terminate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+    <?php if($this->request->session()->read('Auth.User.id')) : ?>
+
+      <?php if($crisi->state === 'spotted'): ?>
+      <?= $this->Html->link(__('Valider cette crise'), ['controller' => 'Crisis', 'action' => 'validate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+      <?= $this->Html->link(__('Terminer directement cette crise'), ['controller' => 'Crisis', 'action' => 'terminate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;')) ?><br>
+
+      <?php elseif($crisi->state === 'verified'): ?>
+      <?= $this->Html->link(__('Terminer cette crise'), ['controller' => 'Crisis', 'action' => 'terminate', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;'))?>
+
+      <?php endif; ?>
+
+      <?php if($crisi->state != 'over'): ?>
+      <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))?>
+      <?php endif; ?>
     <?php endif; ?>
 
-    <?php if($crisi->state != 'over' && $this->request->session()->read('Auth.User.id')): ?>
-    <?= $this->Html->link(__('Ajouter des informations à cette crise'), ['controller' => 'Infos', 'action' => 'add', $crisi->id], array('class' => 'small expanded button alert', 'style' => 'width: 100%;', 'target' => '_blank'))
 
-    ?>
+
 
   <br>
-  <?php endif; ?>
-
-
-
   <h4>Ils en parlent...</h4>
 
   <iframe src="http://twubs.com/embed/<?= h($crisi->hashtags) ?>/?messagesPerPage=5&headerBgColor=%231c6485&headerTextColor=%23ffffff" width="100%" scrolling="no" seamless="seamless" height="600" frameborder="0"><a href="http://twubs.com/test">#<?= h($crisi->hashtags) ?></a></iframe>
