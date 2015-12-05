@@ -5,8 +5,6 @@ Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/
 ## To Do:
 
 * Validate all input data in tables ?
-* PopUp -> Close |X| ?
 * Changer format heure -> Français ?
-* .../users/ non-accessible mais accessible ?
 * Big gap on pages footer ?
 * Articles don't appear on list (.../articles/) ?

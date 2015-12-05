@@ -250,7 +250,7 @@ class CrisisController extends AppController
       }
 
       //A logged user can delete, validate or terminate a crisis
-      if(($this->request->action === 'delete' || $this->request->action === 'validate' || $this->request->action === 'terminate') && isset($user))
+      if(isset($user) && ($this->request->action === 'delete' || $this->request->action === 'validate' || $this->request->action === 'terminate'))
       {
         return true;
       }

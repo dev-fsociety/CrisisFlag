@@ -128,13 +128,13 @@ class InfosController extends AppController
 
     public function isAuthorized($user)
     {
-        // A logged user can do an action about infos
-        if($this->request->action === 'add' && $user['id'] > 0)
+        //A logged user can do an action about infos
+        if(isset($user) && $this->request->action === 'add')
         {
             return true;
         }
 
-        if(in_array($this->request->action, ['edit', 'delete']))
+        if(isset($user) && in_array($this->request->action, ['edit', 'delete']))
         {
             $infoId = (int)$this->request->params['pass'][0];
 

@@ -137,16 +137,17 @@ class ArticlesController extends AppController
     public function isAuthorized($user)
     {
       // All registered users can add articles
-      if ($this->request->action === 'add') {
+      if($this->request->action === 'add')
+      {
         return true;
       }
 
       // The owner of an article can edit and delete it
-      if (in_array($this->request->action, ['edit', 'delete']))
+      if(in_array($this->request->action, ['edit', 'delete']))
       {
         $articleId = (int)$this->request->params['pass'][0];
 
-        if ($this->Articles->isOwnedBy($articleId, $user['id']))
+        if($this->Articles->isOwnedBy($articleId, $user['id']))
         {
           return true;
         }

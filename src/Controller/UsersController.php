@@ -20,16 +20,14 @@ class UsersController extends AppController
 
     public function isAuthorized($user)
     {
-        parent::isAuthorized($user);
-
-        if(($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add') && isset($users))
+        if(isset($user) && ($this->request->action === 'view' || $this->request->action === 'index' || $this->request->action === 'add'))
         {
             return true;
         }
 
         if(in_array($this->request->action, ['edit', 'delete']))
         {
-            if((int)$this->request->params['pass'][0] === $user['id'])
+            if((int)$this->request->params['pass'][0] === $user['id'] || (isset($user) && $user['id'] === 1))
             {
                 return true;
             }
@@ -47,6 +45,7 @@ class UsersController extends AppController
                 if($user)
                 {
                     $this->Auth->setUser($user);
+                    $this->Flash->success(__('Vous êtes maintenant connecté.'));
                     return $this->redirect($this->Auth->redirectUrl());
                 }
 
@@ -56,7 +55,7 @@ class UsersController extends AppController
 
     public function logout()
     {
-        $this->Flash->success("Vous êtes maintenant déconnecté.");
+        $this->Flash->warning("Vous êtes maintenant déconnecté.");
         return $this->redirect($this->Auth->logout());
     }
 
