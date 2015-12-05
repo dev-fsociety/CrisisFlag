@@ -28,9 +28,8 @@ class CrisisController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-        ];
-        $this->set('crisis', $this->paginate($this->Crisis));
+        $crisis = $this->Crisis->find()->order(['created' => 'desc']);
+        $this->set('crisis', $this->paginate($crisis));
         $this->set('state_t', $this->state_t);
         $this->set('_serialize', ['crisis']);
     }
@@ -39,7 +38,7 @@ class CrisisController extends AppController
     {
         $crisis = $this->Crisis->get($id_crise);
         $crisis->state = 'verified';
-        if ($this->Crisis->save($crisis))
+        if($this->Crisis->save($crisis))
         {
             $this->Flash->success(__('Crise validée !'));
         }
@@ -55,7 +54,7 @@ class CrisisController extends AppController
     {
         $crisis = $this->Crisis->get($id_crise);
         $crisis->state = 'over';
-        if ($this->Crisis->save($crisis))
+        if($this->Crisis->save($crisis))
         {
             $this->Flash->success(__('Crise terminée !'));
         }

@@ -21,8 +21,8 @@
         <h5 class="subheader">
           <?php $this->Text->truncate($article->body, 50); ?>
         </h5>
-        <em>Catégorie : <?= h($categories[$article->category]) ?><hr></em>
-
+        <em>Catégorie : <?= h($categories[$article->category]) ?><br></em>
+        <em>Créé le : <?= h($article->created) ?><hr></em>
         <?php if($this->request->session()->read('Auth.User.id')): ?>
 
         <?= $this->Html->link(__('Éditer'), ['action' => 'edit', $article->id], array('class' => 'button secondary radius', 'style' => 'width: 49%;')) ?>

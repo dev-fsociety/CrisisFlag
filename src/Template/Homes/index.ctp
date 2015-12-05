@@ -28,7 +28,7 @@
         } else if ($home_type=='spotted') {
          $frontCrisis=$spottedCrises->first();
           echo "<div class='medium-12 column text-center'>";
-          echo  "<h2>Crise rapportée par la communauté</h2>";
+          echo  "<h2>Dernière crise signalée par la communauté:</h2>";
           echo "</div>";
        }?>
 
@@ -74,7 +74,7 @@
                   <!-- Dernières crises -->
                   <div class="panel callout radius spotted-panel">
                     <div class="row">
-                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises rapportées par la communauté:</h4></div>
+                      <div class="small-8 large-8 columns"><h4 class="subheader">Crises signalées par la communauté:</h4></div>
                       <div class="small-2 large-4 columns text-right">
                         <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']);  ?>
                       </div>
@@ -103,7 +103,7 @@
                                     <br/>
                                     <div class="small button-group">
                                       <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisis->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
-                                      <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+                                      <?= $this->Form->postLink(__('No'), ['controller' => 'Crisis','action' => 'severityDecrement', $crisis->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
                                     </div>
 
                               </div>
@@ -112,11 +112,12 @@
                         </div>
                     <?php endforeach; ?>
                   </div>
+                  <?php if($verifiedCrises->count() > 0) : ?>
                   <div class="panel radius verified-panel">
                     <div class="row">
                       <div class="small-8 large-8 columns"><h4 class="subheader">Crises confirmées:</h4></div>
                       <div class="small-2 large-4 columns text-right">
-                        <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']);  ?>
+                        <?= $this->Html->link(__('Voir plus de crises'), ['controller'=>'Crisis','action' => 'index'], ['class' => 'tiny secondary button']); ?>
                       </div>
                     </div>
 
@@ -151,6 +152,7 @@
                       </div>
                     <?php endforeach; ?>
                   </div>
+                  <?php endif; ?>
                 </div>
             <div class="small-12 medium-6 large-4 columns text-center submit-form">
               <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
