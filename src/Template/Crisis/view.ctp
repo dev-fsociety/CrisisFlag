@@ -47,7 +47,9 @@
           <span class="label label_right"><?= $info->type ?></span>
           <hr class="small_hr"></h5>
           <p class="subheader"><?= $info->body ?></p>
+          <?php if($this->request->session()->read('Auth.User.id')) : ?>
           <?= $this->Html->link(__('Éditer l\'information'), ['controller' => 'Infos', 'action' => 'edit', $info->id], array('class' => 'tiny button info', 'style' => 'width: 100%;')) ?>
+          <?php endif; ?>
         </div>
     <?php endforeach; ?>
 
