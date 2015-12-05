@@ -10,7 +10,7 @@ use Cake\Event\Event;
  */
 class ArticlesController extends AppController
 {
-    public $categories = ['articlePresse' => 'Article de presse', 'news' => 'Nouveautés', 'edito' => 'Éditorial', 'conseil' => 'Conseil'];
+    public $categories = ['articlePresse' => 'Article de presse', 'conseil' => 'Conseil', 'edito' => 'Éditorial', 'news' => 'Nouveautés'];
 
   /**
    * beforeFilter method

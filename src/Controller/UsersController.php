@@ -38,7 +38,7 @@ class UsersController extends AppController
 
     public function login()
     {
-          if ($this->request->is('post'))
+          if($this->request->is('post'))
           {
                 $user = $this->Auth->identify();
 

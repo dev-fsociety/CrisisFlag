@@ -10,12 +10,7 @@ use Cake\Event\Event;
 
 class HomesController extends AppController
 {
-	public $categories = [
-        'Séisme','Attentat','Braquage','Tsunami','Accidents trains/avions',
-        'Épidémie','Inondations','Éruption volcanique','Chute de météorite','Ouragan',
-        'Tornade','Tempête de sables dans les pays concernés','Danger chimique','Danger nucléaire',
-        'Danger industriel (explosion)','Incendie (majeur)'
-    ];
+    public $categories = ['Accidents trains/avions', 'Attentat', 'Braquage', 'Chute de météorite', 'Danger chimique', 'Danger nucléaire', 'Danger industriel (explosion)', 'Épidémie', 'Éruption volcanique', 'Inondations', 'Incendie (majeur)', 'Ouragan', 'Séisme', 'Tempête de sable', 'Tornade', 'Tsunami'];
 
 	public function beforeFilter(Event $event)
 	{
@@ -53,7 +48,7 @@ class HomesController extends AppController
 		$newCrisis->severity = 1;
 		$newCrisis->user_id = 1;
 
-		$this->set("categories", $this->categories);
+		$this->set('categories', $this->categories);
 		$articles = $this->Articles->find('all')->limit(12)->order(['created' => 'desc']);
 		$this->set(compact('spottedCrises', 'verifiedCrises', 'articles',
 		'home_type', 'newCrisis'));
