@@ -15,7 +15,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['logout']);
+        $this->Auth->allow(['logout', 'view']);
 
         /*if($this->Users->find('all')->count() == 0) //<-- It should work... Allow the first user to add himself an admin account
         {

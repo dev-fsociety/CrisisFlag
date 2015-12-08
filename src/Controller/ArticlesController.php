@@ -31,9 +31,6 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
         $articles = $this->Articles->find('all')->order(['Articles.`created`' => 'desc']);
         $this->set('articles', $this->paginate($articles));
         $this->set('_serialize', ['articles']);
@@ -49,9 +46,7 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
-        $article = $this->Articles->get($id, [
-            'contain' => ['Users']
-        ]);
+        $article = $this->Articles->get($id, ['contain' => ['Users']]);
         $this->set('article', $article);
         $this->set('_serialize', ['article']);
         $this->set('categories', $this->categories);
