@@ -16,6 +16,13 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
         $this->Auth->allow(['logout']);
+
+        /*if($this->Users->find('all')->count() == 0) //<-- It should work... Allow the first user to add himself an admin account
+        {
+            $this->Auth->allow(['add']);
+            $this->Flash->warning('Aucun utilisateur n\'est existant, veuillez créer le compte administrateur.');
+            $this->redirect('controller' => 'add');
+        }*/
     }
 
     public function isAuthorized($user)

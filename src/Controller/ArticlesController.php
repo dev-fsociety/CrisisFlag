@@ -34,7 +34,7 @@ class ArticlesController extends AppController
         $this->paginate = [
             'contain' => ['Users']
         ];
-        $articles = $this->Articles->find('all')->order(["Articles.`created`" => 'desc']);
+        $articles = $this->Articles->find('all')->order(['Articles.`created`' => 'desc']);
         $this->set('articles', $this->paginate($articles));
         $this->set('_serialize', ['articles']);
         $this->set('categories', $this->categories);

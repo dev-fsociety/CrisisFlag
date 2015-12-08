@@ -28,7 +28,7 @@ class CrisisController extends AppController
      */
     public function index()
     {
-        $crisis = $this->Crisis->find('all')->order(["Crisis.`created`" => 'desc']);
+        $crisis = $this->Crisis->find('all')->order(['Crisis.`created`' => 'desc']);
         $this->set('crisis', $this->paginate($crisis));
         $this->set('state_t', $this->state_t);
         $this->set('_serialize', ['crisis']);
