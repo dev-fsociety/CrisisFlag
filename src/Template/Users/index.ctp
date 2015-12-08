@@ -23,7 +23,7 @@
             <tr>
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->username) ?></td>
-                <td><?= h($this->Text->truncate($user->password, 15)) ?></td>
+                <td><?= h($this->Text->truncate($user->password, 16)) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->modified) ?></td>
                 <td><?= h($user->organisation) ?></td>

@@ -94,15 +94,22 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
+
+        if($this->request->is('post'))
+        {
             $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
+
+            if($this->Users->save($user))
+            {
                 $this->Flash->success(__('L\'utilisateur a bien été sauvegardé.'));
                 return $this->redirect(['action' => 'index']);
-            } else {
+            }
+            else
+            {
                 $this->Flash->error(__('L\'utilisateur n\'a pas pu être sauvegardé.'));
             }
         }
+
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -119,15 +126,21 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+
+        if($this->request->is(['patch', 'post', 'put']))
+        {
             $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
+            if($this->Users->save($user))
+            {
                 $this->Flash->success(__('L\'utilisateur a bien été sauvegardé'));
                 return $this->redirect(['action' => 'index']);
-            } else {
+            }
+            else
+            {
                 $this->Flash->error(__('L\'utilisateur n\'a pas pu être sauvegardé'));
             }
         }
+
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
@@ -143,11 +156,28 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('L\'utilisateur a bien été sauvegardé.'));
-        } else {
-            $this->Flash->error(__('L\'utilisateur n\'a pas pu être sauvegardé.'));
+
+        if(isset($user) && $user['id'] != 1)
+        {
+            if($this->Users->delete($user))
+            {
+                $this->Flash->success(__('L\'utilisateur a bien été supprimé.'));
+            }
+            else
+            {
+                $this->Flash->error(__('L\'utilisateur n\'a pas pu être supprimé.'));
+            }
+
+            if(isset($user) && $user['id'] == $this->Auth->user('id'))
+            {
+                return $this->redirect(['action' => 'logout']);
+            }
         }
+        else
+        {
+            $this->Flash->warning(__('Vous ne pouvez pas supprimer cet utilisateur.'));
+        }
+
         return $this->redirect(['action' => 'index']);
     }
 }
