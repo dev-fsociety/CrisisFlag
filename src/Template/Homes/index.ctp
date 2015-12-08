@@ -184,7 +184,7 @@
             ?>
             <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
             <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-            <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false)); ?>
+            <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
             <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
           </fieldset>
           <div class="small button-group">
@@ -259,7 +259,7 @@
                   ?>
                   <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
                   <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-                  <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => 'Catégories')); ?>
+                  <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
                   <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
                 </fieldset>
                 <div class="small button-group">
@@ -316,7 +316,7 @@
                 ?>
                 <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
                 <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-                <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false)); ?>
+                <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
                 <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
               </fieldset>
               <div class="small button-group">
