@@ -14,8 +14,6 @@
           	<?= $this->Form->button('Se connecter', ['class' => 'log-in-button']); ?>
           	<?= $this->Form->end(); ?>
 
-         	<p class="text-center"><a href="#">Forgot your password?</a></p>   
-
         </div>
     </div>
   </div>
