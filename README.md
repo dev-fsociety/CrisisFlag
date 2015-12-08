@@ -5,8 +5,10 @@ Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/
 ## To Do:
 
 * Validate input data in tables ?
-* Changer hour format -> 24h ?
+* Change hour format -> 24h ?
 * Big gap on pages footer ?
 * Center text on delete button of Articles index ?
-* Bug when RESET button on Submit form
+* Bug when RESET button on Submit form ?
 * 3 Submit forms declared on index.ctp ?
+* Allow the first user to add the 'admin' account of the site [almost implemented] ?
+* Articles won't appear everytime on 'index' (<-- WTF ?) ?

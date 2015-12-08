@@ -1,7 +1,7 @@
 <div class="row">
     <div class="crisis index large-12 medium-12 columns content">
-        <h3 style="margin-top: 20px; margin-bottom: 20px; text-align: center"><?= __('Liste des crises recensées jusqu\'à aujourd\'hui:') ?></h3>
-        <table cellpadding="0" cellspacing="0" style="margin: 0px auto;" >
+        <h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center"><?= __('Liste des crises recensées jusqu\'à aujourd\'hui') ?></h3>
+        <table cellpadding="0" cellspacing="0" style="margin: 0px auto;">
             <thead>
                 <tr>
                     <th width="200"><?= $this->Paginator->sort('abstract', 'Résumé') ?></th>

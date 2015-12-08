@@ -1,10 +1,9 @@
 <nav class="medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Liste des Articles'), ['action' => 'index']) ?></li>
 
         <?php if($this->request->session()->read('Auth.User.id')): ?>
 
+        <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Nouvel Article'), ['action' => 'add']) ?></li>
 
        <?php endif; ?>
@@ -13,7 +12,7 @@
 </nav>
 
 <div class="row">
-<h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles de sensibilisation:') ?></h3>
+  <h3 style="margin-top: 50px; margin-bottom: 40px; text-align: center;"><?= __('Articles de sensibilisation') ?></h3>
   <?php foreach ($articles as $article): ?>  
     <div class="articles index medium-4 columns content">
       <div class="panel">

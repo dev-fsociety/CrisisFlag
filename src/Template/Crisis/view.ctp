@@ -66,13 +66,13 @@ skylink.on('peerJoined', function(peerId, peerInfo, isSelf) {
   if(!isSelf) {
     user = peerInfo.userData.name || peerId;
   }
-  addMessage(user + ' joined the room', 'action');
+  addMessage(user + ' a rejoint la salle.', 'action');
 });
 
 skylink.on('peerUpdated', function(peerId, peerInfo, isSelf) {
   if(isSelf) {
     user = peerInfo.userData.name || peerId;
-    addMessage('You\'re now known as ' + user, 'action');
+    addMessage('Vous êtes connu sous le nom de \'' + user + '\'.', 'action');
   }
 });
 
@@ -81,7 +81,7 @@ skylink.on('peerLeft', function(peerId, peerInfo, isSelf) {
   if(!isSelf) {
     user = peerInfo.userData.name || peerId;
   }
-  addMessage(user + ' left the room', 'action');
+  addMessage(user + ' a quitté la salle.', 'action');
 });
 
 skylink.on('incomingMessage', function(message, peerId, peerInfo, isSelf) {

@@ -34,7 +34,7 @@ class UsersController extends AppController
 
         if(in_array($this->request->action, ['edit', 'delete']))
         {
-            if((int)$this->request->params['pass'][0] === $user['id'] || (isset($user) && $user['id'] === 1))
+            if((isset($user) && $user['id'] === 1) || (int)$this->request->params['pass'][0] === $user['id'])
             {
                 return true;
             }
