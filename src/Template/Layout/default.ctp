@@ -64,7 +64,14 @@
             <!-- Topbar -->
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
-                    <li><label>Menu</label></li>
+                    <li><label><?php if($this->request->session()->read("Auth.User")): ?>
+                        <?php $username = $this->request->session()->read('Auth.User.username'); 
+                        echo "Welcome " . $username ;
+                        else:
+                            echo "Welcome Guest";
+                        endif;
+                            ?>
+                    </label></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Accueil'), '/') ?></li>
                     <li><?= $this->Html->link(__('Les crises'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
@@ -104,14 +111,11 @@
 
 
     <!-- Foundation (+jquery) scripts -->
-    <?= $this->Html->script("vendor/jquery.min.js") ?>
+    <?= $this->Html->script("vendor/jquery.min.js") ?> 
 
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>
     <?= $this->Html->script("foundation/foundation.topbar.js") ?>
-
-    <!--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>-->
 
     <!-- Own script -->
     <?= $this->Html->script("https://maps.googleapis.com/maps/api/js?key=AIzaSyC5JLLRv_0Innk5EXGfZhPpzGFadWeT5_4&signed_in=true&callback=initMap") ?>
