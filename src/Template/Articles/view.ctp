@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="medium-12 columns" style="text-align: right">
-      <?= __('User') ?>: <?= $article->has('user') ? $this->Html->link($article->user->id, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?><br>
+      <?= __('Auteur') ?>: <?= $article->has('user') ? $this->Html->link($article->user->username, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?><br>
       <?= __('Créé le') ?>: <?= h($article->created) ?><br>
 			<?= __('Modifié le') ?>: <?= h($article->modified) ?>
 	   </div>

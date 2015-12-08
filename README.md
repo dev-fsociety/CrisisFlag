@@ -11,4 +11,3 @@ Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/
 * Bug when RESET button on Submit form ?
 * 3 Submit forms declared on index.ctp ?
 * Allow the first user to add the 'admin' account of the site [almost implemented] ?
-* Articles won't appear everytime on 'index' (<-- WTF ?) ?

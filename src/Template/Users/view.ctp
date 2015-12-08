@@ -10,8 +10,17 @@
                 <p>Organisation : <?= h($user->organisation) ?></p>
                 <p><strong>Description - </strong><?= (h($user->description)); ?></p>
                 <p><?= h($user->created) ?> | <?= h($user->modified) ?></p>
-                <ul class="inline-list" style="margin:0 auto;">  
-                <div class="edit-button"><?= $this->Html->link(__('Éditer'), ['action' => 'edit', $user->id]); ?></div>
+                <ul class="inline-list" style="margin:0 auto;">
+                <?php if($this->request->session()->read('Auth.User.username')) : ?>
+
+                    <div class="edit-button"><?= $this->Html->link(__('Éditer'), ['action' => 'edit', $user->id]); ?></div>
+
+                <?php else : ?>
+
+                    <?= $this->Html->link(__('Retour à larticle'), $this->request->referer(), array('class' => 'expanded button')); ?>
+
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
