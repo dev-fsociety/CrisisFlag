@@ -56,11 +56,9 @@ class AppController extends Controller
             'authorize' => ['Controller'],
             'loginRedirect' => [
                 'controller' => 'Homes',
-                'action' => '/'
             ],
             'logoutRedirect' => [
                 'controller' => 'Homes',
-                'action' => '/'
             ]
         ]);
     }
