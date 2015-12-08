@@ -40,7 +40,7 @@
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-
+	border-radius: 5px;
 	padding: 0.625rem 1.25rem 0.6875rem 1.25rem;
 	font-size: 0.8125rem; 
 
@@ -63,5 +63,5 @@
 }
 
 .log-in-button:focus {
-  	color: #020202;
+  	color: #cccccc;
 }

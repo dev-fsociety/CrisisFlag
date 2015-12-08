@@ -9,8 +9,8 @@
           <h4 class="text-center">Connectez-vous avec votre compte administrateur</h4>
 
           	<?= $this->Form->create(); ?>
-          	<?= $this->Form->input('username'); ?>
-        	 <?= $this->Form->input('password'); ?>
+          	<?= $this->Form->input('username', ['label' => 'Nom d\'utilisateur']); ?>
+        	 <?= $this->Form->input('password', ['label' => 'Mot de passe']); ?>
           	<?= $this->Form->button('Se connecter', ['class' => 'log-in-button']); ?>
           	<?= $this->Form->end(); ?>
 
