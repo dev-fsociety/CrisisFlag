@@ -17,7 +17,7 @@
 
                 <?php else : ?>
 
-                    <?= $this->Html->link(__('Retour à larticle'), $this->request->referer(), array('class' => 'expanded button')); ?>
+                    <?= $this->Html->link(__('Retour à l\'article'), $this->request->referer(), array('class' => 'expanded button')); ?>
 
                 <?php endif; ?>
 
