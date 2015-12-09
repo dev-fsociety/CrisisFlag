@@ -4,10 +4,10 @@
         <table cellpadding="0" cellspacing="0" style="margin: 0px auto;">
             <thead>
                 <tr>
-                    <th width="200"><?= $this->Paginator->sort('abstract', 'Résumé') ?></th>
-                    <th width="200"><?= $this->Paginator->sort('state', 'État') ?></th>
-                    <th width="200"><?= $this->Paginator->sort('address', 'Lieu') ?></th>
-                    <th width="200"><?= $this->Paginator->sort('created', 'Date de signalement') ?></th>
+                    <th width="200"><?= __('Résumé') ?></th>
+                    <th width="200"><?= __('État') ?></th>
+                    <th width="200"><?= __('Lieu') ?></th>
+                    <th width="200"><?= __('Date de signalement') ?></th>
                     <th width="200" class="actions text-center"><?= __('Détails') ?></th>
                 </tr>
             </thead>

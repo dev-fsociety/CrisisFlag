@@ -67,7 +67,7 @@
                 <ul class="off-canvas-list">
                     <li><label><?php if($this->request->session()->read("Auth.User")): ?>
                         <?php $username = $this->request->session()->read('Auth.User.username'); 
-                        echo "Bienvenue " . $username ;
+                        echo "Bienvenue " . $username;
                         else:
                             echo "Bienvenue invité";
                         endif;
@@ -75,13 +75,17 @@
                     </label></li>
                     <li class="topbar-separator"><?= $this->Html->link(__('Accueil'), '/') ?></li>
                     <li><?= $this->Html->link(__('Les crises'),   ['controller'=>'Crisis', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+
                     <?php if($this->request->session()->read("Auth.User")): ?>
-                    <li class="topbar-separator"><?= $this->Html->link(__('Utilisateurs'), ['controller'=>'Users', 'action' => 'index']) ?></li>
-                    
+
+                        <li><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
+                        <li class="topbar-separator"><?= $this->Html->link(__('Utilisateurs'), ['controller'=>'Users', 'action' => 'index']) ?></li>
                         <li><?= $this->Html->link(__('Se déconnecter'), ['controller'=>'Users', 'action' => 'logout']) ?></li>
+
                     <?php else: ?>
+                        <li class="topbar-separator"><?= $this->Html->link(__('Les articles'), ['controller'=>'Articles', 'action' => 'index']) ?></li>
                         <li><?= $this->Html->link(__('Se connecter'), ['controller'=>'Users', 'action' => 'login']) ?></li>
+
                     <?php endif; ?>
                 </ul>
             </nav>
