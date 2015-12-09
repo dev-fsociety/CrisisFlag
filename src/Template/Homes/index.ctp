@@ -105,8 +105,8 @@
                         </span>
                         <br/>
                         <div class="small button-group">
-                          <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis', 'action' => 'severityIncrement', $crisis->id], ['class' => 'fi-arrow-up medium Success']) ?>
-                          <?= $this->Form->postLink(__('No'), ['controller' => 'Crisis', 'action' => 'severityDecrement', $crisis->id], ['class' => 'fi-arrow-down medium Alert']) ?>
+                          <?= $this->Form->postLink(__(' Vrai'), ['controller' => 'Crisis', 'action' => 'severityIncrement', $crisis->id], ['class' => 'fi-arrow-up medium Success']) ?>
+                          <?= $this->Form->postLink(__(' Faux'), ['controller' => 'Crisis', 'action' => 'severityDecrement', $crisis->id], ['class' => 'fi-arrow-down medium Alert']) ?>
                         </div>
                       </div>
                     </div>
