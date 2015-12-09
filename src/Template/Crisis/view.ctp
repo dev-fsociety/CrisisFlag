@@ -29,10 +29,14 @@
         </div>
         <div class="medium-6 column">
           <div class="small button-group">
-            <?= $this->Form->postLink(__('Yes'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisi->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
-            <?= $this->Form->postLink(__('No') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisi->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
-
-            <?= $crisi->severity ?> ont upvote cette crise.
+            <?= $this->Form->postLink(__(' Vrai'), ['controller' => 'Crisis','action' => 'severityIncrement', $crisi->id], ['class' => ' fi-arrow-up medium  Success ']) ?>
+            <?= $this->Form->postLink(__(' Faux') , ['controller' => 'Crisis','action' => 'severityDecrement', $crisi->id], ['class' => ' fi-arrow-down medium  Alert ']) ?>
+            <br>
+            <?php if(($crisi->severity)>1) : ?>
+            <?= $crisi->severity ?> personnes ont confirmé cette crise.
+            <?php elseif(($crisi->severity)<-1) : ?>
+            <?= -($crisi->severity) ?> personnes ont réfuté cette crise.
+            <?php endif ?>
           </div>
         </div>
       </div>
