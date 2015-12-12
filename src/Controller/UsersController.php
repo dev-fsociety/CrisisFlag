@@ -17,12 +17,10 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         $this->Auth->allow(['logout', 'view']);
 
-        /*if($this->Users->find('all')->count() == 0) //<-- It should work... Allow the first user to add himself an admin account
+        if($this->Users->find('all')->count() === 0)
         {
             $this->Auth->allow(['add']);
-            $this->Flash->warning('Aucun utilisateur n\'est existant, veuillez créer le compte administrateur.');
-            $this->redirect('controller' => 'add');
-        }*/
+        }
     }
 
     public function isAuthorized($user)
@@ -45,19 +43,25 @@ class UsersController extends AppController
 
     public function login()
     {
-          if($this->request->is('post'))
-          {
-                $user = $this->Auth->identify();
+        if($this->Users->find('all')->count() === 0)
+        {
+            $this->Flash->warning('Aucun utilisateur n\'est existant, veuillez créer le compte administrateur.');
+            return $this->redirect(['action' => 'add']);
+        }
 
-                if($user)
-                {
-                    $this->Auth->setUser($user);
-                    $this->Flash->success(__('Vous êtes maintenant connecté.'));
-                    return $this->redirect($this->Auth->redirectUrl());
-                }
+        else if($this->request->is('post'))
+        {
+            $user = $this->Auth->identify();
 
-                $this->Flash->error(__('Identifiant et / ou mot de passe incorrect(s).'));
-          }
+            if($user)
+            {
+                $this->Auth->setUser($user);
+                $this->Flash->success(__('Vous êtes maintenant connecté.'));
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+
+            $this->Flash->error(__('Identifiant et / ou mot de passe incorrect(s).'));
+        }
     }
 
     public function logout()
