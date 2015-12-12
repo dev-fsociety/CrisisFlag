@@ -9,7 +9,6 @@ Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/
 
 * Validate input data in tables ?
 * Change hour format -> 24h ?
-* Bug when RESET button on Submit form ?
 * Allow the first user to add the 'admin' account of the website [almost implemented] ?
 
 -> Frontend:

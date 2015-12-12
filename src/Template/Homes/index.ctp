@@ -189,7 +189,7 @@
           </fieldset>
           <div class="small button-group">
             <?= $this->Form->button(__('Soumettre')) ?>
-            <a id="reset" class="button">Reset</a>
+            <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
           </div>
           <?= $this->Form->end() ?>
         </div>
@@ -264,7 +264,7 @@
                 </fieldset>
                 <div class="small button-group">
                   <?= $this->Form->button(__('Soumettre')) ?>
-                  <a id="reset" class="button">Reset</a>
+                  <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
                 </div>
                   <?= $this->Form->end() ?>
               </div>
@@ -321,7 +321,7 @@
               </fieldset>
               <div class="small button-group">
                 <?= $this->Form->button(__('Soumettre')) ?>
-                <a id="reset" class="button">Reset</a>
+                <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
               </div>
               <?= $this->Form->end() ?>
             </div>
