@@ -13,5 +13,4 @@ Ce projet est réalisé dans le cadre de la nuit de l'info 2015 par l'équipe [/
 -> Frontend:
 
 * Big gap on non-full pages footer ?
-* Center text on delete button of Articles index ?
 * 3 Submit forms declared on index.ctp ?

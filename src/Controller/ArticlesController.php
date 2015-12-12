@@ -74,10 +74,10 @@ class ArticlesController extends AppController
             $article = $this->Articles->patchEntity($article, $this->request->data);
             $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('L\'article a bien été enregistré.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+                $this->Flash->error(__('L\'article n\'a pas pu être enregistré.'));
             }
         }
         $this->set(compact('article', 'users'));
@@ -100,10 +100,10 @@ class ArticlesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('L\'article a bien été enregistré.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The article could not be saved. Please, try again.'));
+                $this->Flash->error(__('L\'article n\'a pas pu être enregistré.'));
             }
         }
         $users = $this->Articles->Users->find('list', ['limit' => 200]);
@@ -124,9 +124,9 @@ class ArticlesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $article = $this->Articles->get($id);
         if ($this->Articles->delete($article)) {
-            $this->Flash->success(__('The article has been deleted.'));
+            $this->Flash->success(__('L\'article a bien été enregistré.'));
         } else {
-            $this->Flash->error(__('The article could not be deleted. Please, try again.'));
+            $this->Flash->error(__('L\'article n\'a pas pu être enregistré.'));
         }
         return $this->redirect(['action' => 'index']);
     }
