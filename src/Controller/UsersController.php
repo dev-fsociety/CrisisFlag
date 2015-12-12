@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
-
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Users Controller
@@ -104,6 +104,11 @@ class UsersController extends AppController
      */
     public function add()
     {
+        if($this->Users->find('all')->count() === 1)
+        {
+            ConnectionManager::get('default')->execute('ALTER TABLE users AUTO_INCREMENT 2');
+        }
+
         $user = $this->Users->newEntity();
 
         if($this->request->is('post'))

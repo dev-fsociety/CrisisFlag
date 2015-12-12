@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
+
 /**
  * Crisis Controller
  *
@@ -100,6 +102,11 @@ class CrisisController extends AppController
      */
     public function add()
     {
+        if($this->Crisis->find('all')->count() === 0)
+        {
+            ConnectionManager::get('default')->execute('ALTER TABLE crisis AUTO_INCREMENT 1');
+        }
+
         $crisi = $this->Crisis->newEntity();
         if (isset($this->request->data))
         {

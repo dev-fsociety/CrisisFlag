@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
+
 /**
  * Articles Controller
  *
@@ -59,6 +61,11 @@ class ArticlesController extends AppController
      */
     public function add()
     {
+        if($this->Articles->find('all')->count() === 0)
+        {
+            ConnectionManager::get('default')->execute('ALTER TABLE articles AUTO_INCREMENT 1');
+        }
+
         $user_id = $this->Auth->user()['id'];
         $article = $this->Articles->newEntity();
         if ($this->request->is('post'))

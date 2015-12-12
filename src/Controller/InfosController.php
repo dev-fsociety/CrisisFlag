@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
+
 /**
  * Infos Controller
  *
@@ -52,6 +54,11 @@ class InfosController extends AppController
      */
     public function add($crisis_id = null)
     {
+        if($this->Infos->find('all')->count() === 0)
+        {
+            ConnectionManager::get('default')->execute('ALTER TABLE infos AUTO_INCREMENT 1');
+        }
+
         if($crisis_id != null)
         {
             $user_id = $this->Auth->user()['id'];
