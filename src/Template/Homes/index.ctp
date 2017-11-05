@@ -16,6 +16,37 @@
 
 <?php $this->assign('script', 'geoloc.js'); ?>
 
+<?= $this->start('submit-form') ?>
+<div class="small-12 medium-6 large-4 columns text-center submit-form">
+  <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
+  <fieldset>
+    <legend><?= __('Soumettre une crise') ?></legend>
+    <?php
+      echo $this->Form->hidden('severity');
+      echo $this->Form->hidden('longitude');
+      echo $this->Form->hidden('latitude');
+      echo $this->Form->hidden('state');
+    ?>
+    <?= $this->Form->input('abstract', ['label' => 'En quelques mots...']); ?>
+    <label class='form-label'>Localisation de la crise :</label>
+    <?php
+      $types = array('auto' => 'Détection automatique', 'manual' => ' Entrer manuellement');
+      $attributes = array('legend' => false, 'label' => true, 'class' => 'radio-loc', 'value' => 'auto');
+      echo $this->Form->radio('type', $types, $attributes);
+    ?>
+    <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
+    <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
+    <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
+    <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
+  </fieldset>
+  <div class="small button-group">
+    <?= $this->Form->button(__('Soumettre')) ?>
+    <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
+  </div>
+  <?= $this->Form->end() ?>
+</div>
+<?= $this->end() ?>
+
 <div class="row">
     <?php if($home_type != 'none') { ?>
       <?php
@@ -165,34 +196,9 @@
           <?php endif; ?>
 
         </div>
-        <div class="small-12 medium-6 large-4 columns text-center submit-form">
-          <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
-          <fieldset>
-            <legend><?= __('Soumettre une crise') ?></legend>
-            <?php
-              echo $this->Form->hidden('severity');
-              echo $this->Form->hidden('longitude');
-              echo $this->Form->hidden('latitude');
-              echo $this->Form->hidden('state');
-            ?>
-            <?= $this->Form->input('abstract', ['label' => 'En quelques mots...']); ?>
-            <label class='form-label'>Localisation de la crise :</label>
-            <?php
-              $types = array('auto' => 'Détection automatique', 'manual' => ' Entrer manuellement');
-              $attributes = array('legend' => false, 'label' => true, 'class' => 'radio-loc', 'value' => 'auto');
-              echo $this->Form->radio('type', $types, $attributes);
-            ?>
-            <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
-            <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-            <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
-            <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
-          </fieldset>
-          <div class="small button-group">
-            <?= $this->Form->button(__('Soumettre')) ?>
-            <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
-          </div>
-          <?= $this->Form->end() ?>
-        </div>
+
+        <?= $this->fetch('submit-form') ?>
+
       </div>
 
       <?php } else { ?>
@@ -240,34 +246,8 @@
 
               <?php endif; ?>
 
-              <div class="small-12 medium-6 large-4 columns text-center submit-form">
-                <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
-                <fieldset>
-                  <legend><?= __('Soumettre une crise') ?></legend>
-                  <?php
-                    echo $this->Form->hidden('severity');
-                    echo $this->Form->hidden('longitude');
-                    echo $this->Form->hidden('latitude');
-                    echo $this->Form->hidden('state');
-                  ?>
-                  <?= $this->Form->input('abstract', ['label' => 'En quelques mots...']); ?>
-                  <label class='form-label'>Localisation de la crise :</label>
-                  <?php
-                    $types = array('auto' => 'Détection automatique', 'manual' => ' Entrer manuellement');
-                    $attributes = array('legend' => false, 'label' => true, 'class' => 'radio-loc', 'value' => 'auto');
-                    echo $this->Form->radio('type', $types, $attributes);
-                  ?>
-                  <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
-                  <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-                  <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
-                  <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
-                </fieldset>
-                <div class="small button-group">
-                  <?= $this->Form->button(__('Soumettre')) ?>
-                  <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
-                </div>
-                  <?= $this->Form->end() ?>
-              </div>
+              <?= $this->fetch('submit-form') ?>
+
             </div>
             <br/>
             <div class="row">
@@ -297,38 +277,13 @@
             <div class="show-for-medium-up small-12 medium-3 large-4 columns">
               <br/>
             </div>
-            <div class="small-12 medium-6 large-4 columns text-center submit-form">
-              <?= $this->Form->create($newCrisis, ['url' => ['controller' => 'Crisis', 'action' => 'add'], 'method' => 'post']); ?>
-              <fieldset>
-                <legend><?= __('Soumettre une crise') ?></legend>
-                <?php
-                  echo $this->Form->hidden('severity');
-                  echo $this->Form->hidden('longitude');
-                  echo $this->Form->hidden('latitude');
-                  echo $this->Form->hidden('state');
-                ?>
-                <?= $this->Form->input('abstract', ['label' => 'En quelques mots...']); ?>
-                <label class='form-label'>Localisation de la crise :</label>
-                <?php
-                  $types = array('auto' => 'Détection automatique', 'manual' => ' Entrer manuellement');
-                  $attributes = array('legend' => false, 'label' => true, 'class' => 'radio-loc', 'value' => 'auto');
-                  echo $this->Form->radio('type', $types, $attributes);
-                ?>
-                <a id="geolocate" class="button" ><i class="fi-arrow-right large"></i> Localiser mon appareil</a>
-                <?= $this->Form->input('address', ['label' => 'Adresse']); ?>
-                <?= $this->Form->input('type', array('type' => 'select', 'options' => $categories, 'label' => false, 'empty' => 'Catégorie')); ?>
-                <?= $this->Form->input('hashtags', ['placeholder' => '#']); ?>
-              </fieldset>
-              <div class="small button-group">
-                <?= $this->Form->button(__('Soumettre')) ?>
-                <?= $this->Form->button('Reset', array('type' => 'reset')); ?>
-              </div>
-              <?= $this->Form->end() ?>
-            </div>
+
+            <?= $this->fetch('submit-form') ?>
+
             <div class="show-for-medium-up small-12 medium-3 large-4 columns">
               <br/>
             </div>
-            
+
           <?php } ?>
 
       <?php } ?>
