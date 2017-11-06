@@ -76,10 +76,11 @@ class CrisisTable extends Table
         $validator
             ->requirePresence('state', 'create')
             ->notEmpty('state');
+
         $validator
             ->add('state', 'inList', ['rule' => ['inList', [
                 'spotted', 'verified', 'over']],
-                'message' => 'Merci de rentrer un role valide']);
+                'message' => 'Merci de saisir un rôle valide']);
 
         $validator
             ->requirePresence('address', 'create')
