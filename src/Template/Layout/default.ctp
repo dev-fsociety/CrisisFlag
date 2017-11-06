@@ -31,11 +31,10 @@
     <?= $this->Html->css('app.css') ?>
 
     <?= $this->Html->css('home_crisisdisplay.css') ?>
-    <!--<?= $this->Html->css('crisis_list.css') ?>4<?= $this->Html->css('articles_template.css') ?> -->
 
     <?= $this->Html->css('foundation-icons.css') ?>
     <?= $this->Html->css('crisis_template.css') ?>
-    
+
     <!-- Topbar style -->
     <?= $this->Html->css('topbar.css') ?>
     <!-- Footer style -->
@@ -66,7 +65,7 @@
             <nav class="left-off-canvas-menu">
                 <ul class="off-canvas-list">
                     <li><label><?php if($this->request->session()->read("Auth.User")): ?>
-                        <?php $username = $this->request->session()->read('Auth.User.username'); 
+                        <?php $username = $this->request->session()->read('Auth.User.username');
                         echo "Bienvenue " . $username;
                         else:
                             echo "Bienvenue invité";
@@ -97,26 +96,25 @@
                 <?= $this->fetch('content') ?>
             </section>
 
-
-            <!-- Footer -->
-            <footer class="footer">
-              <div class="row">
-                <div class="small-12 columns">
-
-                    <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
-                    <p class="copywrite">Fsociety all rights reserved © 2015</p>
-
-                </div>
-              </div>
-            </footer>
-            <!-- /Footer -->
-
         </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <div class="row">
+            <div class="small-12 columns">
+
+                <p><?php echo $this->Html->image('devfsociety.svg', array('alt' => 'CakePHP', 'class' => 'footer-logo'));?></p>
+                <p class="copywrite">Fsociety all rights reserved © 2015</p>
+
+            </div>
+          </div>
+        </footer>
+        <!-- /Footer -->
+
     </div>
 
-
     <!-- Foundation (+jquery) scripts -->
-    <?= $this->Html->script("vendor/jquery.min.js") ?> 
+    <?= $this->Html->script("vendor/jquery.min.js") ?>
 
     <?= $this->Html->script("foundation/foundation.js") ?>
     <?= $this->Html->script("foundation/foundation.alert.js") ?>

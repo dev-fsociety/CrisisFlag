@@ -1,3 +1,11 @@
+.off-canvas-wrap {
+    height: 100%;
+}
+
+.inner-wrap {
+    min-height: calc(100% - 164px);
+}
+
 .capitalize{
 	text-transform: uppercase;
 }

@@ -9,6 +9,3 @@ Ce projet a été réalisé dans le cadre de la Nuit de l'Info (édition 2015) p
 * Validate input data in tables ?
 * Change hour format -> 24h ?
 
---> Frontend:
-
-* Big gap on non-full pages footer ?
