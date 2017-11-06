@@ -7,5 +7,3 @@ Ce projet a été réalisé dans le cadre de la Nuit de l'Info (édition 2015) p
 --> Backend :
 
 * Validate input data in tables ?
-* Change hour format -> 24h ?
-

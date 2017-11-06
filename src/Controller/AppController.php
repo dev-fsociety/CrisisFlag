@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\I18n\I18n;
 
 /**
  * Application Controller
@@ -93,5 +94,7 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+        I18n::locale('fr_FR');
     }
 }
